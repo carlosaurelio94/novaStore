@@ -7,6 +7,7 @@ import com.tienda.tienda_de_ropa.models.Cliente;
 import com.tienda.tienda_de_ropa.models.Contacto;
 import com.tienda.tienda_de_ropa.repositories.ContactoRepository;
 import com.tienda.tienda_de_ropa.service.ClienteService;
+import com.tienda.tienda_de_ropa.service.ContactoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class ContactoController {
     ClienteService clienteService;
 
     @Autowired
-    ContactoRepository contactoRepository;
+    ContactoService contactoService;
 
     @PostMapping("/clients/current/contacts")
     public ResponseEntity<?> crearContacto (@RequestParam String correo, @RequestParam String apodo,
@@ -52,7 +53,7 @@ public class ContactoController {
             return new ResponseEntity<>("YA TIENE AGREGADO A ESTE CONTACTO EN SU AGENDA", HttpStatus.FORBIDDEN);
         }
 
-        contactoRepository.save(new Contacto(correo, apodo, clienteActual));
+        contactoService.guardarContacto(new Contacto(correo, apodo, clienteActual));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
