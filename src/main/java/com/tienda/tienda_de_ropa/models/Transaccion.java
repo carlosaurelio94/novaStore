@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
 public class Transaccion {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO,generator = "native")
@@ -13,7 +14,7 @@ public class Transaccion {
     private LocalDateTime fecha;
     private TipoTransaccion tipoTransaccion;
     private String descripcion;
-    private double monto;
+    private Double monto;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id")
