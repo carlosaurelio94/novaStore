@@ -21,14 +21,14 @@ public class AutorizacionWeb extends WebSecurityConfigurerAdapter {
                 //.antMatchers("/admin/**").hasAuthority("ADMIN")
                 //.antMatchers("/h2-console/**").hasAuthority("ADMIN")
                 //.antMatchers("/rest/**").hasAuthority("ADMIN")
-                //.antMatchers(HttpMethod.GET, "/api/clientes").hasAuthority("ADMIN")
+                //.antMatchers(HttpMethod.GET, "/api/clients").hasAuthority("ADMIN")
                 .antMatchers("/web/index.html", "/web/assets/**").permitAll()
                 .antMatchers(HttpMethod.POST , "/api/accounts").hasAuthority("CLIENT")
                 .antMatchers("/web/account.html","/web/accounts.html","/web/cards.html", "/web/createCard.html", "/web/profile.html", "/web/settings.html").hasAuthority("CLIENT")
                 .antMatchers(HttpMethod.POST , "/api/clientes").permitAll();
         http.formLogin()
-                .usernameParameter("email")
-                .passwordParameter("password")
+                .usernameParameter("correo")
+                .passwordParameter("clave")
                 .loginPage("/api/login");
         http.logout().logoutUrl("/api/logout").deleteCookies("JSESSIONID");
         // turn off checking for CSRF tokens
