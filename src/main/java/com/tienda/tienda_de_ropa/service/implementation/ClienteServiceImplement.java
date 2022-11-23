@@ -28,4 +28,9 @@ public class ClienteServiceImplement implements ClienteService {
     public Cliente findByCorreo(String correo) {
         return clienteRepository.findByCorreo(correo);
     }
+
+    @Override
+    public void guardarCliente(Cliente cliente) {
+        clienteRepository.save(cliente);
+    }
 }

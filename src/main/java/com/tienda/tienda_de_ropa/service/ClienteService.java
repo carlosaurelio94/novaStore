@@ -12,4 +12,6 @@ public interface ClienteService {
     public ClienteDTO clienteDTO(long id);
 
     public Cliente findByCorreo(String correo);
+
+    public void guardarCliente(Cliente cliente);
 }
