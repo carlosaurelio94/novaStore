@@ -17,7 +17,7 @@ public class Contacto {
     private String apodo;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="cliente_id")
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
     public Contacto() {
