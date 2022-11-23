@@ -6,6 +6,7 @@ import com.tienda.tienda_de_ropa.dtos.ContactoDTO;
 import com.tienda.tienda_de_ropa.models.Cliente;
 import com.tienda.tienda_de_ropa.models.Contacto;
 import com.tienda.tienda_de_ropa.repositories.ContactoRepository;
+import com.tienda.tienda_de_ropa.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,14 +21,17 @@ import java.util.stream.Collectors;
 public class ContactoController {
 
     @Autowired
+    ClienteService clienteService;
+
+    @Autowired
     ContactoRepository contactoRepository;
 
     @PostMapping("/clients/current/contacts")
     public ResponseEntity<?> crearContacto (@RequestParam String correo, @RequestParam String apodo,
                                             Authentication authentication) {
 
-        Cliente clienteActual = clientService.findByCorreo(authentication.getName());
-        Cliente clienteContacto = clientService.findByCorreo(correo);
+        Cliente clienteActual = clienteService.findByCorreo(authentication.getName());
+        Cliente clienteContacto = clienteService.findByCorreo(correo);
 
         Set<Contacto> setContactos = clienteActual.getContactos().stream()
                 .filter(contacto -> contacto.getCorreo().equals(correo)).collect(Collectors.toSet());
@@ -51,10 +55,10 @@ public class ContactoController {
         contactoRepository.save(new Contacto(correo, apodo, clienteActual));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-
-    @GetMapping("/clients/current/contacts")
-    public Set<ContactoDTO> traerContactos(Authentication authentication) {
-        return new ClienteDTO(clienteService.findByCorreo(authentication.getName())).getContactos();
-    }
+//
+//    @GetMapping("/clients/current/contacts")
+//    public Set<ContactoDTO> traerContactos(Authentication authentication) {
+//        return new ClienteDTO(clienteService.findByCorreo(authentication.getName())).get
+//    }
 
 }
