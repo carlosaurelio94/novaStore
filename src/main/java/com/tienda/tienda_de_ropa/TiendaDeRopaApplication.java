@@ -1,5 +1,6 @@
 package com.tienda.tienda_de_ropa;
 
+import com.tienda.tienda_de_ropa.models.Cliente;
 import com.tienda.tienda_de_ropa.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -27,7 +28,8 @@ public class TiendaDeRopaApplication {
 			TransaccionRepository transaccionRepository
 	) {
 		return args -> {
-
+			Cliente clientePruebas = new Cliente("Carlos", "Rodriguez", "carlos@gmail.com", passwordEnconder.encode("1234"),0);
+			clienteRepository.save(clientePruebas);
 		};
 	}
 }
