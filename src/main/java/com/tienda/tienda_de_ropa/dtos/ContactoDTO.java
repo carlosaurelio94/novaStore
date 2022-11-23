@@ -6,7 +6,7 @@ public class ContactoDTO {
 
     private long id;
 
-    private String email;
+    private String correo;
 
     private String apodo;
 
@@ -14,7 +14,7 @@ public class ContactoDTO {
 
     public ContactoDTO(Contacto contacto) {
         this.id = contacto.getId();
-        this.email = contacto.getEmail();
+        this.correo = contacto.getCorreo();
         this.apodo = contacto.getApodo();
     }
 
@@ -22,8 +22,8 @@ public class ContactoDTO {
         return id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCorreo() {
+        return correo;
     }
 
     public String getApodo() {

@@ -12,7 +12,7 @@ public class Contacto {
     @GenericGenerator(name="native", strategy = "native")
     private long id;
 
-    private String email;
+    private String correo;
 
     private String apodo;
 
@@ -23,8 +23,8 @@ public class Contacto {
     public Contacto() {
     }
 
-    public Contacto(String email, String apodo, Cliente cliente) {
-        this.email = email;
+    public Contacto(String correo, String apodo, Cliente cliente) {
+        this.correo = correo;
         this.apodo = apodo;
         this.cliente = cliente;
     }
@@ -33,12 +33,12 @@ public class Contacto {
         return id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getApodo() {
@@ -61,7 +61,7 @@ public class Contacto {
     public String toString() {
         return "Contacto{" +
                 "id=" + id +
-                ", email='" + email + '\'' +
+                ", correo='" + correo + '\'' +
                 ", apodo='" + apodo + '\'' +
                 '}';
     }
