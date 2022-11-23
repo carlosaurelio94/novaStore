@@ -55,10 +55,10 @@ public class ContactoController {
         contactoRepository.save(new Contacto(correo, apodo, clienteActual));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-//
-//    @GetMapping("/clients/current/contacts")
-//    public Set<ContactoDTO> traerContactos(Authentication authentication) {
-//        return new ClienteDTO(clienteService.findByCorreo(authentication.getName())).get
-//    }
+
+    @GetMapping("/clients/current/contacts")
+    public Set<ContactoDTO> traerContactos(Authentication authentication) {
+        return new ClienteDTO(clienteService.findByCorreo(authentication.getName())).getContactos();
+    }
 
 }

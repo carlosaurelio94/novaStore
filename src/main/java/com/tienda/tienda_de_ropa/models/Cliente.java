@@ -30,6 +30,9 @@ public class Cliente {
     @OneToMany(mappedBy= "cliente", fetch= FetchType.EAGER)
     private Set<ClienteProducto> clienteProductos = new HashSet<>();
 
+    @OneToMany(mappedBy= "cliente", fetch= FetchType.EAGER)
+    private Set<TicketCompra> ticketCompras = new HashSet<>();
+
     public Cliente() {
     }
 
@@ -115,6 +118,14 @@ public class Cliente {
 
     public void setClienteProductos(Set<ClienteProducto> clienteProductos) {
         this.clienteProductos = clienteProductos;
+    }
+
+    public Set<TicketCompra> getTicketCompras() {
+        return ticketCompras;
+    }
+
+    public void setTicketCompras(Set<TicketCompra> ticketCompras) {
+        this.ticketCompras = ticketCompras;
     }
 
     @Override
