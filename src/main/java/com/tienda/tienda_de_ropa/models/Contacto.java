@@ -23,8 +23,7 @@ public class Contacto {
     public Contacto() {
     }
 
-    public Contacto(long id, String email, String apodo, Cliente cliente) {
-        this.id = id;
+    public Contacto(String email, String apodo, Cliente cliente) {
         this.email = email;
         this.apodo = apodo;
         this.cliente = cliente;
