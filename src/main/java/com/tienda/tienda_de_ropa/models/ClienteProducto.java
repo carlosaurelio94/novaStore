@@ -1,10 +1,14 @@
 package com.tienda.tienda_de_ropa.models;
 
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
+
+@Entity
 public class ClienteProducto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GenericGenerator(strategy= "native", name= "native")
     private long id;
     private String nombreProducto;
     private int cantidadProducto;

@@ -17,7 +17,6 @@ public class TiendaDeRopaApplication {
 			ProductoRepository productoRepository,
 			ContactoRepository contactoRepository,
 			GiftCardRepository giftCardRepository,
-			ClienteGiftCardRepository clienteGiftCardRepository,
 			ClienteProductoRepository clienteProductoRepository,
 			TransaccionRepository transaccionRepository
 	) {

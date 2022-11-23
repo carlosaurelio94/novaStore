@@ -1,4 +1,9 @@
 package com.tienda.tienda_de_ropa.repositories;
 
-public interface ClienteProductoRepository {
+import com.tienda.tienda_de_ropa.models.ClienteProducto;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+
+@RepositoryRestResource
+public interface ClienteProductoRepository extends JpaRepository<ClienteProducto, Long> {
 }
