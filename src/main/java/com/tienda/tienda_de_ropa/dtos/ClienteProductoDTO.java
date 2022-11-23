@@ -1,14 +1,16 @@
 package com.tienda.tienda_de_ropa.dtos;
 
+import com.tienda.tienda_de_ropa.models.ClienteProducto;
+
 public class ClienteProductoDTO {
     private long id;
     private String nombreProducto;
     private int cantidadProducto;
 
-    public ClienteProductoDTO(ClienteProductoDTO clienteProductoDTO) {
-        this.id = clienteProductoDTO.getId();
-        this.nombreProducto = clienteProductoDTO.getNombreProducto();
-        this.cantidadProducto = clienteProductoDTO.getCantidadProducto();
+    public ClienteProductoDTO(ClienteProducto clienteProducto) {
+        this.id = clienteProducto.getId();
+        this.nombreProducto = clienteProducto.getNombreProducto();
+        this.cantidadProducto = clienteProducto.getCantidadProducto();
     }
 
     public long getId() {
