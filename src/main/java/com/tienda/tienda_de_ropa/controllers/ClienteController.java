@@ -1,10 +1,12 @@
 package com.tienda.tienda_de_ropa.controllers;
 
 import com.tienda.tienda_de_ropa.dtos.ClienteDTO;
+import com.tienda.tienda_de_ropa.models.Cliente;
 import com.tienda.tienda_de_ropa.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +19,7 @@ public class ClienteController {
     ClienteService clienteService;
 
     @Autowired
+    PasswordEncoder passwordEncoder;
 
     @GetMapping("/clientes")
     public List<ClienteDTO> listaClientesDTO(){
@@ -43,10 +46,15 @@ public class ClienteController {
             return new ResponseEntity<>("Falta el dato Correo", HttpStatus.FORBIDDEN);
         }
         if(clave.isEmpty()){
-            return new ResponseEntity<>("Falta el dato clave", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Falta el dato contraseña", HttpStatus.FORBIDDEN);
         }
-        if (clientService.findByEmail(email) != null) {
-            return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
+        if (clienteService.findByCorreo(correo) != null) {
+            return new ResponseEntity<>("El correo ya se encuentra en uso", HttpStatus.FORBIDDEN);
         }
+
+        Cliente nuevoCliente = new Cliente(nombre, apellido, correo, passwordEncoder.encode(clave), 0);
+        clienteService.guardarCliente(nuevoCliente);
+
+        return new ResponseEntity<>(nuevoCliente, HttpStatus.CREATED);
     }
 }

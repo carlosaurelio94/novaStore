@@ -4,6 +4,7 @@ import com.tienda.tienda_de_ropa.models.*;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ClienteDTO {
     private long id;
@@ -13,13 +14,13 @@ public class ClienteDTO {
     private String clave;
     private int puntos;
 
-    private Set<Transaccion> transacciones = new HashSet<>();
+    private Set<TransaccionDTO> transacciones = new HashSet<>();
 
-    private Set<Contacto> contactos = new HashSet<>();
+    private Set<ContactoDTO> contactos = new HashSet<>();
 
-    private Set<GiftCard> giftCards = new HashSet<>();
+    private Set<GiftCardDTO> giftCards = new HashSet<>();
 
-    private Set<ClienteProducto> clienteProductos = new HashSet<>();
+    private Set<ClienteProductoDTO> clienteProductos = new HashSet<>();
 
     public ClienteDTO(Cliente cliente) {
         this.id = cliente.getId();
@@ -28,10 +29,10 @@ public class ClienteDTO {
         this.correo = cliente.getCorreo();
         this.clave = cliente.getClave();
         this.puntos = cliente.getPuntos();
-        this.transacciones = cliente.getTransacciones();
-        this.contactos = cliente.getContactos();
-        this.giftCards = cliente.getGiftCards();
-        this.clienteProductos = cliente.getClienteProductos();
+        this.transacciones = cliente.getTransacciones().stream().map(transaccion -> new TransaccionDTO(transaccion)).collect(Collectors.toSet());
+        this.contactos = cliente.getContactos().stream().map(contacto -> new ContactoDTO(contacto)).collect(Collectors.toSet());
+        this.giftCards = cliente.getGiftCards().stream().map(giftCard -> new GiftCardDTO(giftCard)).collect(Collectors.toSet());
+        this.clienteProductos = cliente.getClienteProductos().stream().map(clienteProducto -> new ClienteProductoDTO(clienteProducto)).collect(Collectors.toSet());
     }
 
     public long getId() {
@@ -58,19 +59,19 @@ public class ClienteDTO {
         return puntos;
     }
 
-    public Set<Transaccion> getTransacciones() {
+    public Set<TransaccionDTO> getTransacciones() {
         return transacciones;
     }
 
-    public Set<Contacto> getContactos() {
+    public Set<ContactoDTO> getContactos() {
         return contactos;
     }
 
-    public Set<GiftCard> getGiftCards() {
+    public Set<GiftCardDTO> getGiftCards() {
         return giftCards;
     }
 
-    public Set<ClienteProducto> getClienteProductos() {
+    public Set<ClienteProductoDTO> getClienteProductos() {
         return clienteProductos;
     }
 }
