@@ -14,7 +14,7 @@ public class ContactoDTO {
 
     public ContactoDTO(Contacto contacto) {
         this.id = contacto.getId();
-        this.email = contacto.getEmail();
+        this.email = contacto.getCorreo();
         this.apodo = contacto.getApodo();
     }
 
