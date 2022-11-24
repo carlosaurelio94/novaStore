@@ -10,8 +10,8 @@ import java.util.Set;
 public class TicketCompra {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator= "native")
-    @GenericGenerator(strategy = "native", name= "native")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(strategy = "native", name = "native")
     private long id;
 
     private String numeroTicket;
@@ -23,6 +23,9 @@ public class TicketCompra {
     private Double montoTotalProducto;
 
     private Double precioFinal;
+
+
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
