@@ -23,12 +23,12 @@ public class Carrito {
     public Carrito() {
     }
 
-    @OneToMany(mappedBy="shoppingCart", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="carrito", fetch=FetchType.EAGER)
     Set<Factura> facturas = new HashSet<>();
-    @OneToMany(mappedBy="shoppingCart", fetch=FetchType.LAZY)
+    @OneToMany(mappedBy="carrito", fetch=FetchType.LAZY)
     Set<OrdenCompra> ordenCompra = new HashSet<>();
     @OneToOne
-    @JoinColumn(name="client_id")
+    @JoinColumn(name="cliente_id")
     private Cliente cliente;
 
     public Long getId() {

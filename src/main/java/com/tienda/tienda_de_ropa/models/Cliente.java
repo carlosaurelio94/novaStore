@@ -27,6 +27,9 @@ public class Cliente {
     @OneToMany(mappedBy= "cliente", fetch= FetchType.EAGER)
     private Set<GiftCard> giftCards = new HashSet<>();
 
+    @OneToOne(mappedBy="client")
+    private Carrito carrito;
+
     public Cliente() {
     }
 

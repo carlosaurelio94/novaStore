@@ -13,8 +13,8 @@ public class GiftCard {
 
     private String numeroTarjeta;
     private Double monto;
-    private int puntos;
-    private boolean activada = true;
+    private double puntos;
+    private boolean activada;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id")
@@ -23,7 +23,7 @@ public class GiftCard {
     public GiftCard() {
     }
 
-    public GiftCard(String numeroTarjeta, Double monto, int puntos, boolean activada, Cliente cliente) {
+    public GiftCard(String numeroTarjeta, Double monto, double puntos, boolean activada, Cliente cliente) {
         this.numeroTarjeta = numeroTarjeta;
         this.monto = monto;
         this.puntos = puntos;
@@ -51,11 +51,11 @@ public class GiftCard {
         this.monto = monto;
     }
 
-    public int getPuntos() {
+    public double getPuntos() {
         return puntos;
     }
 
-    public void setPuntos(int puntos) {
+    public void setPuntos(double puntos) {
         this.puntos = puntos;
     }
 
