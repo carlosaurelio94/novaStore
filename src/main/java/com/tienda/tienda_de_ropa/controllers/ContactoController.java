@@ -1,11 +1,9 @@
 package com.tienda.tienda_de_ropa.controllers;
 
-
 import com.tienda.tienda_de_ropa.dtos.ClienteDTO;
 import com.tienda.tienda_de_ropa.dtos.ContactoDTO;
 import com.tienda.tienda_de_ropa.models.Cliente;
 import com.tienda.tienda_de_ropa.models.Contacto;
-import com.tienda.tienda_de_ropa.repositories.ContactoRepository;
 import com.tienda.tienda_de_ropa.service.ClienteService;
 import com.tienda.tienda_de_ropa.service.ContactoService;
 import org.springframework.beans.factory.annotation.Autowired;
