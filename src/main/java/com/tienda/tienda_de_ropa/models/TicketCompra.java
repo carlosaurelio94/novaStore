@@ -10,8 +10,8 @@ import java.util.Set;
 public class TicketCompra {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator= "native")
-    @GenericGenerator(strategy= "native", name= "native")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator= "native")
+    @GenericGenerator(strategy = "native", name= "native")
     private long id;
 
     private String numeroTicket;
@@ -23,7 +23,6 @@ public class TicketCompra {
     private Double montoTotalProducto;
 
     private Double precioFinal;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
@@ -31,7 +30,8 @@ public class TicketCompra {
     @OneToMany(mappedBy = "ticketCompra", fetch = FetchType.EAGER)
     private Set<TicketCompra> ticketCompra = new HashSet<>();
 
-    public TicketCompra() {}
+    public TicketCompra() {
+    }
 
     public TicketCompra(String numeroTicket, String nombreProducto, int cantidadProducto, Double montoTotalProducto, Double precioFinal, Cliente cliente) {
         this.numeroTicket = numeroTicket;
