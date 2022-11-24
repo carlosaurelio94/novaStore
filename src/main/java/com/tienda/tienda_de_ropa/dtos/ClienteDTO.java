@@ -14,7 +14,7 @@ public class ClienteDTO {
     private String clave;
     private int puntos;
 
-    private Set<TransaccionDTO> transacciones = new HashSet<>();
+    private Set<CompraDTO> transacciones = new HashSet<>();
 
     private Set<ContactoDTO> contactos = new HashSet<>();
 
@@ -29,7 +29,7 @@ public class ClienteDTO {
         this.correo = cliente.getCorreo();
         this.clave = cliente.getClave();
         this.puntos = cliente.getPuntos();
-        this.transacciones = cliente.getTransacciones().stream().map(transaccion -> new TransaccionDTO(transaccion)).collect(Collectors.toSet());
+        this.transacciones = cliente.getTransacciones().stream().map(transaccion -> new CompraDTO(transaccion)).collect(Collectors.toSet());
         this.contactos = cliente.getContactos().stream().map(contacto -> new ContactoDTO(contacto)).collect(Collectors.toSet());
         this.giftCards = cliente.getGiftCards().stream().map(giftCard -> new GiftCardDTO(giftCard)).collect(Collectors.toSet());
         this.clienteProductos = cliente.getClienteProductos().stream().map(clienteProducto -> new ClienteProductoDTO(clienteProducto)).collect(Collectors.toSet());
@@ -59,7 +59,7 @@ public class ClienteDTO {
         return puntos;
     }
 
-    public Set<TransaccionDTO> getTransacciones() {
+    public Set<CompraDTO> getTransacciones() {
         return transacciones;
     }
 

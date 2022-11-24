@@ -1,9 +1,7 @@
 package com.tienda.tienda_de_ropa.controllers;
 
-import com.tienda.tienda_de_ropa.models.Cliente;
 import com.tienda.tienda_de_ropa.models.TipoTransaccion;
 import com.tienda.tienda_de_ropa.service.ClienteService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +15,7 @@ import javax.transaction.Transactional;
 
 @RestController
 @RequestMapping("/api")
-public class TransaccionController {
+public class CompraController {
     @Autowired
     ClienteService clienteService;
 
@@ -32,6 +30,7 @@ public class TransaccionController {
         if (monto.isNaN() || monto == 0){
             return new ResponseEntity<>("No ingresaste un monto",HttpStatus.FORBIDDEN);
         }
+
         return new ResponseEntity<>("Se Realizo la transaccion con exito",HttpStatus.CREATED);
     }
 }
