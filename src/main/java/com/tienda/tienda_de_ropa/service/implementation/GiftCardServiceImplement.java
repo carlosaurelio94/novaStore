@@ -16,4 +16,9 @@ public class GiftCardServiceImplement implements GiftCardService {
     public void saveGiftCard(GiftCard giftCard) {
         giftCardRepository.save(giftCard);
     }
+
+    public GiftCard findByNumeroTarjeta (String numeroTarjeta) {
+        return giftCardRepository.findByNumeroTarjeta(numeroTarjeta);
+    }
+
 }

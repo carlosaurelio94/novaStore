@@ -12,7 +12,7 @@ public class ClienteDTO {
     private String apellido;
     private String correo;
     private String clave;
-    private int puntos;
+    private double puntos;
 
     private Set<CompraDTO> transacciones = new HashSet<>();
 
@@ -20,7 +20,6 @@ public class ClienteDTO {
 
     private Set<GiftCardDTO> giftCards = new HashSet<>();
 
-    private Set<ClienteProductoDTO> clienteProductos = new HashSet<>();
 
     public ClienteDTO(Cliente cliente) {
         this.id = cliente.getId();
@@ -32,7 +31,6 @@ public class ClienteDTO {
         this.transacciones = cliente.getTransacciones().stream().map(transaccion -> new CompraDTO(transaccion)).collect(Collectors.toSet());
         this.contactos = cliente.getContactos().stream().map(contacto -> new ContactoDTO(contacto)).collect(Collectors.toSet());
         this.giftCards = cliente.getGiftCards().stream().map(giftCard -> new GiftCardDTO(giftCard)).collect(Collectors.toSet());
-        this.clienteProductos = cliente.getClienteProductos().stream().map(clienteProducto -> new ClienteProductoDTO(clienteProducto)).collect(Collectors.toSet());
     }
 
     public long getId() {
@@ -55,7 +53,7 @@ public class ClienteDTO {
         return clave;
     }
 
-    public int getPuntos() {
+    public double getPuntos() {
         return puntos;
     }
 
@@ -71,7 +69,4 @@ public class ClienteDTO {
         return giftCards;
     }
 
-    public Set<ClienteProductoDTO> getClienteProductos() {
-        return clienteProductos;
-    }
 }

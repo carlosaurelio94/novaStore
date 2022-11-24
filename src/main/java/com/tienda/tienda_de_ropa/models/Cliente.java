@@ -16,7 +16,7 @@ public class Cliente {
     private String apellido;
     private String correo;
     private String clave;
-    private int puntos;
+    private double puntos;
 
     @OneToMany(mappedBy= "cliente", fetch= FetchType.EAGER)
     private Set<Compra> transacciones = new HashSet<>();
@@ -33,7 +33,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String nombre, String apellido, String correo, String clave, int puntos) {
+    public Cliente(String nombre, String apellido, String correo, String clave, double puntos) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
@@ -77,7 +77,7 @@ public class Cliente {
         this.clave = clave;
     }
 
-    public int getPuntos() {
+    public double getPuntos() {
         return puntos;
     }
 
