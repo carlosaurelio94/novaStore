@@ -27,7 +27,7 @@ public class Cliente {
     @OneToMany(mappedBy= "cliente", fetch= FetchType.EAGER)
     private Set<GiftCard> giftCards = new HashSet<>();
 
-    @OneToOne(mappedBy="client")
+    @OneToOne(mappedBy="cliente")
     private Carrito carrito;
 
     public Cliente() {
@@ -109,7 +109,13 @@ public class Cliente {
         this.giftCards = giftCards;
     }
 
+    public Carrito getCarrito() {
+        return carrito;
+    }
 
+    public void setCarrito(Carrito carrito) {
+        this.carrito = carrito;
+    }
 
     @Override
     public String toString() {

@@ -71,6 +71,14 @@ public class Producto {
         this.talle = talle;
     }
 
+    public Set<OrdenCompra> getOrdenCompras() {
+        return ordenCompras;
+    }
+
+    public void setOrdenCompras(Set<OrdenCompra> ordenCompras) {
+        this.ordenCompras = ordenCompras;
+    }
+
     @Override
     public String toString() {
         return "Producto{" +
