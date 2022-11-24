@@ -2,8 +2,10 @@ package com.tienda.tienda_de_ropa.service;
 
 import com.tienda.tienda_de_ropa.dtos.ClienteDTO;
 import com.tienda.tienda_de_ropa.models.Cliente;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 public interface ClienteService {
 

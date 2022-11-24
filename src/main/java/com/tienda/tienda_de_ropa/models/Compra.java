@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class Transaccion {
+public class Compra {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO,generator = "native")
     @GenericGenerator(strategy = "native",name = "native")
@@ -20,10 +20,10 @@ public class Transaccion {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    public Transaccion() {
+    public Compra() {
     }
 
-    public Transaccion(LocalDateTime fecha, TipoTransaccion tipoTransaccion, String descripcion, double monto) {
+    public Compra(LocalDateTime fecha, TipoTransaccion tipoTransaccion, String descripcion, double monto) {
         this.fecha = fecha;
         this.tipoTransaccion = tipoTransaccion;
         this.descripcion = descripcion;
