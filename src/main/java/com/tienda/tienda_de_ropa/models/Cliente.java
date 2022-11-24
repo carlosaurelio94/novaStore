@@ -27,15 +27,6 @@ public class Cliente {
     @OneToMany(mappedBy= "cliente", fetch= FetchType.EAGER)
     private Set<GiftCard> giftCards = new HashSet<>();
 
-    @OneToMany(mappedBy= "cliente", fetch= FetchType.EAGER)
-    private Set<TicketCompraProducto> ticketCompraProductos = new HashSet<>();
-
-    @OneToMany(mappedBy= "cliente", fetch= FetchType.EAGER)
-    private Set<TicketCompra> ticketCompras = new HashSet<>();
-
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
-    private Set<TicketCompra> ticketCompras = new HashSet<>();
-
     public Cliente() {
     }
 
@@ -115,29 +106,7 @@ public class Cliente {
         this.giftCards = giftCards;
     }
 
-    public Set<TicketCompraProducto> getClienteProductos() {
-        return ticketCompraProductos;
-    }
 
-    public void setClienteProductos(Set<TicketCompraProducto> ticketCompraProductos) {
-        this.ticketCompraProductos = ticketCompraProductos;
-    }
-
-    public Set<TicketCompra> getTicketCompras() {
-        return ticketCompras;
-    }
-
-    public void setTicketCompras(Set<TicketCompra> ticketCompras) {
-        this.ticketCompras = ticketCompras;
-    }
-
-    public Set<TicketCompra> getTicketCompras() {
-        return ticketCompras;
-    }
-
-    public void setTicketCompras(Set<TicketCompra> ticketCompras) {
-        this.ticketCompras = ticketCompras;
-    }
 
     @Override
     public String toString() {
@@ -150,7 +119,6 @@ public class Cliente {
                 ", puntos=" + puntos +
                 ", transacciones=" + transacciones +
                 ", contactos=" + contactos +
-                ", clienteProductos=" + ticketCompraProductos +
                 '}';
     }
 }
