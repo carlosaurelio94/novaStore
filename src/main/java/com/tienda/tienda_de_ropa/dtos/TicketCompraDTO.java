@@ -43,4 +43,6 @@ public class TicketCompraDTO {
     public Double getMontoTotal() {
         return montoTotal;
     }
+
+
 }
