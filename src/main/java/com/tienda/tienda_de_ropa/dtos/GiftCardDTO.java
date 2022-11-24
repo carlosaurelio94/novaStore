@@ -6,7 +6,7 @@ public class GiftCardDTO {
     private long id;
     private String numeroTarjeta;
     private Double monto;
-    private int puntos;
+    private double puntos;
     private boolean activada = true;
 
     public GiftCardDTO(GiftCard giftCard) {
@@ -29,7 +29,7 @@ public class GiftCardDTO {
         return monto;
     }
 
-    public int getPuntos() {
+    public double getPuntos() {
         return puntos;
     }
 

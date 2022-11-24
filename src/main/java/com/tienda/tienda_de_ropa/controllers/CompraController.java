@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class CompraController {
     @Autowired
     ClienteService clienteService;
