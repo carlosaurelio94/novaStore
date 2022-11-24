@@ -44,7 +44,7 @@ public class GiftCardController {
         }
 
         GiftCard nuevaGiftCard = new GiftCard(numberRandom(1000, 10000) ,monto, monto / 10, true, clienteAEnviar);
-        giftCardService.saveGiftCard(nuevaGiftCard);
+        giftCardService.guardarGiftCard(nuevaGiftCard);
 
         return new ResponseEntity<>(nuevaGiftCard, HttpStatus.CREATED);
     }

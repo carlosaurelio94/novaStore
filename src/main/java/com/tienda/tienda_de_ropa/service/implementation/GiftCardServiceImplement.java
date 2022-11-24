@@ -13,7 +13,7 @@ public class GiftCardServiceImplement implements GiftCardService {
     GiftCardRepository giftCardRepository;
 
     @Override
-    public void saveGiftCard(GiftCard giftCard) {
+    public void guardarGiftCard(GiftCard giftCard) {
         giftCardRepository.save(giftCard);
     }
 }

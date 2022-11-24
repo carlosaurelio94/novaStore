@@ -3,7 +3,9 @@ package com.tienda.tienda_de_ropa.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -13,6 +15,9 @@ public class Producto {
     @GenericGenerator(name="native", strategy = "native")
     private long id;
 
+    @ElementCollection
+    @Column(name="URLImages")
+    private List<String> images = new ArrayList<>();
     private String nombre;
 
     private int stock;
@@ -21,13 +26,15 @@ public class Producto {
 
     private ProductoTalle talle;
 
+
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
     Set<OrdenCompra> ordenCompras = new HashSet<>();
 
     public Producto() {
     }
 
-    public Producto(String nombre, int stock, double precio, ProductoTalle talle) {
+    public Producto(List<String> images, String nombre, int stock, double precio, ProductoTalle talle) {
+        this.images = images;
         this.nombre = nombre;
         this.stock = stock;
         this.precio = precio;
@@ -38,6 +45,13 @@ public class Producto {
         return id;
     }
 
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
 
     public String getNombre() {
         return nombre;
