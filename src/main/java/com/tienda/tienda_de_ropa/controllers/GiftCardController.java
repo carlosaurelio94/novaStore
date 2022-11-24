@@ -48,4 +48,12 @@ public class GiftCardController {
         return new ResponseEntity<>(nuevaGiftCard, HttpStatus.CREATED);
     }
 
+    @PostMapping("/gift/enviar")
+    public ResponseEntity<?> enviarGiftCard(
+            @RequestParam String correoAEnviar,
+            @RequestParam String correoARecibir,
+    ){
+
+    }
+
 }

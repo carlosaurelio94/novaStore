@@ -21,7 +21,12 @@ public class Factura {
     private Carrito carrito;
 
     private double sumaPrecios(Carrito carrito){
-        return 0;
+        List<Double> monto = carrito.getOrdenCompra().stream().map(compra -> compra.getPrecio()).collect(Collectors.toList());
+        double total = 0.0;
+        for (double precio : monto) {
+            total = total + precio;
+        }
+        return total;
     }
 
     public Factura() {
