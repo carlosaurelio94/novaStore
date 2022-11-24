@@ -69,6 +69,8 @@ public class GiftCardController {
 
         clienteActual.setPuntos(clienteActual.getPuntos() + giftCard.getPuntos());
         giftCard.setActivada(false);
+        clienteService.guardarCliente(clienteActual);
+        giftCardService.saveGiftCard(giftCard);
 
         return new ResponseEntity<>("Usted ha canjeado su Gift Card con éxito", HttpStatus.CREATED);
     }
