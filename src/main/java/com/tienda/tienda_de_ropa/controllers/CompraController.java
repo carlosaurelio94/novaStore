@@ -1,5 +1,6 @@
 package com.tienda.tienda_de_ropa.controllers;
 
+import com.tienda.tienda_de_ropa.models.Cliente;
 import com.tienda.tienda_de_ropa.models.Compra;
 import com.tienda.tienda_de_ropa.models.TipoTransaccion;
 import com.tienda.tienda_de_ropa.service.ClienteService;
@@ -26,13 +27,12 @@ public class CompraController {
         if (tipoTransaccion == null){
             return new ResponseEntity<>("No ingresaste el tipo de transaccion", HttpStatus.FORBIDDEN);
         }
-        if (monto.isNaN() || monto == 0){
+        if (monto.isNaN()){
             return new ResponseEntity<>("No ingresaste un monto",HttpStatus.FORBIDDEN);
         }
-        if (){
-
+        if (monto <= 0){
+            return new ResponseEntity<>("No puedes ingresar menor o igual a cero", HttpStatus.FORBIDDEN)
         }
-
 
         return new ResponseEntity<>("Se Realizo la transaccion con exito",HttpStatus.CREATED);
     }
