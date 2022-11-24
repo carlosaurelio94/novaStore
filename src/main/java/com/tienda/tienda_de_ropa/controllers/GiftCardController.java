@@ -23,6 +23,7 @@ public class GiftCardController {
     public String numberRandom(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min) + "-" + (int) ((Math.random() * (max - min)) + min) + "-" + (int) ((Math.random() * (max - min)) + min) + "-" + (int) ((Math.random() * (max - min)) + min);
     }
+
     @Transactional
     @PostMapping("/gift/enviar")
     public ResponseEntity<?> enviarGiftCard(

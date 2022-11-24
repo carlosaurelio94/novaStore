@@ -17,7 +17,6 @@ public class Carrito {
 
     public Carrito(Cliente cliente) {
         this.cliente = cliente;
-
     }
 
     public Carrito() {
