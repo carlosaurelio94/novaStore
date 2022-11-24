@@ -24,7 +24,7 @@ public class ContactoController {
 
     @Autowired
     ContactoService contactoService;
-    @PostMapping("/cliente/contactos")
+    @PostMapping("/clientes/current/contactos")
     public ResponseEntity<?> crearContacto (@RequestParam String correo,
                                             @RequestParam String apodo,
                                             Authentication authentication) {
