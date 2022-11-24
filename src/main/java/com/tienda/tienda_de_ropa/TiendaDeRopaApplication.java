@@ -25,7 +25,7 @@ public class TiendaDeRopaApplication {
 			ContactoRepository contactoRepository,
 			GiftCardRepository giftCardRepository,
 			ClienteProductoRepository clienteProductoRepository,
-			TransaccionRepository transaccionRepository
+			CompraRepository compraRepository
 	) {
 		return args -> {
 			Cliente clientePruebas = new Cliente("Carlos", "Rodriguez", "carlos@gmail.com", passwordEnconder.encode("1234"),0);
