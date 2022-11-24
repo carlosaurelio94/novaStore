@@ -24,7 +24,7 @@ public class ContactoController {
 
     @Autowired
     ContactoService contactoService;
-    @PostMapping("/clients/current/contacts")
+    @PostMapping("/clientes/current/contactos")
     public ResponseEntity<?> crearContacto (@RequestParam String correo,
                                             @RequestParam String apodo,
                                             Authentication authentication) {
@@ -32,26 +32,26 @@ public class ContactoController {
         Cliente clienteActual = clienteService.findByCorreo(authentication.getName());
         Cliente clienteContacto = clienteService.findByCorreo(correo);
 
-        Set<Contacto> setContactos = clienteActual.getContactos().stream()
+        Set<Contacto> contactosSet = clienteActual.getContactos().stream()
                 .filter(contacto -> contacto.getCorreo().equals(correo)).collect(Collectors.toSet());
 
         if(clienteActual == null) {
-            return new ResponseEntity<>("NECESITAMOS QUE INGRESE SU USUARIO", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Por favor, ingresa tu usuario", HttpStatus.FORBIDDEN);
         }
         if(apodo.isEmpty()) {
-            return new ResponseEntity<>("EL CAMPO APODO ESTÁ VACÍO", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Falta el dato Apodo", HttpStatus.FORBIDDEN);
         }
         if(correo.isEmpty()) {
-            return new ResponseEntity<>("EL CAMPO CORREO ESTÁ VACÍO", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Falta el dato Correo", HttpStatus.FORBIDDEN);
         }
         if(clienteContacto == null) {
-            return new ResponseEntity<>("ESTE CLIENTE NO EXISTE", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Este cliente no existe", HttpStatus.FORBIDDEN);
         }
-        if(setContactos.size() >= 1) {
-            return new ResponseEntity<>("YA TIENE AGREGADO A ESTE CONTACTO EN SU AGENDA", HttpStatus.FORBIDDEN);
+        if(contactosSet.size() >= 1) {
+            return new ResponseEntity<>("Este contacto ya está guardado", HttpStatus.FORBIDDEN);
         }
 
-        contactoService.guardarContacto(new Contacto(correo, apodo, clienteActual));
+        contactoService.guardarContacto(new Contacto(correo, apodo, clienteContacto));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
