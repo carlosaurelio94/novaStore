@@ -25,7 +25,6 @@ public class TicketCompra {
     private Double precioFinal;
 
 
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
