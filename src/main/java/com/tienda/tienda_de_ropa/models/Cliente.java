@@ -81,7 +81,7 @@ public class Cliente {
         return puntos;
     }
 
-    public void setPuntos(int puntos) {
+    public void setPuntos(double puntos) {
         this.puntos = puntos;
     }
 
