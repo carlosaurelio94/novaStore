@@ -1,6 +1,7 @@
 package com.tienda.tienda_de_ropa.dtos;
 
 import com.tienda.tienda_de_ropa.models.Producto;
+import com.tienda.tienda_de_ropa.models.ProductoTalle;
 
 public class ProductoDTO {
 
@@ -12,7 +13,7 @@ public class ProductoDTO {
 
     private Double precio;
 
-    private String talle;
+    private ProductoTalle talle;
 
     public ProductoDTO() {}
 
@@ -40,7 +41,7 @@ public class ProductoDTO {
         return precio;
     }
 
-    public String getTalle() {
+    public ProductoTalle getTalle() {
         return talle;
     }
 }
