@@ -24,12 +24,13 @@ public class TicketCompra {
 
     private Double precioFinal;
 
-    @OneToMany(mappedBy = "ticketCompra", fetch = FetchType.EAGER)
-    private Set<TicketCompra> ticketCompra = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
+    @OneToMany(mappedBy = "ticketCompra", fetch = FetchType.EAGER)
+    private Set<TicketCompra> ticketCompra = new HashSet<>();
 
     public TicketCompra() {
     }
