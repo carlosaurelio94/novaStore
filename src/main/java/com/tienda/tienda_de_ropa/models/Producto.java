@@ -22,7 +22,7 @@ public class Producto {
     private String talle;
 
     @OneToMany(mappedBy="producto", fetch=FetchType.EAGER)
-    private Set<ClienteProducto> clienteProducto = new HashSet<>();
+    private Set<TicketCompraProducto> ticketCompraProducto = new HashSet<>();
 
     public Producto() {
     }

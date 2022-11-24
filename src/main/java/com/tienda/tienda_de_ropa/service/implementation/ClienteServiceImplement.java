@@ -5,11 +5,11 @@ import com.tienda.tienda_de_ropa.models.Cliente;
 import com.tienda.tienda_de_ropa.repositories.ClienteRepository;
 import com.tienda.tienda_de_ropa.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-@Service
+
+
 public class ClienteServiceImplement implements ClienteService {
 
     @Autowired

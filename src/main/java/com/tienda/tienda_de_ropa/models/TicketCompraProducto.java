@@ -5,29 +5,32 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
-public class ClienteProducto {
+public class TicketCompraProducto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @GenericGenerator(strategy= "native", name= "native")
     private long id;
+
+    private String numeroTicket;
     private String nombreProducto;
     private int cantidadProducto;
 
-    @ManyToOne(fetch= FetchType.EAGER)
-    @JoinColumn(name= "cliente_id")
-    private Cliente cliente;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ticketCompra_id")
+    private TicketCompra ticketCompra;
 
     @ManyToOne(fetch= FetchType.EAGER)
     @JoinColumn(name= "producto_id")
     private Producto producto;
 
-    public ClienteProducto() {
+    public TicketCompraProducto() {
     }
 
-    public ClienteProducto(String nombreProducto, int cantidadProducto, Cliente cliente, Producto producto) {
-        this.nombreProducto = nombreProducto;
+    public TicketCompraProducto(int cantidadProducto, TicketCompra ticketCompra, Producto producto) {
+        this.numeroTicket = ticketCompra.getNumeroTicket();
+        this.nombreProducto = producto.getNombre();
         this.cantidadProducto = cantidadProducto;
-        this.cliente = cliente;
+        this.ticketCompra = ticketCompra;
         this.producto = producto;
     }
 
@@ -51,12 +54,12 @@ public class ClienteProducto {
         this.cantidadProducto = cantidadProducto;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public TicketCompra getTicketCompra() {
+        return ticketCompra;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setTicketCompra(TicketCompra ticketCompra) {
+        this.ticketCompra = ticketCompra;
     }
 
     public Producto getProducto() {
@@ -73,7 +76,7 @@ public class ClienteProducto {
                 "id=" + id +
                 ", nombreProducto='" + nombreProducto + '\'' +
                 ", cantidadProducto=" + cantidadProducto +
-                ", cliente=" + cliente +
+                ", ticketCompra=" + ticketCompra +
                 ", producto=" + producto +
                 '}';
     }
