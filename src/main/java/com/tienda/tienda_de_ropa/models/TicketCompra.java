@@ -3,13 +3,15 @@ package com.tienda.tienda_de_ropa.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class TicketCompra {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator= "native")
-    @GenericGenerator(strategy= "native", name= "native")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(strategy = "native", name = "native")
     private long id;
 
     private String numeroTicket;
@@ -18,20 +20,22 @@ public class TicketCompra {
 
     private int cantidadProducto;
 
-    private Double montoTotal;
+    private Double montoTotalProducto;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+    private Double precioFinal;
 
-    public TicketCompra() {}
+    @OneToMany(mappedBy = "ticketCompra", fetch = FetchType.EAGER)
+    private Set<TicketCompra> ticketCompra = new HashSet<>();
 
-    public TicketCompra(String numeroTicket, String nombreProducto, int cantidadProducto, Double montoTotal, Cliente cliente) {
+    public TicketCompra() {
+    }
+
+    public TicketCompra(String numeroTicket, String nombreProducto, int cantidadProducto, Double montoTotalProducto, Double precioFinal, Cliente cliente) {
         this.numeroTicket = numeroTicket;
         this.nombreProducto = nombreProducto;
         this.cantidadProducto = cantidadProducto;
-        this.montoTotal = montoTotal;
-        this.cliente = cliente;
+        this.montoTotalProducto = montoTotalProducto;
+        this.precioFinal = precioFinal;
     }
 
     public long getId() {
@@ -62,19 +66,19 @@ public class TicketCompra {
         this.cantidadProducto = cantidadProducto;
     }
 
-    public Double getMontoTotal() {
-        return montoTotal;
+    public Double getMontoTotalProducto() {
+        return montoTotalProducto;
     }
 
-    public void setMontoTotal(Double montoTotal) {
-        this.montoTotal = montoTotal;
+    public void setMontoTotalProducto(Double montoTotalProducto) {
+        this.montoTotalProducto = montoTotalProducto;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Double getPrecioFinal() {
+        return precioFinal;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setPrecioFinal(Double precioFinal) {
+        this.precioFinal = precioFinal;
     }
 }
