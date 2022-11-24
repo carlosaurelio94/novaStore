@@ -21,7 +21,7 @@ public class TicketCompraDTO {
         this.numeroTicket = ticketCompra.getNumeroTicket();
         this.nombreProducto = ticketCompra.getNombreProducto();
         this.cantidadProducto = ticketCompra.getCantidadProducto();
-        this.montoTotal = ticketCompra.getMontoTotal();
+        this.montoTotal = ticketCompra.getMontoTotalProducto();
     }
 
     public long getId() {
