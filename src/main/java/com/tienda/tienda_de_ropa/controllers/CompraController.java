@@ -31,7 +31,7 @@ public class CompraController {
             return new ResponseEntity<>("No ingresaste un monto",HttpStatus.FORBIDDEN);
         }
         if (monto <= 0){
-            return new ResponseEntity<>("No puedes ingresar menor o igual a cero", HttpStatus.FORBIDDEN)
+            return new ResponseEntity<>("No puedes ingresar menor o igual a cero", HttpStatus.FORBIDDEN);
         }
 
         return new ResponseEntity<>("Se Realizo la transaccion con exito",HttpStatus.CREATED);
