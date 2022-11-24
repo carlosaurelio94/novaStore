@@ -17,17 +17,17 @@ public class Producto {
 
     private int stock;
 
-    private Double precio;
+    private double precio;
 
-    private String talle;
+    private ProductoTalle talle;
 
-    @OneToMany(mappedBy="producto", fetch=FetchType.EAGER)
-    private Set<TicketCompraProducto> ticketCompraProducto = new HashSet<>();
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    Set<OrdenCompra> ordenCompras = new HashSet<>();
 
     public Producto() {
     }
 
-    public Producto(String nombre, int stock, Double precio, String talle) {
+    public Producto(String nombre, int stock, double precio, ProductoTalle talle) {
         this.nombre = nombre;
         this.stock = stock;
         this.precio = precio;
@@ -55,30 +55,31 @@ public class Producto {
         this.stock = stock;
     }
 
-    public Double getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Double precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
-    public String getTalle() {
+    public ProductoTalle getTalle() {
         return talle;
     }
 
-    public void setTalle(String talle) {
+    public void setTalle(ProductoTalle talle) {
         this.talle = talle;
     }
 
     @Override
     public String toString() {
-        return "Contacto{" +
+        return "Producto{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", stock='" + stock + '\'' +
-                ", precio='" + precio + '\'' +
-                ", talle='" + talle + '\'' +
+                ", stock=" + stock +
+                ", precio=" + precio +
+                ", talle=" + talle +
+                ", ordenCompras=" + ordenCompras +
                 '}';
     }
 }
