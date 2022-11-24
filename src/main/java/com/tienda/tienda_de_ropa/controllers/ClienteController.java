@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api")
@@ -34,7 +35,8 @@ public class ClienteController {
             @RequestParam String nombre,
             @RequestParam String apellido,
             @RequestParam String correo,
-            @RequestParam String clave
+            @RequestParam String clave,
+            @RequestParam String clave2
     ){
         if (nombre.isEmpty()) {
             return new ResponseEntity<>("Falta el dato Nombre", HttpStatus.FORBIDDEN);
@@ -50,6 +52,9 @@ public class ClienteController {
         }
         if (clienteService.findByCorreo(correo) != null) {
             return new ResponseEntity<>("El correo ya se encuentra en uso", HttpStatus.FORBIDDEN);
+        }
+        if (!clave.equals(clave2)) {
+            return new ResponseEntity<>("Las contraseñas no coinciden", HttpStatus.FORBIDDEN);
         }
 
         Cliente nuevoCliente = new Cliente(nombre, apellido, correo, passwordEncoder.encode(clave), 0);

@@ -1,9 +1,51 @@
 package com.tienda.tienda_de_ropa.controllers;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.tienda.tienda_de_ropa.models.Cliente;
+import com.tienda.tienda_de_ropa.models.GiftCard;
+import com.tienda.tienda_de_ropa.service.ClienteService;
+import com.tienda.tienda_de_ropa.service.GiftCardService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
 public class GiftCardController {
+
+    @Autowired
+    ClienteService clienteService;
+
+    @Autowired
+    GiftCardService giftCardService;
+
+    public String numberRandom(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min) + "-" + (int) ((Math.random() * (max - min)) + min) + "-" + (int) ((Math.random() * (max - min)) + min) + "-" + (int) ((Math.random() * (max - min)) + min);
+    }
+
+    @PostMapping("/gift")
+    public ResponseEntity<?> comprarGiftCard(
+            Authentication autenticacion,
+            @RequestParam String correo,
+            @RequestParam Double monto)
+    {
+        Cliente clienteActual = clienteService.findByCorreo(autenticacion.getName());
+
+        if (clienteActual == null) {
+            return new ResponseEntity<>("El cliente actual no existe",HttpStatus.FORBIDDEN);
+        }
+        if (correo == null) {
+            return new ResponseEntity<>("El correo al cual quieres enviar la Gift Card no existe", HttpStatus.FORBIDDEN);
+        }
+        if (monto <= 0) {
+            return new ResponseEntity<>("El monto no ser menor o igual a cero", HttpStatus.FORBIDDEN);
+        }
+
+        GiftCard nuevaGiftCard = new GiftCard();
+        giftCardService.saveGiftCard(nuevaGiftCard);
+
+        return new ResponseEntity<>(nuevaGiftCard, HttpStatus.CREATED);
+    }
+
 }
