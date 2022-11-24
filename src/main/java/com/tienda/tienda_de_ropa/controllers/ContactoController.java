@@ -55,8 +55,7 @@ public class ContactoController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("/clients/current/contacts")
-    public Set<ContactoDTO> getContact(Authentication authentication) {
+    public Set<ContactoDTO> traerContactos(Authentication authentication) {
         return new ClienteDTO(clienteService.findByCorreo(authentication.getName())).getContactos();
     }
 
