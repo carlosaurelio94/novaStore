@@ -12,23 +12,21 @@ public class Carrito {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
-
     private Long id;
-
-    public Carrito(Cliente cliente) {
-        this.cliente = cliente;
-    }
+    @OneToMany(mappedBy="carrito", fetch=FetchType.EAGER)
+    Set<Factura> facturas = new HashSet<>();
+    @OneToMany(mappedBy="carrito", fetch=FetchType.EAGER)
+    Set<OrdenCompra> ordenCompra = new HashSet<>();
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="cliente_id")
+    private Cliente cliente;
 
     public Carrito() {
     }
 
-    @OneToMany(mappedBy="carrito", fetch=FetchType.EAGER)
-    Set<Factura> facturas = new HashSet<>();
-    @OneToMany(mappedBy="carrito", fetch=FetchType.LAZY)
-    Set<OrdenCompra> ordenCompra = new HashSet<>();
-    @OneToOne
-    @JoinColumn(name="cliente_id")
-    private Cliente cliente;
+    public Carrito(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
     public Long getId() {
         return id;

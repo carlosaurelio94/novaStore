@@ -20,7 +20,9 @@ public class ClienteDTO {
 
     private Set<GiftCardDTO> giftCards = new HashSet<>();
 
-    private Carrito carrito;
+    private Set<FacturaDTO> facturas = new HashSet<>();
+
+    private CarritoDTO carrito;
 
     public ClienteDTO(Cliente cliente) {
         this.id = cliente.getId();
@@ -29,10 +31,11 @@ public class ClienteDTO {
         this.correo = cliente.getCorreo();
         this.clave = cliente.getClave();
         this.puntos = cliente.getPuntos();
+        this.facturas = cliente.getCarrito().getFacturas().stream().map(factura -> new FacturaDTO(factura)).collect(Collectors.toSet());
         this.compras = cliente.getCompras().stream().map(compra -> new CompraDTO(compra)).collect(Collectors.toSet());
         this.contactos = cliente.getContactos().stream().map(contacto -> new ContactoDTO(contacto)).collect(Collectors.toSet());
         this.giftCards = cliente.getGiftCards().stream().map(giftCard -> new GiftCardDTO(giftCard)).collect(Collectors.toSet());
-        this.carrito = cliente.getCarrito();
+        this.carrito = new CarritoDTO(cliente.getCarrito());
     }
 
     public long getId() {
@@ -71,4 +74,19 @@ public class ClienteDTO {
         return giftCards;
     }
 
+    public CarritoDTO getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(CarritoDTO carrito) {
+        this.carrito = carrito;
+    }
+
+    public Set<FacturaDTO> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(Set<FacturaDTO> facturas) {
+        this.facturas = facturas;
+    }
 }
