@@ -12,7 +12,7 @@ public class ClienteDTO {
     private String apellido;
     private String correo;
     private String clave;
-    private int puntos;
+    private double puntos;
 
     private Set<CompraDTO> compras = new HashSet<>();
 
@@ -55,7 +55,7 @@ public class ClienteDTO {
         return clave;
     }
 
-    public int getPuntos() {
+    public double getPuntos() {
         return puntos;
     }
 
