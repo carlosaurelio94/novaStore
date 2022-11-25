@@ -1,7 +1,9 @@
 package com.tienda.tienda_de_ropa.controllers;
 
 import com.tienda.tienda_de_ropa.dtos.ClienteDTO;
+import com.tienda.tienda_de_ropa.models.Carrito;
 import com.tienda.tienda_de_ropa.models.Cliente;
+import com.tienda.tienda_de_ropa.service.CarritoService;
 import com.tienda.tienda_de_ropa.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,9 @@ public class ClienteController {
 
     @Autowired
     ClienteService clienteService;
+
+    @Autowired
+    CarritoService carritoService;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -60,6 +65,9 @@ public class ClienteController {
 
         Cliente nuevoCliente = new Cliente(nombre, apellido, correo, passwordEncoder.encode(clave), 0);
         clienteService.guardarCliente(nuevoCliente);
+
+        Carrito nuevoCarritoCliente = new Carrito(nuevoCliente);
+        carritoService.guardarCarrito(nuevoCarritoCliente);
 
         return new ResponseEntity<>(nuevoCliente, HttpStatus.CREATED);
     }
