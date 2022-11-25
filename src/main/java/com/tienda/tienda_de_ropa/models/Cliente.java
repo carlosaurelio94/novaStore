@@ -19,7 +19,7 @@ public class Cliente {
     private int puntos;
 
     @OneToMany(mappedBy= "cliente", fetch= FetchType.EAGER)
-    private Set<Compra> transacciones = new HashSet<>();
+    private Set<Compra> compras = new HashSet<>();
 
     @OneToMany(mappedBy= "cliente", fetch= FetchType.EAGER)
     private Set<Contacto> contactos = new HashSet<>();
@@ -85,12 +85,12 @@ public class Cliente {
         this.puntos = puntos;
     }
 
-    public Set<Compra> getTransacciones() {
-        return transacciones;
+    public Set<Compra> getCompras() {
+        return compras;
     }
 
-    public void setTransacciones(Set<Compra> transacciones) {
-        this.transacciones = transacciones;
+    public void setCompras(Set<Compra> compras) {
+        this.compras = compras;
     }
 
     public Set<Contacto> getContactos() {
@@ -126,7 +126,7 @@ public class Cliente {
                 ", correo='" + correo + '\'' +
                 ", clave='" + clave + '\'' +
                 ", puntos=" + puntos +
-                ", transacciones=" + transacciones +
+                ", compras=" + compras +
                 ", contactos=" + contactos +
                 '}';
     }

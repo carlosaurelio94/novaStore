@@ -27,7 +27,7 @@ public class Producto {
     private ProductoTalle talle;
 
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "producto", fetch = FetchType.EAGER)
     Set<OrdenCompra> ordenCompras = new HashSet<>();
 
     public Producto() {

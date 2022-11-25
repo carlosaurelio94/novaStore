@@ -14,13 +14,13 @@ public class ClienteDTO {
     private String clave;
     private int puntos;
 
-    private Set<CompraDTO> transacciones = new HashSet<>();
+    private Set<CompraDTO> compras = new HashSet<>();
 
     private Set<ContactoDTO> contactos = new HashSet<>();
 
     private Set<GiftCardDTO> giftCards = new HashSet<>();
 
-    private Set<ClienteProductoDTO> clienteProductos = new HashSet<>();
+    private Carrito carrito;
 
     public ClienteDTO(Cliente cliente) {
         this.id = cliente.getId();
@@ -29,10 +29,10 @@ public class ClienteDTO {
         this.correo = cliente.getCorreo();
         this.clave = cliente.getClave();
         this.puntos = cliente.getPuntos();
-        this.transacciones = cliente.getTransacciones().stream().map(transaccion -> new CompraDTO(transaccion)).collect(Collectors.toSet());
+        this.compras = cliente.getCompras().stream().map(compra -> new CompraDTO(compra)).collect(Collectors.toSet());
         this.contactos = cliente.getContactos().stream().map(contacto -> new ContactoDTO(contacto)).collect(Collectors.toSet());
         this.giftCards = cliente.getGiftCards().stream().map(giftCard -> new GiftCardDTO(giftCard)).collect(Collectors.toSet());
-        this.clienteProductos = cliente.getClienteProductos().stream().map(clienteProducto -> new ClienteProductoDTO(clienteProducto)).collect(Collectors.toSet());
+        this.carrito = cliente.getCarrito();
     }
 
     public long getId() {
@@ -59,8 +59,8 @@ public class ClienteDTO {
         return puntos;
     }
 
-    public Set<CompraDTO> getTransacciones() {
-        return transacciones;
+    public Set<CompraDTO> getCompras() {
+        return compras;
     }
 
     public Set<ContactoDTO> getContactos() {
@@ -71,7 +71,4 @@ public class ClienteDTO {
         return giftCards;
     }
 
-    public Set<ClienteProductoDTO> getClienteProductos() {
-        return clienteProductos;
-    }
 }

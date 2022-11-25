@@ -6,6 +6,7 @@ import com.tienda.tienda_de_ropa.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,5 +62,10 @@ public class ClienteController {
         clienteService.guardarCliente(nuevoCliente);
 
         return new ResponseEntity<>(nuevoCliente, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/clientes/actual")
+    public ClienteDTO traerClienteAutenticado(Authentication authentication) {
+        return new ClienteDTO(clienteService.findByCorreo(authentication.getName()));
     }
 }

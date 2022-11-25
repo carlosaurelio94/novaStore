@@ -23,9 +23,6 @@ public class ProductoController {
     @PostMapping("/producto")
     public ResponseEntity<?> crearNuevoProducto(
             @RequestParam String URLImagen1,
-            @RequestParam String URLImagen2,
-            @RequestParam String URLImagen3,
-            @RequestParam String URLImagen4,
             @RequestParam String nombre,
             @RequestParam int stock,
             @RequestParam double precio,

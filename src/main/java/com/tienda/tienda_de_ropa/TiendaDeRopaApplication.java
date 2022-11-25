@@ -24,12 +24,12 @@ public class TiendaDeRopaApplication {
 			ProductoRepository productoRepository,
 			ContactoRepository contactoRepository,
 			GiftCardRepository giftCardRepository,
-			ClienteProductoRepository clienteProductoRepository,
 			CompraRepository compraRepository
 	) {
 		return args -> {
 			Cliente clientePruebas = new Cliente("Carlos", "Rodriguez", "carlos@gmail.com", passwordEnconder.encode("1234"),0);
 			clienteRepository.save(clientePruebas);
+			System.out.println("Servidor iniciado!");
 		};
 	}
 }
