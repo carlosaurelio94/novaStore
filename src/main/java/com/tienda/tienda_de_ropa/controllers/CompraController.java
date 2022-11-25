@@ -1,10 +1,8 @@
 package com.tienda.tienda_de_ropa.controllers;
 
-import com.tienda.tienda_de_ropa.models.Carrito;
-import com.tienda.tienda_de_ropa.models.Cliente;
-import com.tienda.tienda_de_ropa.models.Factura;
-import com.tienda.tienda_de_ropa.models.TipoTransaccion;
+import com.tienda.tienda_de_ropa.models.*;
 import com.tienda.tienda_de_ropa.service.ClienteService;
+import com.tienda.tienda_de_ropa.service.CompraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
-
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api")
@@ -20,14 +18,20 @@ import javax.transaction.Transactional;
 public class CompraController {
     @Autowired
     ClienteService clienteService;
+    @Autowired
+    CompraService compraService;
 
     @Transactional
     @PostMapping("/transaccional")
-    public ResponseEntity<Object> crearTransferencias(Authentication authentication, @RequestParam TipoTransaccion tipoTransaccion,
-                                                      @RequestParam Double monto) {
-        //Cliente clienteAutenticado = clienteService.findByCorreo(authentication.getName());
-        if (tipoTransaccion == null){
-            return new ResponseEntity<>("No ingresaste el tipo de transaccion", HttpStatus.FORBIDDEN);
+    public ResponseEntity<Object> crearTransferencias(Authentication authentication, @RequestParam Double monto) {
+        Cliente clienteAutenticado =clienteService.findByCorreo(authentication.getName());
+        Carrito carrito = clienteAutenticado.getCarrito();
+        Factura factura= new Factura(carrito) ;
+
+
+
+        if(carrito.getOrdenCompra().size() == 0){
+            return new ResponseEntity<>("No agregaste productos", HttpStatus.FORBIDDEN);
         }
         if (monto.isNaN()){
             return new ResponseEntity<>("No ingresaste un monto",HttpStatus.FORBIDDEN);
@@ -36,28 +40,14 @@ public class CompraController {
             return new ResponseEntity<>("No puedes ingresar menor o igual a cero", HttpStatus.FORBIDDEN);
         }
 
-        return new ResponseEntity<>("Se realizo la transaccion con exito",HttpStatus.CREATED);
-    }
-
-    @Transactional
-    @PostMapping("/transaccional/puntos")
-    public ResponseEntity<?> compraConPuntos(
-            Authentication authentication
-            ){
-        double puntosCliente = clienteService.findByCorreo(authentication.getName()).getPuntos();
-        Cliente clienteAutenticado =clienteService.findByCorreo(authentication.getName());
-        Carrito carrito = clienteAutenticado.getCarrito();
-        Factura factura= new Factura(carrito) ;
-
-        if (puntosCliente < factura.getPrecioTotal()) {
-            return new ResponseEntity<>("No posee los puntos para realizar esta compra", HttpStatus.FORBIDDEN);
-        }
-        if (carrito.getOrdenCompra().size() <= 0) {
-            return new ResponseEntity<>("No posee productos para comprar", HttpStatus.FORBIDDEN);
-        }
+        Compra compraRealizada = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,factura.getPrecioTotal()/10,"Muchos productos",factura.getPrecioTotal(),clienteAutenticado);
+        compraService.guardarCompra(compraRealizada);
+        carrito.getOrdenCompra().removeAll(carrito.getOrdenCompra());
+        clienteService.guardarCliente(clienteAutenticado);
 
 
-        return new ResponseEntity<>("Se ha realizado la compra con puntos con exito", HttpStatus.CREATED);
+
+        return new ResponseEntity<>("Se Realizo la transaccion con exito",HttpStatus.CREATED);
     }
 }
 
