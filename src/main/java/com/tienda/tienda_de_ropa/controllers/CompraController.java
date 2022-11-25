@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.TransactionScoped;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 
@@ -26,9 +27,7 @@ public class CompraController {
     public ResponseEntity<Object> crearTransferencias(Authentication authentication, @RequestParam Double monto) {
         Cliente clienteAutenticado =clienteService.findByCorreo(authentication.getName());
         Carrito carrito = clienteAutenticado.getCarrito();
-        Factura factura= new Factura(carrito) ;
-
-
+        Factura factura = new Factura(carrito) ;
 
         if(carrito.getOrdenCompra().size() == 0){
             return new ResponseEntity<>("No agregaste productos", HttpStatus.FORBIDDEN);
@@ -40,14 +39,36 @@ public class CompraController {
             return new ResponseEntity<>("No puedes ingresar menor o igual a cero", HttpStatus.FORBIDDEN);
         }
 
-        Compra compraRealizada = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,factura.getPrecioTotal()/10,"Muchos productos",factura.getPrecioTotal(),clienteAutenticado);
+        Compra compraRealizada = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,factura.getPrecioTotal()/10,factura.getId().toString(),factura.getPrecioTotal(),clienteAutenticado);
         compraService.guardarCompra(compraRealizada);
         carrito.getOrdenCompra().removeAll(carrito.getOrdenCompra());
         clienteService.guardarCliente(clienteAutenticado);
 
-
-
         return new ResponseEntity<>("Se Realizo la transaccion con exito",HttpStatus.CREATED);
+    }
+
+    @Transactional
+    @PostMapping("/transaccionPuntos")
+    public ResponseEntity<Object> compraPuntos(Authentication authenticatio){
+        Cliente clienteAutenticado = clienteService.findByCorreo(authenticatio.getName());
+        Carrito carrito = clienteAutenticado.getCarrito();
+        Factura factura = new Factura(carrito) ;
+        double cantidadPuntosCarrito = factura.getPrecioTotal()/10;
+
+        if (clienteAutenticado.getPuntos() <= 0){
+            return new ResponseEntity<>("No tienes puntos disponibles", HttpStatus.FORBIDDEN);
+        }
+        if (clienteAutenticado.getPuntos()<cantidadPuntosCarrito){
+            return new ResponseEntity<>("No tienes los puntos suficientes para realizar la compra",HttpStatus.FORBIDDEN);
+        }
+
+        Compra compraPuntos = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,factura.getPrecioTotal()/50,factura.getId().toString(),factura.getPrecioTotal(),clienteAutenticado);
+        compraService.guardarCompra(compraPuntos);
+        carrito.getOrdenCompra().removeAll(carrito.getOrdenCompra());
+        clienteService.guardarCliente(clienteAutenticado);
+
+
+        return new ResponseEntity<>("Se Realizo la compra con exito",HttpStatus.ACCEPTED);
     }
 }
 
