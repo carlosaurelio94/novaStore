@@ -13,8 +13,10 @@ public class Compra {
     private long id;
     private LocalDateTime fecha;
     private TipoTransaccion tipoTransaccion;
+    private double puntos;
     private String descripcion;
-    private Double monto;
+    private double monto;
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id")
@@ -23,11 +25,13 @@ public class Compra {
     public Compra() {
     }
 
-    public Compra(LocalDateTime fecha, TipoTransaccion tipoTransaccion, String descripcion, double monto) {
+    public Compra(LocalDateTime fecha, TipoTransaccion tipoTransaccion, double puntos,String descripcion, double monto,Cliente cliente) {
         this.fecha = fecha;
         this.tipoTransaccion = tipoTransaccion;
+        this.puntos = puntos;
         this.descripcion = descripcion;
         this.monto = monto;
+        this.cliente= cliente;
     }
 
     public long getId() {
@@ -48,6 +52,14 @@ public class Compra {
 
     public void setTipoTransaccion(TipoTransaccion tipoTransaccion) {
         this.tipoTransaccion = tipoTransaccion;
+    }
+
+    public double getPuntos() {
+        return puntos;
+    }
+
+    public void setPuntos(double puntos) {
+        this.puntos = puntos;
     }
 
     public String getDescripcion() {
