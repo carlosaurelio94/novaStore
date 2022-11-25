@@ -49,4 +49,30 @@ public class GiftCardController {
         return new ResponseEntity<>(nuevaGiftCard, HttpStatus.CREATED);
     }
 
+    @PatchMapping("/gift/deshabilitar")
+    public ResponseEntity<?> deshabilitarCard(
+            Authentication autenticacion,
+            @RequestParam String numeroTarjeta)
+    {
+        Cliente clienteActual = clienteService.findByCorreo(autenticacion.getName());
+        GiftCard giftCard = giftCardService.findByNumeroTarjeta(numeroTarjeta);
+
+        if (clienteActual == null) {
+            return new ResponseEntity<>("El cliente actual no existe",HttpStatus.FORBIDDEN);
+        }
+        if(giftCard == null) {
+            return new ResponseEntity<>("Esta tarjeta no existe",HttpStatus.FORBIDDEN);
+        }
+        if(giftCard.isActivada() == false) {
+            return new ResponseEntity<>("Esta tarjeta ya fue utilizada",HttpStatus.FORBIDDEN);
+        }
+
+        clienteActual.setPuntos(clienteActual.getPuntos() + giftCard.getPuntos());
+        giftCard.setActivada(false);
+        clienteService.guardarCliente(clienteActual);
+        giftCardService.guardarGiftCard(giftCard);
+
+        return new ResponseEntity<>("Usted ha canjeado su Gift Card con éxito", HttpStatus.CREATED);
+    }
+
 }
