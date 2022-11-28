@@ -69,7 +69,7 @@ public class ProductoController {
     {
         Cliente clienteAutenticado = clienteService.findByCorreo(autenticado.getName());
         Carrito carrito = clienteAutenticado.getCarrito();
-        Producto producto = productoService.buscarPorId(id);
+        Producto producto = productoService.productoPorId(id);
         boolean isOrdenCompra = carrito.getOrdenCompra().contains(producto);
         Set<OrdenCompra> ordenCompraSet = carrito.getOrdenCompra().stream()
                 .filter(ordenCompra -> ordenCompra.getProducto().getNombre() == producto.getNombre()).collect(Collectors.toSet());
@@ -106,7 +106,7 @@ public class ProductoController {
     {
         Cliente clienteAutenticado = clienteService.findByCorreo(autenticado.getName());
         Carrito carrito = clienteAutenticado.getCarrito();
-        Producto producto = productoService.buscarPorId(id);
+        Producto producto = productoService.productoPorId(id);
         boolean isOrdenCompra = carrito.getOrdenCompra().contains(producto);
         Set<OrdenCompra> ordenCompraSet = carrito.getOrdenCompra().stream()
                 .filter(ordenCompra -> ordenCompra.getProducto().getNombre() == producto.getNombre()).collect(Collectors.toSet());
