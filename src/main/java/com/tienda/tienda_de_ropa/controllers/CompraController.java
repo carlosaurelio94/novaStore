@@ -39,7 +39,7 @@ public class CompraController {
             return new ResponseEntity<>("No puedes ingresar menor o igual a cero", HttpStatus.FORBIDDEN);
         }
 
-        Compra compraRealizada = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,factura.getPrecioTotal()/10,factura.getId().toString(),factura.getPrecioTotal(),clienteAutenticado);
+        Compra compraRealizada = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,clienteAutenticado.getPuntos() + factura.getPrecioTotal()/10,factura.getId().toString(),factura.getPrecioTotal(),clienteAutenticado);
         compraService.guardarCompra(compraRealizada);
         carrito.getOrdenCompra().removeAll(carrito.getOrdenCompra());
         clienteService.guardarCliente(clienteAutenticado);
@@ -62,7 +62,7 @@ public class CompraController {
             return new ResponseEntity<>("No tienes los puntos suficientes para realizar la compra",HttpStatus.FORBIDDEN);
         }
 
-        Compra compraPuntos = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,factura.getPrecioTotal()/50,factura.getId().toString(),factura.getPrecioTotal(),clienteAutenticado);
+        Compra compraPuntos = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,clienteAutenticado.getPuntos()-cantidadPuntosCarrito,factura.getId().toString(),factura.getPrecioTotal(),clienteAutenticado);
         compraService.guardarCompra(compraPuntos);
         carrito.getOrdenCompra().removeAll(carrito.getOrdenCompra());
         clienteService.guardarCliente(clienteAutenticado);
