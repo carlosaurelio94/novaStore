@@ -62,7 +62,9 @@ public class CompraController {
         if (clienteAutenticado.getPuntos()<cantidadPuntosCarrito){
             return new ResponseEntity<>("No tienes los puntos suficientes para realizar la compra",HttpStatus.FORBIDDEN);
         }
-
+        if (puntosTotales <= 0){
+            return new ResponseEntity<>("No tienes los puntos suficientes para realizar la compra",HttpStatus.FORBIDDEN);
+        }
         Compra compraPuntos = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,puntosTotales,factura.getId().toString(),factura.getPrecioTotal(),clienteAutenticado);
 
         compraService.guardarCompra(compraPuntos);
