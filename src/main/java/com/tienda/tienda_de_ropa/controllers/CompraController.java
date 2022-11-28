@@ -22,6 +22,10 @@ public class CompraController {
     ClienteService clienteService;
     @Autowired
     CompraService compraService;
+    @Autowired
+    ProductoService productoService;
+    @Autowired
+    OrdenCompraService ordenCompraService;
 
     @Transactional
     @PostMapping("/transaccional")
@@ -77,6 +81,39 @@ public class CompraController {
 
         return new ResponseEntity<>("Se Realizo la compra con exito",HttpStatus.ACCEPTED);
     }
+
+//    @Transactional
+//    @PostMapping("/compra")
+//    public ResponseEntity<?> crearOrdenCompra(
+//            @RequestParam String nombreProducto,
+//            @RequestParam int cantidad,
+//            Authentication authentication)
+//    {
+//        Cliente clienteActual = this.clienteService.findByCorreo(authentication.getName());
+//        Producto productoEncontrado = productoService.productoPorNombre(nombreProducto.toLowerCase());
+//
+//
+//        if (nombreProducto.isEmpty()) {
+//            return new ResponseEntity<>("El nombre del producto no puede estar vacio", HttpStatus.FORBIDDEN);
+//        }
+//
+//        if (cantidad <= 0) {
+//            return new ResponseEntity<>("La cantidad no puede ser igual o menor a cero", HttpStatus.FORBIDDEN);
+//        }
+//
+//        if (productoService.productoPorNombre(nombreProducto.toLowerCase()) == null) {
+//            return new ResponseEntity<>("El producto no existe", HttpStatus.FORBIDDEN);
+//        }
+//
+//        if (cantidad > productoEncontrado.getStock()) {
+//            return new ResponseEntity<>("No podés comprar más del stock", HttpStatus.FORBIDDEN);
+//        }
+//
+//        OrdenCompra nuevaOrdenCompra = new OrdenCompra(cantidad, productoEncontrado.getPrecio() * cantidad, LocalDateTime.now(), clienteActual.getCarrito(), productoEncontrado);
+//        ordenCompraService.guardarOrdenCompra(nuevaOrdenCompra);
+//
+//        return new ResponseEntity<>("Orden de compra creada", HttpStatus.CREATED);
+//    }
 
 }
 
