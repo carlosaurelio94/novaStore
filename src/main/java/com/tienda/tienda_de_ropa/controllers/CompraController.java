@@ -23,12 +23,11 @@ public class CompraController {
 
     @Transactional
     @PostMapping("/transaccional")
-    public ResponseEntity<Object> crearTransferencias(Authentication authentication, @RequestParam Double monto) {
-        Cliente clienteAutenticado =clienteService.findByCorreo(authentication.getName());
+    public ResponseEntity<Object> crearTransferencias(Authentication authentication) {
+        Cliente clienteAutenticado = clienteService.findByCorreo(authentication.getName());
         Carrito carrito = clienteAutenticado.getCarrito();
         Factura factura= new Factura(carrito) ;
-
-
+        Double monto = factura.getPrecioTotal();
 
         if(carrito.getOrdenCompra().size() == 0){
             return new ResponseEntity<>("No agregaste productos", HttpStatus.FORBIDDEN);
@@ -40,7 +39,8 @@ public class CompraController {
             return new ResponseEntity<>("No puedes ingresar menor o igual a cero", HttpStatus.FORBIDDEN);
         }
 
-        Compra compraRealizada = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,factura.getPrecioTotal()/10,"Muchos productos",factura.getPrecioTotal(),clienteAutenticado);
+        Compra compraRealizada = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,factura.getPrecioTotal()/10,
+                "Factura N° " + factura.getId(),factura.getPrecioTotal(),clienteAutenticado);
         compraService.guardarCompra(compraRealizada);
         carrito.getOrdenCompra().removeAll(carrito.getOrdenCompra());
         clienteService.guardarCliente(clienteAutenticado);

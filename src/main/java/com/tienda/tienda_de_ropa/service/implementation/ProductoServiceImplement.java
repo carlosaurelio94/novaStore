@@ -17,4 +17,8 @@ public class ProductoServiceImplement  implements ProductoService {
     public void guardarProducto(Producto producto) {
         productoRepository.save(producto);
     }
+
+    public Producto buscarPorId(Long id) {
+        return productoRepository.findById(id).orElse(null);
+    }
 }
