@@ -1,8 +1,6 @@
 package com.tienda.tienda_de_ropa.service.implementation;
 
-import com.tienda.tienda_de_ropa.models.Cliente;
 import com.tienda.tienda_de_ropa.models.OrdenCompra;
-import com.tienda.tienda_de_ropa.repositories.ClienteRepository;
 import com.tienda.tienda_de_ropa.repositories.OrdenCompraRepository;
 import com.tienda.tienda_de_ropa.service.OrdenCompraService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +12,15 @@ import java.util.Set;
 public class OrdenCompraServiceImplement implements OrdenCompraService {
 
     @Autowired
-    ClienteRepository clienteRepository;
-
-    @Autowired
     OrdenCompraRepository ordenCompraRepository;
 
+    @Override
+    public void eliminarTodas(Set<OrdenCompra> ordenCompra) {
+        ordenCompraRepository.deleteAll(ordenCompra);
+    }
+
+    @Override
     public void guardarOrdenCompra(OrdenCompra ordenCompra) {
         ordenCompraRepository.save(ordenCompra);
     }
-
-    public OrdenCompra buscarPorNombre(String nombre) {
-        return ordenCompraRepository.findByNombre(nombre);
-    }
-
-
 }

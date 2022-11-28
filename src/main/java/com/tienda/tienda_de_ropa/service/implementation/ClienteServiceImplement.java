@@ -35,4 +35,14 @@ public class ClienteServiceImplement implements ClienteService {
     public void guardarCliente(Cliente cliente) {
         clienteRepository.save(cliente);
     }
+
+    @Override
+    public Cliente encontrarPorId(long id) {
+        return clienteRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void eliminarCliente(Cliente cliente) {
+        clienteRepository.delete(cliente);
+    }
 }

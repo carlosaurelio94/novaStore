@@ -1,12 +1,13 @@
 package com.tienda.tienda_de_ropa.service;
 
 import com.tienda.tienda_de_ropa.models.OrdenCompra;
-import com.tienda.tienda_de_ropa.service.implementation.OrdenCompraServiceImplement;
+
+import java.util.Set;
 
 public interface OrdenCompraService {
 
-    public void guardarOrdenCompra(OrdenCompra ordenCompra);
+    public void eliminarTodas(Set<OrdenCompra> ordenCompra);
 
-    public OrdenCompra buscarPorNombre(String nombre);
+    public void guardarOrdenCompra(OrdenCompra ordenCompra);
 
 }

@@ -18,7 +18,8 @@ public class ProductoServiceImplement  implements ProductoService {
         productoRepository.save(producto);
     }
 
-    public Producto buscarPorId(Long id) {
-        return productoRepository.findById(id).orElse(null);
+    @Override
+    public Producto productoPorNombre(String nombre) {
+        return productoRepository.findByNombre(nombre);
     }
 }

@@ -3,8 +3,10 @@ package com.tienda.tienda_de_ropa.controllers;
 import com.tienda.tienda_de_ropa.dtos.ClienteDTO;
 import com.tienda.tienda_de_ropa.models.Carrito;
 import com.tienda.tienda_de_ropa.models.Cliente;
+import com.tienda.tienda_de_ropa.models.OrdenCompra;
 import com.tienda.tienda_de_ropa.service.CarritoService;
 import com.tienda.tienda_de_ropa.service.ClienteService;
+import com.tienda.tienda_de_ropa.service.OrdenCompraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
@@ -27,6 +30,9 @@ public class ClienteController {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    OrdenCompraService ordenCompraService;
 
     @GetMapping("/clientes")
     public List<ClienteDTO> listaClientesDTO(){
@@ -75,5 +81,26 @@ public class ClienteController {
     @GetMapping("/clientes/actual")
     public ClienteDTO traerClienteAutenticado(Authentication authentication) {
         return new ClienteDTO(clienteService.findByCorreo(authentication.getName()));
+    }
+    
+    @DeleteMapping(path ="/clientes")
+    public ResponseEntity<?> eliminarCliente(
+            @RequestParam Long id)
+    {
+        Cliente clienteEncontrado = clienteService.encontrarPorId(id);
+
+        if (clienteEncontrado == null){
+            return new ResponseEntity<>("El cliente no existe", HttpStatus.FORBIDDEN);
+        }
+
+        Set<OrdenCompra> ordenesEncontradas = clienteEncontrado.getCarrito().getOrdenCompra();
+        if (!ordenesEncontradas.isEmpty()){
+            ordenCompraService.eliminarTodas(ordenesEncontradas);
+        }
+
+        Carrito carritoEncontrado = clienteEncontrado.getCarrito();
+        carritoService.eliminarCarrito(carritoEncontrado);
+        clienteService.eliminarCliente(clienteEncontrado);
+        return new ResponseEntity<>("Cliente Borrado correctamente",HttpStatus.ACCEPTED);
     }
 }

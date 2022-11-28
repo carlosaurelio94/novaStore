@@ -5,6 +5,5 @@ import com.tienda.tienda_de_ropa.models.Producto;
 public interface ProductoService {
     public void guardarProducto(Producto producto);
 
-    public Producto buscarPorId(Long id);
-
+    public Producto productoPorNombre(String nombre);
 }
