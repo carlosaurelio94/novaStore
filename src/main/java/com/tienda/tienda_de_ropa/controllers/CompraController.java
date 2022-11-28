@@ -1,10 +1,7 @@
 package com.tienda.tienda_de_ropa.controllers;
 
 import com.tienda.tienda_de_ropa.models.*;
-import com.tienda.tienda_de_ropa.service.ClienteService;
-import com.tienda.tienda_de_ropa.service.CompraService;
-import com.tienda.tienda_de_ropa.service.OrdenCompraService;
-import com.tienda.tienda_de_ropa.service.ProductoService;
+import com.tienda.tienda_de_ropa.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +19,8 @@ public class CompraController {
     ClienteService clienteService;
     @Autowired
     CompraService compraService;
+    @Autowired
+    CarritoService carritoService;
 
     @Transactional
     @PostMapping("/transaccional")
@@ -44,7 +43,7 @@ public class CompraController {
 
         Compra compraRealizada = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,factura.getPrecioTotal()/10,"Muchos productos",factura.getPrecioTotal(),clienteAutenticado);
         compraService.guardarCompra(compraRealizada);
-        carrito.getOrdenCompra().removeAll(carrito.getOrdenCompra());
+        carritoService.eliminarCarrito(carrito);
         clienteService.guardarCliente(clienteAutenticado);
 
         return new ResponseEntity<>("Se Realizo la transaccion con exito",HttpStatus.CREATED);
@@ -70,7 +69,7 @@ public class CompraController {
         Compra compraPuntos = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,puntosTotales,factura.getId().toString(),factura.getPrecioTotal(),clienteAutenticado);
 
         compraService.guardarCompra(compraPuntos);
-        carrito.getOrdenCompra().removeAll(carrito.getOrdenCompra());
+        carritoService.eliminarCarrito(carrito);
         clienteAutenticado.setPuntos(puntosTotales);
         clienteService.guardarCliente(clienteAutenticado);
 
