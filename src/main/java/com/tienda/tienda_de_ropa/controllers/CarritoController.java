@@ -16,22 +16,22 @@ public class CarritoController {
     @Autowired
     CarritoService carritoService;
 
-    @GetMapping("/shoppingCarts")
+    @GetMapping("/carrito")
     public List<CarritoDTO> traerListaCarritos() {
         return carritoService.traerTodos();
     }
 
-    @GetMapping("/shoppingCart/{id}")
+    @GetMapping("/carrito/{id}")
     public CarritoDTO traerCarritoDTO(@PathVariable Long id) {
         return carritoService.traerCarritoPorId(id);
     }
 
-    @GetMapping("/clients/current/shoppingCart")
+    @GetMapping("/clientes/actual/carrito")
     public CarritoDTO traerCarritoAutenticado(Authentication authentication) {
         return carritoService.traerCarritoAutenticado(authentication);
     }
 
-    @PostMapping("/clients/current/shoppingCart")
+    @PostMapping("/clientes/actual/carrito")
     public ResponseEntity<?> postShoppingCartDTO(Authentication authentication) {
         return carritoService.crearCarrito(authentication);
     }

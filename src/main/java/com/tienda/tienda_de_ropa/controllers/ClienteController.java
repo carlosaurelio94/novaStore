@@ -82,7 +82,7 @@ public class ClienteController {
     public ClienteDTO traerClienteAutenticado(Authentication authentication) {
         return new ClienteDTO(clienteService.findByCorreo(authentication.getName()));
     }
-    
+
     @DeleteMapping(path ="/clientes")
     public ResponseEntity<?> eliminarCliente(
             @RequestParam Long id)
