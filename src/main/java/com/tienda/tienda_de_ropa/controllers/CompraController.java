@@ -3,13 +3,14 @@ package com.tienda.tienda_de_ropa.controllers;
 import com.tienda.tienda_de_ropa.models.*;
 import com.tienda.tienda_de_ropa.service.ClienteService;
 import com.tienda.tienda_de_ropa.service.CompraService;
+import com.tienda.tienda_de_ropa.service.OrdenCompraService;
+import com.tienda.tienda_de_ropa.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.TransactionScoped;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 
@@ -24,7 +25,9 @@ public class CompraController {
 
     @Transactional
     @PostMapping("/transaccional")
-    public ResponseEntity<Object> crearTransferencias(Authentication authentication, @RequestParam Double monto) {
+    public ResponseEntity<?> crearTransferencias(
+            Authentication authentication,
+            @RequestParam Double monto) {
         Cliente clienteAutenticado =clienteService.findByCorreo(authentication.getName());
         Carrito carrito = clienteAutenticado.getCarrito();
         Factura factura = new Factura(carrito) ;
@@ -39,10 +42,9 @@ public class CompraController {
             return new ResponseEntity<>("No puedes ingresar menor o igual a cero", HttpStatus.FORBIDDEN);
         }
 
-        Compra compraRealizada = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,clienteAutenticado.getPuntos() + factura.getPrecioTotal()/10,factura.getId().toString(),factura.getPrecioTotal(),clienteAutenticado);
+        Compra compraRealizada = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,factura.getPrecioTotal()/10,"Muchos productos",factura.getPrecioTotal(),clienteAutenticado);
         compraService.guardarCompra(compraRealizada);
         carrito.getOrdenCompra().removeAll(carrito.getOrdenCompra());
-        clienteAutenticado.setPuntos(clienteAutenticado.getPuntos()+ factura.getPrecioTotal()/10);
         clienteService.guardarCliente(clienteAutenticado);
 
         return new ResponseEntity<>("Se Realizo la transaccion con exito",HttpStatus.CREATED);
@@ -75,5 +77,6 @@ public class CompraController {
 
         return new ResponseEntity<>("Se Realizo la compra con exito",HttpStatus.ACCEPTED);
     }
+
 }
 

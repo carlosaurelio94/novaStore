@@ -16,4 +16,8 @@ public interface ClienteService {
     public Cliente findByCorreo(String correo);
 
     public void guardarCliente(Cliente cliente);
+
+    public Cliente encontrarPorId(long id);
+
+    public void eliminarCliente(Cliente cliente);
 }
