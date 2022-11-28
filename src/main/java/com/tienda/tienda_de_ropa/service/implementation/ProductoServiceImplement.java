@@ -17,4 +17,9 @@ public class ProductoServiceImplement  implements ProductoService {
     public void guardarProducto(Producto producto) {
         productoRepository.save(producto);
     }
+
+    @Override
+    public Producto productoPorNombre(String nombre) {
+        return productoRepository.findByNombre(nombre);
+    }
 }
