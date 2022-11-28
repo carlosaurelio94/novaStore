@@ -42,6 +42,7 @@ public class CompraController {
         Compra compraRealizada = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,clienteAutenticado.getPuntos() + factura.getPrecioTotal()/10,factura.getId().toString(),factura.getPrecioTotal(),clienteAutenticado);
         compraService.guardarCompra(compraRealizada);
         carrito.getOrdenCompra().removeAll(carrito.getOrdenCompra());
+        clienteAutenticado.setPuntos(clienteAutenticado.getPuntos()+ factura.getPrecioTotal()/10);
         clienteService.guardarCliente(clienteAutenticado);
 
         return new ResponseEntity<>("Se Realizo la transaccion con exito",HttpStatus.CREATED);
@@ -54,7 +55,7 @@ public class CompraController {
         Carrito carrito = clienteAutenticado.getCarrito();
         Factura factura = new Factura(carrito) ;
         double cantidadPuntosCarrito = factura.getPrecioTotal()/10;
-
+        double puntosTotales = clienteAutenticado.getPuntos()-cantidadPuntosCarrito;
         if (clienteAutenticado.getPuntos() <= 0){
             return new ResponseEntity<>("No tienes puntos disponibles", HttpStatus.FORBIDDEN);
         }
@@ -62,9 +63,11 @@ public class CompraController {
             return new ResponseEntity<>("No tienes los puntos suficientes para realizar la compra",HttpStatus.FORBIDDEN);
         }
 
-        Compra compraPuntos = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,clienteAutenticado.getPuntos()-cantidadPuntosCarrito,factura.getId().toString(),factura.getPrecioTotal(),clienteAutenticado);
+        Compra compraPuntos = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,puntosTotales,factura.getId().toString(),factura.getPrecioTotal(),clienteAutenticado);
+
         compraService.guardarCompra(compraPuntos);
         carrito.getOrdenCompra().removeAll(carrito.getOrdenCompra());
+        clienteAutenticado.setPuntos(puntosTotales);
         clienteService.guardarCliente(clienteAutenticado);
 
 
