@@ -134,14 +134,14 @@ public class ProductoController {
         return new ResponseEntity<>("Este producto ha sido añadido al carrito", HttpStatus.ACCEPTED);
     }
 
-    /*
+
     @GetMapping("/prueba")
     public Producto prueba() {
-        return new Producto("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669677008/kitten_mndwlu.png",
+        return new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669677008/kitten_mndwlu.png"),
                 "Gato", 1, 100.00, ProductoTalle.XL);
     }
 
-    @PostMapping("/prueba")
+   /* @PostMapping("/prueba")
     public ResponseEntity<?> prueba2(@RequestParam String foto) throws IOException {
         Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
                 "cloud_name", "dqsq3fc1b",
