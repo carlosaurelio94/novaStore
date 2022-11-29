@@ -47,7 +47,7 @@ public class ProductoController {
             @RequestParam String nombre,
             @RequestParam int stock,
             @RequestParam double precio,
-            @RequestParam ProductoTalle talle
+            @RequestParam String talle
             ) {
         if (URLImagen.isEmpty()){
           return new ResponseEntity<>("El producto debe contener al menos una imagen", HttpStatus.FORBIDDEN);
@@ -62,7 +62,7 @@ public class ProductoController {
             return new ResponseEntity<>("El precio del producto no puede ser igual o menor a cero", HttpStatus.FORBIDDEN);
         }
 
-        Producto nuevoProducto = new Producto(List.of(URLImagen), nombre, stock, precio, talle);
+        Producto nuevoProducto = new Producto(List.of(URLImagen), nombre, stock, precio, List.of(talle));
         productoService.guardarProducto(nuevoProducto);
         return new ResponseEntity<>(nuevoProducto, HttpStatus.CREATED);
     }
