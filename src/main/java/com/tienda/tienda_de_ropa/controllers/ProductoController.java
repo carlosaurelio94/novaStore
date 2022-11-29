@@ -1,7 +1,9 @@
 package com.tienda.tienda_de_ropa.controllers;
 
+import com.tienda.tienda_de_ropa.dtos.ProductoDTO;
 import com.tienda.tienda_de_ropa.models.*;
 import com.tienda.tienda_de_ropa.repositories.OrdenCompraRepository;
+import com.tienda.tienda_de_ropa.repositories.ProductoRepository;
 import com.tienda.tienda_de_ropa.service.ClienteService;
 import com.tienda.tienda_de_ropa.service.OrdenCompraService;
 import com.tienda.tienda_de_ropa.service.ProductoService;
@@ -25,6 +27,9 @@ public class ProductoController {
 
     @Autowired
     ProductoService productoService;
+
+    @Autowired
+    ProductoRepository productoRepository;
 
     @Autowired
     ClienteService clienteService;
@@ -139,6 +144,11 @@ public class ProductoController {
     public Producto prueba() {
         return new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669677008/kitten_mndwlu.png"),
                 "Gato", 1, 100.00, ProductoTalle.XL);
+    }
+
+    @GetMapping("/prueba2")
+    public Set<ProductoDTO> productoDTOS(){
+        return productoRepository.findAll().stream().map(producto -> new ProductoDTO(producto)).collect(Collectors.toSet());
     }
 
    /* @PostMapping("/prueba")

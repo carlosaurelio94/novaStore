@@ -1,20 +1,23 @@
 const app = Vue.createApp({
     data() {
-        
+        return{
+           productos:[],
+        }
     
 
    
     },
 
     created(){
-        this.loaddata();
+        this.loadData("/api/prueba2");
     },
 
     methods: {
-        loaddata(){
-            axios.get("/api/prueba")
+        loadData(url){
+            axios.get(url)
             .then(response=>{
-                console.log(response)
+                this.productos = response.data
+                console.log(this.productos)
             })
             .catch(error=>console.log(error))
         },

@@ -2,9 +2,12 @@ package com.tienda.tienda_de_ropa;
 
 import com.cloudinary.*;
 import com.cloudinary.utils.ObjectUtils;
+import com.tienda.tienda_de_ropa.models.Producto;
+import com.tienda.tienda_de_ropa.models.ProductoTalle;
 import io.github.cdimascio.dotenv.Dotenv;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 import com.tienda.tienda_de_ropa.models.Cliente;
 import com.tienda.tienda_de_ropa.repositories.*;
@@ -68,7 +71,9 @@ public class TiendaDeRopaApplication {
 
 
 			System.out.println("Servidor iniciado!");
-
+			Producto producto = new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669677008/kitten_mndwlu.png","https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669677008/kitten_mndwlu.png"),
+					"Gato", 1, 100.00, ProductoTalle.XL);
+			productoRepository.save(producto);
 			Cliente client1 = new Cliente("Sebas", "Granados", "loquesea@gmail.com", passwordEnconder.encode("1234"), 0);
 		};
 	}
