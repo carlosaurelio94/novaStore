@@ -22,4 +22,8 @@ public class ProductoServiceImplement  implements ProductoService {
     public Producto productoPorNombre(String nombre) {
         return productoRepository.findByNombre(nombre);
     }
+
+    public Producto productoPorId(Long id) {
+        return productoRepository.findById(id).orElse(null);
+    }
 }

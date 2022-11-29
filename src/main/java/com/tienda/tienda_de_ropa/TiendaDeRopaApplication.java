@@ -1,5 +1,11 @@
 package com.tienda.tienda_de_ropa;
 
+import com.cloudinary.*;
+import com.cloudinary.utils.ObjectUtils;
+import io.github.cdimascio.dotenv.Dotenv;
+
+import java.io.File;
+import java.util.Map;
 import com.tienda.tienda_de_ropa.models.Cliente;
 import com.tienda.tienda_de_ropa.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +47,29 @@ public class TiendaDeRopaApplication {
 			CompraRepository compraRepository
 	) {
 		return args -> {
+//			Dotenv dotenv = Dotenv.load();
+//			Cloudinary cloudinary = new Cloudinary(dotenv.get("CLOUDINARY_URL"));
+//			cloudinary.config.secure = true;
+//			System.out.println(cloudinary.config.cloudName);
+//
+//			Map params1 = ObjectUtils.asMap(
+//					"use_filename", true,
+//					"unique_filename", false,
+//					"overwrite", true
+//			);
+//
+//			Map params2 = ObjectUtils.asMap(
+//					"quality_analysis", true
+//			);
+//
+//			System.out.println(
+//					cloudinary.api().resource("foto_zifslc", params1));
+
+
+
 			System.out.println("Servidor iniciado!");
+
+			Cliente client1 = new Cliente("Sebas", "Granados", "loquesea@gmail.com", passwordEnconder.encode("1234"), 0);
 		};
 	}
 }
