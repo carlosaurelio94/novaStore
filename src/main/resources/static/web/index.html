@@ -19,12 +19,32 @@
 
     <main>
 
-        <header id="header">
-
-
+        <header id="header" class="">                
+            <nav class="navbar navbar-expand-lg bg-dark nav-header sticky-top">
+                <div class="container-fluid d-flex gap-3">
+                    <img src="./assets/images/logo-solo.png" alt="logo nova">
+                    <a class="navbar-brand fs-3 fw-bolder titulo text-light" href="./index.html">Nova Store</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarText">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link fs-3 text-light" aria-current="page" id="active" href="#">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fs-3 text-light" href="./productos.html">Productos</a>
+                            </li>
+                        </ul>
+                        <div class="">
+                            <a href="#" class="registrarse fs-3 text-light text-decoration-none">Registrarse</a>
+                            <a href="#" class="ingresar fs-3 text-light text-decoration-none">Ingresar</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
             
-
-            <div class="ingresar">Ingresar</div>
             <div id="ingreso_lateral">
                 <img src="./logo.png" alt="" class="logo">
                 <div class="ingresar d-flex flex-column justify-content-center align-items-center gap-4">
@@ -44,9 +64,9 @@
                         data-bs-target="#exampleModal">
                         <a class="text-white text-decoration-none rounded" href="">LOGIN</a>
                     </button>
-                    <div class="signup_link text-light">¿No eres miembro aún?
+                    <!-- <div class="signup_link text-light">¿No eres miembro aún?
                         <a class="registrarse text-light">Crea tu cuenta</a>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
@@ -107,10 +127,11 @@
 
 
             <div class="section content-video">
-                
 
-                    <video id="background_video" data-autoplay data-keepplaying muted loop poster
-                    src="./assets/images/y2mate.com - FIFA World Cup 2022  Family Reunion_1080p.mp4" type="video/mp4"></video>
+
+                <video id="background_video" data-autoplay data-keepplaying muted loop poster
+                    src="./assets/images/y2mate.com - FIFA World Cup 2022  Family Reunion_1080p.mp4"
+                    type="video/mp4"></video>
 
             </div>
 
@@ -131,12 +152,12 @@
             <div class="section">
                 <div class="supernova">
                     <div class="video_container">
-                        
-                            <video data-autoplay data-keepplaying muted loop
+
+                        <video data-autoplay data-keepplaying muted loop
                             src="./assets/images/Zapatillas_Supernova+_Negro_GW9107_video.mp4"></video>
                     </div>
                     <div class="content_container">
-                        <div class="content_text">
+                        <div class="content_text ">
                             <div class="content-title">
                                 <h1>adidas </h1>
                                 <h2>SUPERNOVA +</h2>
@@ -180,8 +201,8 @@
 
                     </div>
                     <div class="video_container">
-                        
-                            <video data-autoplay data-keeepplaying muted loop
+
+                        <video data-autoplay data-keeepplaying muted loop
                             src="./assets/images/Zapatllas_Run_Falcon_2.0_Azul_GZ8077_video.mp4"></video>
                     </div>
 
