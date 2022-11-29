@@ -69,7 +69,7 @@ public class TiendaDeRopaApplication {
 
 			System.out.println("Servidor iniciado!");
 
-			Cliente client1 = new Cliente("Sebas", "Granados", "loquesea@gmail.com", passwordEnconder.encode("1234"), 0);
+			// Cliente client1 = new Cliente("Sebas", "Granados", "loquesea@gmail.com", passwordEnconder.encode("1234"), 0);
 		};
 	}
 }

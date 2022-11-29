@@ -15,8 +15,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
@@ -69,7 +69,9 @@ public class ClienteController {
             return new ResponseEntity<>("Las contraseñas no coinciden", HttpStatus.FORBIDDEN);
         }
 
+        String verificacionToken = UUID.randomUUID().toString();
         Cliente nuevoCliente = new Cliente(nombre, apellido, correo, passwordEncoder.encode(clave), 0);
+        nuevoCliente.setToken(verificacionToken);
         clienteService.guardarCliente(nuevoCliente);
 
         Carrito nuevoCarritoCliente = new Carrito(nuevoCliente);
