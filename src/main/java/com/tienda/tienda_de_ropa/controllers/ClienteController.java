@@ -7,13 +7,18 @@ import com.tienda.tienda_de_ropa.models.OrdenCompra;
 import com.tienda.tienda_de_ropa.service.CarritoService;
 import com.tienda.tienda_de_ropa.service.ClienteService;
 import com.tienda.tienda_de_ropa.service.OrdenCompraService;
+import com.tienda.tienda_de_ropa.utils.Utilidades;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -48,8 +53,9 @@ public class ClienteController {
             @RequestParam String apellido,
             @RequestParam String correo,
             @RequestParam String clave,
-            @RequestParam String clave2
-    ){
+            @RequestParam String clave2,
+            HttpServletRequest request
+    ) throws MessagingException, UnsupportedEncodingException {
         if (nombre.isEmpty()) {
             return new ResponseEntity<>("Falta el dato Nombre", HttpStatus.FORBIDDEN);
         }
@@ -71,7 +77,12 @@ public class ClienteController {
 
         String verificacionToken = UUID.randomUUID().toString();
         Cliente nuevoCliente = new Cliente(nombre, apellido, correo, passwordEncoder.encode(clave), 0);
+
         nuevoCliente.setToken(verificacionToken);
+
+        String sitioURL = Utilidades.url(request);
+        clienteService.enviarCorreoVerificacion(nuevoCliente, sitioURL);
+
         clienteService.guardarCliente(nuevoCliente);
 
         Carrito nuevoCarritoCliente = new Carrito(nuevoCliente);
@@ -104,5 +115,14 @@ public class ClienteController {
         carritoService.eliminarCarrito(carritoEncontrado);
         clienteService.eliminarCliente(clienteEncontrado);
         return new ResponseEntity<>("Cliente Borrado correctamente",HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/verificacion")
+    public String verificarCliente(@Param("token") String token){
+        if (clienteService.verificacion(token)) {
+            return "verify_success";
+        } else {
+            return "verify_fail";
+        }
     }
 }
