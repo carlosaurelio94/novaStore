@@ -5,7 +5,10 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import com.tienda.tienda_de_ropa.models.Cliente;
+import com.tienda.tienda_de_ropa.models.OrdenCompra;
+import com.tienda.tienda_de_ropa.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -21,7 +24,10 @@ public class PDFService {
     @Autowired
     ClienteService clientService;
 
-    public void export (HttpServletResponse response, @RequestParam String email, @RequestParam String number) throws IOException {
+    @Autowired
+    ClienteRepository clienteRepository;
+
+    public void export (HttpServletResponse response, String email) throws IOException {
         Document document = new Document(PageSize.A5);
         PdfWriter.getInstance(document, response.getOutputStream());
 
@@ -41,20 +47,18 @@ public class PDFService {
         PdfPTable table = null;
         PdfPCell cell = null;
 
-        Cliente cliente = clientService.findByCorreo(email);
+        Cliente cliente = clienteRepository.findByCorreo(email);
 
-
-
-        Paragraph paragraph = new Paragraph("NOVA BANK ", fontTitle);
+        Paragraph paragraph = new Paragraph("NOVA STORE ", fontTitle);
         paragraph.setAlignment(Paragraph.ALIGN_CENTER);
 
         Font fontParagraph = FontFactory.getFont(FontFactory.HELVETICA);
         fontParagraph.setSize(12);
 
-        Paragraph paragraph2 = new Paragraph("BANK ACCOUNT STATEMENT", fontParagraph);
+        Paragraph paragraph2 = new Paragraph("ORDEN DE COMPRA", fontParagraph);
         paragraph2.setAlignment(Paragraph.ALIGN_LEFT);
 
-        Paragraph paragraph3 = new Paragraph("Welcome, " + cliente.getNombre() + " " + cliente.getApellido(), fontParagraph);
+        Paragraph paragraph3 = new Paragraph("Bienvenido, " + cliente.getNombre() + " " + cliente.getApellido(), fontParagraph);
         paragraph3.setAlignment(Paragraph.ALIGN_CENTER);
 
         table = new PdfPTable(columnDefinitionSize);
@@ -66,22 +70,20 @@ public class PDFService {
         cell = new PdfPCell(new Phrase("NOVA STORE"));
         cell.setColspan(columnDefinitionSize.length);
         table.addCell(cell);
-   /*     Set<Transaction> transactionsSet = account.getTransactions().stream().filter(transaction ->
-                transaction.getDate().toLocalDate().isBefore(dateTo1.plusDays(1))
-                        && transaction.getDate().toLocalDate().isAfter(dateFrom1)).collect(Collectors.toSet());
-        ArrayList<Transaction> transactions = new ArrayList<>(transactionsSet);
+        Set<OrdenCompra> ordenesCompra = cliente.getCarrito().getOrdenCompra();
+        ArrayList<OrdenCompra> ordenComprasLista = new ArrayList<>(ordenesCompra);
 
-        table.addCell(new Phrase("Amount", font8));
-        table.addCell(new Phrase("Description", font8));
-        table.addCell(new Phrase("Date", font8));
+        table.addCell(new Phrase("ID", font8));
+        table.addCell(new Phrase("Nombre", font8));
+        table.addCell(new Phrase("Cantidad", font8));
+        table.addCell(new Phrase("Precio", font8));
 
-        for (int i = 0; i < transactions.size(); i++) {
-            table.addCell(new Phrase(transactions.get(i).getAmount().toString(),font8));
-            table.addCell(new Phrase(transactions.get(i).getDescription(), font8));
-            table.addCell(new Phrase(transactions.get(i).getDate().getDayOfMonth() + " " + transactions.get(i).getDate().getMonth().toString()
-                    + " " + transactions.get(i).getDate().getYear(), font8));
+        for (int i = 0; i < ordenComprasLista.size(); i++) {
+            table.addCell(new Phrase(ordenComprasLista.get(i).getId().toString(),font8));
+            table.addCell(new Phrase(ordenComprasLista.get(i).getProducto().getNombre(), font8));
+            table.addCell(new Phrase(ordenComprasLista.get(i).getCantidad()));
+            table.addCell(new Phrase((float) ordenComprasLista.get(i).getPrecio()));
         }
-*/
 //        table.writeSelectedRows(0, -1, 50, pos, writer.getDirectContent());
 
 

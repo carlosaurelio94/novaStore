@@ -120,9 +120,9 @@ public class ClienteController {
     @GetMapping("/verificacion")
     public String verificarCliente(@Param("token") String token){
         if (clienteService.verificacion(token)) {
-            return "verify_success";
+            return "Verificación exitosa";
         } else {
-            return "verify_fail";
+            return "La verificación fallo";
         }
     }
 }

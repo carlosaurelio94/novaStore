@@ -27,7 +27,7 @@ public class PDFController {
     ClienteService clienteService;
 
     @GetMapping("/pdf/generate")
-    public void generatePDF(HttpServletResponse response, Authentication authentication, @RequestParam String number) throws IOException {
+    public void generatePDF(HttpServletResponse response, Authentication authentication) throws IOException {
         response.setContentType("application/pdf");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd:hh:mm-ss");
         String currentDateTime = dateFormatter.format(new Date());
@@ -38,6 +38,6 @@ public class PDFController {
 
         String email = authentication.getName();
 
-        this.pdfService.export(response, email, number);
+        this.pdfService.export(response, email);
     }
 }

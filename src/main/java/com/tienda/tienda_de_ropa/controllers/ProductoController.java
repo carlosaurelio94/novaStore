@@ -145,16 +145,16 @@ public class ProductoController {
     }
 
 
-    @GetMapping("/prueba")
-    public Producto prueba() {
-        return new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669677008/kitten_mndwlu.png", "https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669729895/imagen_muetoo.jpg"),
-                "Gato", 1, 100.00, ProductoTalle.XL);
-    }
+//    @GetMapping("/prueba")
+//    public Producto prueba() {
+//        return new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669677008/kitten_mndwlu.png", "https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669729895/imagen_muetoo.jpg"),
+//                "Gato", 1, 100.00, ProductoTalle.XL);
+//    }
 
-    @GetMapping("/prueba2")
-    public Set<ProductoDTO> hola() {
-        return productoRepository.findAll().stream().map(producto -> new ProductoDTO(producto)).collect(Collectors.toSet());
-    }
+//    @GetMapping("/prueba2")
+//    public Set<ProductoDTO> hola() {
+//        return productoRepository.findAll().stream().map(producto -> new ProductoDTO(producto)).collect(Collectors.toSet());
+//    }
 /*
     @PostMapping("/prueba")
     public ResponseEntity<?> prueba2(@RequestParam String foto) throws IOException {
