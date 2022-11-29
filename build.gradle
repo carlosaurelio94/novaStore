@@ -18,19 +18,19 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'com.github.librepdf:openpdf:1.3.8'
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
-	implementation 'com.github.librepdf:openpdf:1.3.8'
+
 
 
 	// https://mvnrepository.com/artifact/com.cloudinary/cloudinary-http44
 	implementation 'com.cloudinary:cloudinary-http44:1.32.2'
 
-
-// https://mvnrepository.com/artifact/com.cloudinary/cloudinary-taglib
+	// https://mvnrepository.com/artifact/com.cloudinary/cloudinary-taglib
 	implementation 'com.cloudinary:cloudinary-taglib:1.32.2'
-
 
 	// https://mvnrepository.com/artifact/io.github.cdimascio/dotenv-java
 	implementation 'io.github.cdimascio:dotenv-java:2.2.4'
