@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class ProductoController {
 
     @Autowired
@@ -30,7 +31,6 @@ public class ProductoController {
 
     @Autowired
     ProductoRepository productoRepository;
-
     @Autowired
     ClienteService clienteService;
 
@@ -40,15 +40,20 @@ public class ProductoController {
     @Autowired
     OrdenCompraRepository ordenCompraRepository;
 
+    @GetMapping("/productos")
+    public List<ProductoDTO> traerTodos() {
+        return productoService.traerTodos();
+    }
+
     @PostMapping("/producto")
     public ResponseEntity<?> crearNuevoProducto(
-            @RequestParam String URLImagen1,
+            @RequestParam String URLImagen,
             @RequestParam String nombre,
             @RequestParam int stock,
             @RequestParam double precio,
-            @RequestParam ProductoTalle talle
+            @RequestParam String talle
             ) {
-        if (URLImagen1.isEmpty()){
+        if (URLImagen.isEmpty()){
           return new ResponseEntity<>("El producto debe contener al menos una imagen", HttpStatus.FORBIDDEN);
         }
         if (nombre.isEmpty()) {
@@ -61,7 +66,7 @@ public class ProductoController {
             return new ResponseEntity<>("El precio del producto no puede ser igual o menor a cero", HttpStatus.FORBIDDEN);
         }
 
-        Producto nuevoProducto = new Producto(List.of(URLImagen1), nombre, stock, precio, talle);
+        Producto nuevoProducto = new Producto(List.of(URLImagen), nombre, stock, precio, List.of(talle));
         productoService.guardarProducto(nuevoProducto);
         return new ResponseEntity<>(nuevoProducto, HttpStatus.CREATED);
     }
@@ -87,12 +92,12 @@ public class ProductoController {
             return new ResponseEntity<>("No quedan más unidades de este producto", HttpStatus.FORBIDDEN);
         }
 
-        if (isOrdenCompra == false) {
-        producto.setStock(producto.getStock() - 1);
-        productoService.guardarProducto(producto);
-        ordenCompraService.guardarOrdenCompra(new OrdenCompra(1, producto.getPrecio(), LocalDateTime.now(), carrito, producto));
-        return new ResponseEntity<>("Este producto ha sido añadido al carrito", HttpStatus.ACCEPTED);
-        }
+//        if (isOrdenCompra == false) {
+//        producto.setStock(producto.getStock() - 1);
+//        productoService.guardarProducto(producto);
+//        ordenCompraService.guardarOrdenCompra(new OrdenCompra(1, producto.getPrecio(), LocalDateTime.now(), carrito, producto));
+//        return new ResponseEntity<>("Este producto ha sido añadido al carrito", HttpStatus.ACCEPTED);
+//        }
 
         producto.setStock(producto.getStock() - 1);
         productoService.guardarProducto(producto);
@@ -142,16 +147,16 @@ public class ProductoController {
 
     @GetMapping("/prueba")
     public Producto prueba() {
-        return new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669677008/kitten_mndwlu.png"),
+        return new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669677008/kitten_mndwlu.png", "https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669729895/imagen_muetoo.jpg"),
                 "Gato", 1, 100.00, ProductoTalle.XL);
     }
 
     @GetMapping("/prueba2")
-    public Set<ProductoDTO> productoDTOS(){
+    public Set<ProductoDTO> hola() {
         return productoRepository.findAll().stream().map(producto -> new ProductoDTO(producto)).collect(Collectors.toSet());
     }
-
-   /* @PostMapping("/prueba")
+/*
+    @PostMapping("/prueba")
     public ResponseEntity<?> prueba2(@RequestParam String foto) throws IOException {
         Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
                 "cloud_name", "dqsq3fc1b",

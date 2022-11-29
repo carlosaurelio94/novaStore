@@ -1,15 +1,15 @@
 package com.tienda.tienda_de_ropa.dtos;
 
 import com.tienda.tienda_de_ropa.models.Producto;
-import com.tienda.tienda_de_ropa.models.ProductoTalle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductoDTO {
 
     private long id;
 
-    private List<String> images;
+    private List<String> imagenes = new ArrayList<>();
 
     private String nombre;
 
@@ -17,25 +17,26 @@ public class ProductoDTO {
 
     private Double precio;
 
-    private ProductoTalle talle;
+
+    private List<String> talles = new ArrayList<>();
 
     public ProductoDTO() {}
 
     public ProductoDTO(Producto producto) {
         this.id = producto.getId();
-        this.images = producto.getImages();
+        this.imagenes = producto.getImages();
         this.nombre = producto.getNombre();
         this.stock = producto.getStock();
         this.precio = producto.getPrecio();
-        this.talle = producto.getTalle();
+        this.talles = producto.getTalle();
     }
 
     public long getId() {
         return id;
     }
 
-    public List<String> getImages() {
-        return images;
+    public List<String> getImagenes() {
+        return imagenes;
     }
 
     public String getNombre() {
@@ -50,7 +51,7 @@ public class ProductoDTO {
         return precio;
     }
 
-    public ProductoTalle getTalle() {
-        return talle;
+    public List<String> getTalles() {
+        return talles;
     }
 }

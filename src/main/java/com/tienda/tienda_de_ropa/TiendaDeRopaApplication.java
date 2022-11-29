@@ -1,15 +1,9 @@
 package com.tienda.tienda_de_ropa;
 
-import com.cloudinary.*;
-import com.cloudinary.utils.ObjectUtils;
 import com.tienda.tienda_de_ropa.models.Producto;
-import com.tienda.tienda_de_ropa.models.ProductoTalle;
-import io.github.cdimascio.dotenv.Dotenv;
 
-import java.io.File;
 import java.util.List;
-import java.util.Map;
-import com.tienda.tienda_de_ropa.models.Cliente;
+
 import com.tienda.tienda_de_ropa.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,8 +11,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 public class TiendaDeRopaApplication {
@@ -71,10 +63,12 @@ public class TiendaDeRopaApplication {
 
 
 			System.out.println("Servidor iniciado!");
-			Producto producto1 = new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669746933/Camisetas%20del%20mundial/Alemania/camisetas-adidas-alemania-2022-1-removebg-preview_cd0yqr.png"), "Camiseta Alemania", 1, 100.00, ProductoTalle.XL);
+
+			System.out.println("Servidor iniciado!");
+			Producto producto1 = new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669746933/Camisetas%20del%20mundial/Alemania/camisetas-adidas-alemania-2022-1-removebg-preview_cd0yqr.png"), "Camiseta Alemania", 1, 100.00, List.of("XS", "S", "M", "L", "XL", "XXL"));
 			productoRepository.save(producto1);
 
-			Cliente client1 = new Cliente("Sebas", "Granados", "loquesea@gmail.com", passwordEnconder.encode("1234"), 0);
+			// Cliente admin = new Cliente("Sebas", "Granados", "loquesea@gmail.com", passwordEnconder.encode("1234"), 0);
 		};
 	}
 }

@@ -21,8 +21,7 @@ public class PDFService {
     @Autowired
     ClienteService clientService;
 
-    public void export (HttpServletResponse response, @RequestParam String email, @RequestParam String number,
-                        @RequestParam LocalDate dateFrom1, @RequestParam LocalDate dateTo1) throws IOException {
+    public void export (HttpServletResponse response, @RequestParam String email, @RequestParam String number) throws IOException {
         Document document = new Document(PageSize.A5);
         PdfWriter.getInstance(document, response.getOutputStream());
 
@@ -64,7 +63,7 @@ public class PDFService {
         table.setTotalWidth(width - 72);
         table.setLockedWidth(true);
 
-        cell = new PdfPCell(new Phrase("NOVA BANK"));
+        cell = new PdfPCell(new Phrase("NOVA STORE"));
         cell.setColspan(columnDefinitionSize.length);
         table.addCell(cell);
    /*     Set<Transaction> transactionsSet = account.getTransactions().stream().filter(transaction ->
