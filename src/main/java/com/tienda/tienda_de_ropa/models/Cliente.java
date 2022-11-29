@@ -17,6 +17,9 @@ public class Cliente {
     private String correo;
     private String clave;
     private double puntos;
+    private boolean habilitado = false;
+
+    private String token;
 
     @OneToMany(mappedBy= "cliente", fetch= FetchType.EAGER)
     private Set<Compra> compras = new HashSet<>();
@@ -117,6 +120,22 @@ public class Cliente {
         this.carrito = carrito;
     }
 
+    public boolean isHabilitado() {
+        return habilitado;
+    }
+
+    public void setHabilitado(boolean habilitado) {
+        this.habilitado = habilitado;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     @Override
     public String toString() {
         return "Cliente{" +
@@ -126,6 +145,8 @@ public class Cliente {
                 ", correo='" + correo + '\'' +
                 ", clave='" + clave + '\'' +
                 ", puntos=" + puntos +
+                ", habilitado=" + habilitado +
+                ", token='" + token + '\'' +
                 ", compras=" + compras +
                 ", contactos=" + contactos +
                 ", giftCards=" + giftCards +

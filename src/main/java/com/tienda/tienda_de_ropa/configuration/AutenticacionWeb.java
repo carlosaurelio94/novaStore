@@ -23,7 +23,7 @@ public class AutenticacionWeb extends GlobalAuthenticationConfigurerAdapter {
         auth.userDetailsService(email -> {
             Cliente cliente = clienteRepository.findByCorreo(email);
             if (cliente != null) {
-                if (cliente.getCorreo().contains("@admin")) {
+                if (cliente.getCorreo().contains("@adminnova")) {
                     return new User(cliente.getCorreo(), cliente.getClave(),
                             AuthorityUtils.createAuthorityList("ADMIN"));
                 } else {
