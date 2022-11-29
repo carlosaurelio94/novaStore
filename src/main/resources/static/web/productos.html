@@ -22,6 +22,11 @@
             <nav class="navbar navbar-expand-lg bg-transparent">
                 <div class="container-fluid">
                     <a class="navbar-brand fs-3 fw-bold">Filtrar por:</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span>Filtrar</span>
+                    </button>
                     <div class="collapse navbar-collapse d-flex justify-content-center align-items-center"
                         id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -31,27 +36,27 @@
                                     Categoría
                                 </a>
                                 <ul class="dropdown-menu p-2">
-                                    <div>
+                                    <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
                                         <label for="talla">Accesorios</label>
                                     </div>
                                     <div>
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
                                         <label for="talla">Balones</label>
-                                    </div>
+                                    </div class="dropdown-item">
                                     <div>
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
                                         <label for="talla">Calzado</label>
                                     </div>
-                                    <div>
+                                    <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
                                         <label for="talla">Camisas</label>
                                     </div>
-                                    <div>
+                                    <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
                                         <label for="talla">Deportes</label>
                                     </div>
-                                    <div>
+                                    <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
                                         <label for="talla">Mundial</label>
                                     </div>
@@ -63,27 +68,27 @@
                                     Talla
                                 </a>
                                 <ul class="dropdown-menu p-3">
-                                    <div>
+                                    <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
                                         <label for="talla">6</label>
                                     </div>
-                                    <div>
+                                    <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
                                         <label for="talla">7</label>
                                     </div>
-                                    <div>
+                                    <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
                                         <label for="talla">8</label>
                                     </div>
-                                    <div>
+                                    <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
                                         <label for="talla">9</label>
                                     </div>
-                                    <div>
+                                    <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
                                         <label for="talla">10</label>
                                     </div>
-                                    <div>
+                                    <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
                                         <label for="talla">11</label>
                                     </div>
@@ -95,7 +100,8 @@
                                     Precio
                                 </a>
                                 <ul class="dropdown-menu p-3">
-                                    <div class="contenedor_precio d-flex justify-content-center flex-column">
+                                    <div
+                                        class="contenedor_precio dropdown-item d-flex justify-content-center flex-column">
                                         <div class="slider">
                                             <div class="values d-flex flex-row justify-content-center">
                                                 <div id="range1">0</div>
@@ -111,7 +117,9 @@
                                     </div>
                                 </ul>
                             </li>
-                            <button class="btn btn-outline-light bg-dark text-light" type="submit">Aplicar</button>
+                            <div class="botón-envio d-flex justify-content-center">
+                                <button class="boton bg-dark p-1">Filtrar</button>
+                            </div>
                         </ul>
                     </div>
                 </div>

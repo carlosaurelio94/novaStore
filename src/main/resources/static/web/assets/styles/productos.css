@@ -16,6 +16,30 @@ footer{
   min-height: 10vh;
 }
 
+.boton {
+  letter-spacing: 2px;
+  border-radius: 5px 15px 0px 15px;
+  display: inline;
+  color:white;
+  font-weight: bold;
+  background-color: transparent;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  text-decoration: none;
+  transition: ease-out 1s;
+  outline: none;
+  box-shadow: rgba(11, 103, 123, 0.6);
+  ;
+}
+
+.boton:hover {
+  box-shadow: inset 200px 0 0 0 white;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+
+}
+
 :root{
   --border-color:linear-gradient(
     to right,
@@ -71,7 +95,7 @@ footer{
 .container .card:after {
   position: absolute;
   top: 30%;
-  left: -8%;
+  left: -8%; 
   font-size: 8em;
   font-weight: 800;
   font-style: italic;
@@ -100,8 +124,8 @@ footer{
 .container .card .imgBx img {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-25deg);
+  left: 45%;
+  transform: translate(-50%, -50%) ;
   width: 270px;
 }
 
