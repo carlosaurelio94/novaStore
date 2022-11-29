@@ -1,5 +1,6 @@
 package com.tienda.tienda_de_ropa.controllers;
 
+import com.tienda.tienda_de_ropa.dtos.CompraDTO;
 import com.tienda.tienda_de_ropa.models.*;
 import com.tienda.tienda_de_ropa.service.ClienteService;
 import com.tienda.tienda_de_ropa.service.CompraService;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
@@ -115,5 +118,9 @@ public class CompraController {
 //        return new ResponseEntity<>("Orden de compra creada", HttpStatus.CREATED);
 //    }
 
+    @GetMapping("/compras")
+    public Set<CompraDTO> traerCompras(Authentication authentication) {
+        return compraService.traerCompras(authentication.getName());
+    }
 }
 
