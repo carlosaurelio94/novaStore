@@ -109,7 +109,7 @@ public class ProductoController {
         Producto producto = productoService.productoPorId(id);
         boolean isOrdenCompra = carrito.getOrdenCompra().contains(producto);
         Set<OrdenCompra> ordenCompraSet = carrito.getOrdenCompra().stream()
-                .filter(ordenCompra -> ordenCompra.getProducto().getNombre() == producto.getNombre()).collect(Collectors.toSet());
+                .filter(ordenCompra -> ordenCompra.getProducto().getNombre().equals(producto.getNombre())).collect(Collectors.toSet());
         OrdenCompra ordenCompra = ordenCompraSet.stream().findFirst().orElse(null);
 
         if(producto == null) {
@@ -134,5 +134,26 @@ public class ProductoController {
         return new ResponseEntity<>("Este producto ha sido añadido al carrito", HttpStatus.ACCEPTED);
     }
 
+    /*
+    @GetMapping("/prueba")
+    public Producto prueba() {
+        return new Producto("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669677008/kitten_mndwlu.png",
+                "Gato", 1, 100.00, ProductoTalle.XL);
+    }
+
+    @PostMapping("/prueba")
+    public ResponseEntity<?> prueba2(@RequestParam String foto) throws IOException {
+        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+                "cloud_name", "dqsq3fc1b",
+                "api_key", "459595897333933",
+                "api_secret", "EQCJzwF3Xpdr1I09tY8KFfw8HUk",
+                "secure", "true"));
+
+        cloudinary.uploader().upload(new File("https://www.example.com/mysample.jpg"),
+                ObjectUtils.asMap("public_id", "sample_woman"));
+
+        return new ResponseEntity<>("das", HttpStatus.ACCEPTED);
+    }
+*/
 
 }
