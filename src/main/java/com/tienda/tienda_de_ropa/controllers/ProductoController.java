@@ -149,10 +149,10 @@ public class ProductoController {
 //                "Gato", 1, 100.00, ProductoTalle.XL);
 //    }
 
-    @GetMapping("/prueba2")
-    public Set<ProductoDTO> hola() {
-        return productoRepository.findAll().stream().map(producto -> new ProductoDTO(producto)).collect(Collectors.toSet());
-    }
+//    @GetMapping("/prueba2")
+//    public Set<ProductoDTO> hola() {
+//        return productoRepository.findAll().stream().map(producto -> new ProductoDTO(producto)).collect(Collectors.toSet());
+//    }
 /*
     @PostMapping("/prueba")
     public ResponseEntity<?> prueba2(@RequestParam String foto) throws IOException {
