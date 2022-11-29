@@ -1,7 +1,10 @@
 package com.tienda.tienda_de_ropa.controllers;
 
 import com.tienda.tienda_de_ropa.models.*;
-import com.tienda.tienda_de_ropa.service.*;
+import com.tienda.tienda_de_ropa.service.ClienteService;
+import com.tienda.tienda_de_ropa.service.CompraService;
+import com.tienda.tienda_de_ropa.service.OrdenCompraService;
+import com.tienda.tienda_de_ropa.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +23,9 @@ public class CompraController {
     @Autowired
     CompraService compraService;
     @Autowired
-    CarritoService carritoService;
+    ProductoService productoService;
+    @Autowired
+    OrdenCompraService ordenCompraService;
 
     @Transactional
     @PostMapping("/transaccional")
@@ -43,7 +48,7 @@ public class CompraController {
 
         Compra compraRealizada = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,factura.getPrecioTotal()/10,"Muchos productos",factura.getPrecioTotal(),clienteAutenticado);
         compraService.guardarCompra(compraRealizada);
-        carritoService.eliminarCarrito(carrito);
+        carrito.getOrdenCompra().removeAll(carrito.getOrdenCompra());
         clienteService.guardarCliente(clienteAutenticado);
 
         return new ResponseEntity<>("Se Realizo la transaccion con exito",HttpStatus.CREATED);
@@ -69,13 +74,46 @@ public class CompraController {
         Compra compraPuntos = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,puntosTotales,factura.getId().toString(),factura.getPrecioTotal(),clienteAutenticado);
 
         compraService.guardarCompra(compraPuntos);
-        carritoService.eliminarCarrito(carrito);
+        carrito.getOrdenCompra().removeAll(carrito.getOrdenCompra());
         clienteAutenticado.setPuntos(puntosTotales);
         clienteService.guardarCliente(clienteAutenticado);
 
 
         return new ResponseEntity<>("Se Realizo la compra con exito",HttpStatus.ACCEPTED);
     }
+
+//    @Transactional
+//    @PostMapping("/compra")
+//    public ResponseEntity<?> crearOrdenCompra(
+//            @RequestParam String nombreProducto,
+//            @RequestParam int cantidad,
+//            Authentication authentication)
+//    {
+//        Cliente clienteActual = this.clienteService.findByCorreo(authentication.getName());
+//        Producto productoEncontrado = productoService.productoPorNombre(nombreProducto.toLowerCase());
+//
+//
+//        if (nombreProducto.isEmpty()) {
+//            return new ResponseEntity<>("El nombre del producto no puede estar vacio", HttpStatus.FORBIDDEN);
+//        }
+//
+//        if (cantidad <= 0) {
+//            return new ResponseEntity<>("La cantidad no puede ser igual o menor a cero", HttpStatus.FORBIDDEN);
+//        }
+//
+//        if (productoService.productoPorNombre(nombreProducto.toLowerCase()) == null) {
+//            return new ResponseEntity<>("El producto no existe", HttpStatus.FORBIDDEN);
+//        }
+//
+//        if (cantidad > productoEncontrado.getStock()) {
+//            return new ResponseEntity<>("No podés comprar más del stock", HttpStatus.FORBIDDEN);
+//        }
+//
+//        OrdenCompra nuevaOrdenCompra = new OrdenCompra(cantidad, productoEncontrado.getPrecio() * cantidad, LocalDateTime.now(), clienteActual.getCarrito(), productoEncontrado);
+//        ordenCompraService.guardarOrdenCompra(nuevaOrdenCompra);
+//
+//        return new ResponseEntity<>("Orden de compra creada", HttpStatus.CREATED);
+//    }
 
 }
 
