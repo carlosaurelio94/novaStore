@@ -1,5 +1,6 @@
 package com.tienda.tienda_de_ropa.controllers;
 
+import com.tienda.tienda_de_ropa.dtos.ProductoDTO;
 import com.tienda.tienda_de_ropa.models.*;
 import com.tienda.tienda_de_ropa.repositories.OrdenCompraRepository;
 import com.tienda.tienda_de_ropa.service.ClienteService;
@@ -35,15 +36,20 @@ public class ProductoController {
     @Autowired
     OrdenCompraRepository ordenCompraRepository;
 
+    @GetMapping("/productos")
+    public List<ProductoDTO> traerTodos() {
+        return productoService.traerTodos();
+    }
+
     @PostMapping("/producto")
     public ResponseEntity<?> crearNuevoProducto(
-            @RequestParam String URLImagen1,
+            @RequestParam String URLImagen,
             @RequestParam String nombre,
             @RequestParam int stock,
             @RequestParam double precio,
             @RequestParam ProductoTalle talle
             ) {
-        if (URLImagen1.isEmpty()){
+        if (URLImagen.isEmpty()){
           return new ResponseEntity<>("El producto debe contener al menos una imagen", HttpStatus.FORBIDDEN);
         }
         if (nombre.isEmpty()) {
@@ -56,7 +62,7 @@ public class ProductoController {
             return new ResponseEntity<>("El precio del producto no puede ser igual o menor a cero", HttpStatus.FORBIDDEN);
         }
 
-        Producto nuevoProducto = new Producto(List.of(URLImagen1), nombre, stock, precio, talle);
+        Producto nuevoProducto = new Producto(List.of(URLImagen), nombre, stock, precio, talle);
         productoService.guardarProducto(nuevoProducto);
         return new ResponseEntity<>(nuevoProducto, HttpStatus.CREATED);
     }

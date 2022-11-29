@@ -3,9 +3,14 @@ package com.tienda.tienda_de_ropa.dtos;
 import com.tienda.tienda_de_ropa.models.Producto;
 import com.tienda.tienda_de_ropa.models.ProductoTalle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProductoDTO {
 
     private long id;
+
+    private List<String> imagenes = new ArrayList<>();
 
     private String nombre;
 
@@ -19,6 +24,7 @@ public class ProductoDTO {
 
     public ProductoDTO(Producto producto) {
         this.id = producto.getId();
+        this.imagenes = producto.getImages();
         this.nombre = producto.getNombre();
         this.stock = producto.getStock();
         this.precio = producto.getPrecio();
@@ -27,6 +33,10 @@ public class ProductoDTO {
 
     public long getId() {
         return id;
+    }
+
+    public List<String> getImagenes() {
+        return imagenes;
     }
 
     public String getNombre() {
