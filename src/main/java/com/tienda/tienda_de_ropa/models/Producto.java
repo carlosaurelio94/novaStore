@@ -24,7 +24,9 @@ public class Producto {
 
     private double precio;
 
-    private ProductoTalle talle;
+    @ElementCollection
+    @Column(name="Talles")
+    private List<String> talle = new ArrayList<>();
 
 
     @OneToMany(mappedBy = "producto", fetch = FetchType.EAGER)
@@ -33,7 +35,7 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(List<String> images, String nombre, int stock, double precio, ProductoTalle talle) {
+    public Producto(List<String> images, String nombre, int stock, double precio, List<String> talle) {
         this.images = images;
         this.nombre = nombre;
         this.stock = stock;
@@ -77,11 +79,11 @@ public class Producto {
         this.precio = precio;
     }
 
-    public ProductoTalle getTalle() {
+    public List<String> getTalle() {
         return talle;
     }
 
-    public void setTalle(ProductoTalle talle) {
+    public void setTalle(List<String> talle) {
         this.talle = talle;
     }
 
