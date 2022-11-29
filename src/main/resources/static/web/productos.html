@@ -127,6 +127,7 @@
             <div class="contenedor_general m-2">
                 <div class="contenedor d-flex flex-row justify-content-center mt-5">
                     <div class="container d-flex flex-row flex-wrap justify-content-center">
+                        
                         <div class="card">
                             <div class="card-body">
                                 <template v-for="producto of productos">
@@ -135,17 +136,21 @@
                                         <img :src="producto.images[0]">
                                     </div>
                                     <div class="contentBx">
-                                        <h2 class="text text-dark">{{producto.nombre}}</h2>
+                                        <h3 class="text text-dark fs-5">{{producto.nombre}}</h3>
                                         <div class="size">
-                                            <h3 class="text text-dark text-center">Size :</h3>
-                                            <span class="text border-dark">{{producto.talle}}</span>
+                                            <fieldset class="fieldset align-self-center">
+                                                <legend class="text-dark align-self-center fs-5">Size:</legend>
+                                                    <input class="input" v-model="" type="radio" name="" value="" id="" required>
+                                                    <label class="label text-dark" value="">{{producto.talle}}</label>
+                                            </fieldset>
                                         </div>
                                         <button
-                                            class="comprar border-1 bg-dark text-light rounded-pill m-3">Comprar</button>
+                                            class="boton bg-dark p-1 rounded-pill">Comprar</button>
                                     </div>
                                 </template>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
