@@ -3,6 +3,7 @@ package com.tienda.tienda_de_ropa.controllers;
 import com.tienda.tienda_de_ropa.dtos.ProductoDTO;
 import com.tienda.tienda_de_ropa.models.*;
 import com.tienda.tienda_de_ropa.repositories.OrdenCompraRepository;
+import com.tienda.tienda_de_ropa.repositories.ProductoRepository;
 import com.tienda.tienda_de_ropa.service.ClienteService;
 import com.tienda.tienda_de_ropa.service.OrdenCompraService;
 import com.tienda.tienda_de_ropa.service.ProductoService;
@@ -22,11 +23,14 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class ProductoController {
 
     @Autowired
     ProductoService productoService;
 
+    @Autowired
+    ProductoRepository productoRepository;
     @Autowired
     ClienteService clienteService;
 
@@ -88,12 +92,12 @@ public class ProductoController {
             return new ResponseEntity<>("No quedan más unidades de este producto", HttpStatus.FORBIDDEN);
         }
 
-        if (isOrdenCompra == false) {
-        producto.setStock(producto.getStock() - 1);
-        productoService.guardarProducto(producto);
-        ordenCompraService.guardarOrdenCompra(new OrdenCompra(1, producto.getPrecio(), LocalDateTime.now(), carrito, producto));
-        return new ResponseEntity<>("Este producto ha sido añadido al carrito", HttpStatus.ACCEPTED);
-        }
+//        if (isOrdenCompra == false) {
+//        producto.setStock(producto.getStock() - 1);
+//        productoService.guardarProducto(producto);
+//        ordenCompraService.guardarOrdenCompra(new OrdenCompra(1, producto.getPrecio(), LocalDateTime.now(), carrito, producto));
+//        return new ResponseEntity<>("Este producto ha sido añadido al carrito", HttpStatus.ACCEPTED);
+//        }
 
         producto.setStock(producto.getStock() - 1);
         productoService.guardarProducto(producto);
@@ -140,13 +144,18 @@ public class ProductoController {
         return new ResponseEntity<>("Este producto ha sido añadido al carrito", HttpStatus.ACCEPTED);
     }
 
-    /*
+
     @GetMapping("/prueba")
     public Producto prueba() {
-        return new Producto("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669677008/kitten_mndwlu.png",
+        return new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669677008/kitten_mndwlu.png", "https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669729895/imagen_muetoo.jpg"),
                 "Gato", 1, 100.00, ProductoTalle.XL);
     }
 
+    @GetMapping("/prueba2")
+    public Set<ProductoDTO> hola() {
+        return productoRepository.findAll().stream().map(producto -> new ProductoDTO(producto)).collect(Collectors.toSet());
+    }
+/*
     @PostMapping("/prueba")
     public ResponseEntity<?> prueba2(@RequestParam String foto) throws IOException {
         Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
