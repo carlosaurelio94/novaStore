@@ -1,11 +1,4 @@
-new fullpage('#fullpage', {
-    
-    autoScrolling: true, 
-    scrollingSpeed: 1000, 
-    
-    
 
-})
 
 
 
@@ -60,6 +53,31 @@ for (let i = 0; i < wordRepeatTimes2; i++) {
 }
 
 
+const wordContainerEl3 = document.querySelector(".fachero-title3");
+
+const word3 = wordContainerEl3.getAttribute("data-word");
+
+const wordRepeatTimes3 = wordContainerEl3.getAttribute("data-word-repeat");
+
+const textColorsArray3 = wordContainerEl3.getAttribute("data-text-colors").split(",");
+
+
+for (let i = 0; i < wordRepeatTimes3; i++) {
+	const wordEl = document.createElement("span");
+	wordEl.className = "word";
+	wordEl.style.setProperty("--word-index", i);
+	wordEl.style.setProperty("--color", textColorsArray3[i]);
+	for (let j = 0; j < word3.length; j++) {
+		const charEl = document.createElement("span");
+		charEl.className = "char";
+		charEl.style.setProperty("--char-index", j);
+		charEl.innerHTML = word3[j];
+		wordEl.appendChild(charEl);
+	}
+	wordContainerEl3.appendChild(wordEl);
+}
+
+
 
 
 
@@ -87,6 +105,7 @@ var t1 = new TimelineMax({ paused: true });
 t1.to(".nav-container", 1, {
 	left: 0,
 	ease: Expo.easeInOut,
+
 });
 
 t1.staggerFrom(
