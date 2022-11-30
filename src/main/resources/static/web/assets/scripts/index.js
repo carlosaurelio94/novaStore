@@ -1,99 +1,9 @@
-const { createApp } = Vue
-
-createApp({
-	data() {
-		return {
-			usuario: "",
-			password: "",
-			email: "",
-			passwordRegistro: "",
-			nombre: "",
-			apellido: "",
-			password2: ""
-		}
-	},
-	created() {
-
-	},
-	mounted() {
-	},
-	methods: {
-		iniciarSesion() {
-			let email = this.usuario.toLowerCase();
-			let password = this.password
-			return axios.post('/api/login', `email=${email}&password=${password}`)
-				.then(response => {
-					localStorage.setItem("cookie", "true")
-					window.location.assign("./accounts.html")
-				})
-				.catch(function (error) {
-					return Swal.fire({
-						icon: "error",
-						title: "Error " + error.response.status,
-						text: "Your email or password are incorrect. Try again",
-						confirmButtonColor: '#ff4545',
-						footer: '<a href="">Why do I have this issue?</a>'
-					})
-				})
-		},
-		registrarse() {
-            let email = this.email.toLowerCase()
-            let password = this.passwordRegistro
-            let nombre = this.nombre.toLowerCase()
-            let apellido = this.apellido.toLowerCase()
-			let password2 = this.password2
-            return axios.post('/api/clientes', `nombre=${nombre}&apellido=${apellido}&correo=${email}&clave=${password}&clave2=${password2}`)
-/*                 .then(response => axios.post('/api/login', `email=${email}&password=${password}`))
- */                .then(res => {
-                    localStorage.setItem("cookie", "true")
-                })
-                .then(response => Swal.fire({
-                    text: 'Succesful Registration',
-                    title: 'Welcome to Nova Bank',
-                    icon: 'success',
-                    confirmButtonColor: '#24cb24',
-        }))
-                .then(response => window.location.assign("./accounts.html"))
-                .catch(function (error) {
-                    return Swal.fire({
-                        icon: "error",
-                        title: "Error " + error.response.status,
-                        text: error.response.data,
-                        confirmButtonColor: '#ff4545',
-/*                 footer: '<a href="">Why do I have this issue?</a>'
- */              })
-                })
-        },
-		cerrarSesion() {
-			axios.post('/api/logout').then(response => {
-				localStorage.setItem("cookie", "false")
-			})
-			location.reload()
-		},
-	},
-	computed: {
-	}
-}).mount('#app')
-
-
-
-
-
-
-
-
-
-
-
-
-
 new fullpage('#fullpage', {
-
-	autoScrolling: true,
-	scrollingSpeed: 1000,
-
-
-
+    
+    autoScrolling: true, 
+    scrollingSpeed: 1000, 
+    
+    
 
 })
 
@@ -152,33 +62,33 @@ for (let i = 0; i < wordRepeatTimes2; i++) {
 
 
 const login1 = document.querySelector('.ingresar')
-login1.addEventListener('click', function () {
-	document.getElementById('ingreso_lateral').classList.toggle('activo');
-
+login1.addEventListener('click',function(){
+   document.getElementById('ingreso_lateral').classList.toggle('activo');   
+  
 });
 
 
 
 
 const login2 = document.querySelector('.registrarse')
-login2.addEventListener('click', function () {
-	document.getElementById('ingreso_lateral2').classList.toggle('activo');
+login2.addEventListener('click',function(){
+   document.getElementById('ingreso_lateral2').classList.toggle('activo');
 });
 
-function verificarPasswords() {
-	password1 = document.getElementById('password1');
-	password2 = document.getElementById('password2');
+function verificarPasswords(){
+   password1=document.getElementById('password1');
+   password2=document.getElementById('password2');
 
-	if (password1.value != password2.value) {
-		document.getElementById('error').classList.add('mostrar');
-		return false;
-	} else {
-		document.getElementById('error').classList.remove('mostrar');
-		document.getElementById('ok').classList.remove('ocultar');
-		document.getElementById('crear').disabled = true;
-		return true;
-	}
-
+   if(password1.value != password2.value){
+      document.getElementById('error').classList.add('mostrar');
+      return false;
+   }else{
+      document.getElementById('error').classList.remove('mostrar');
+      document.getElementById('ok').classList.remove('ocultar');
+      document.getElementById('crear').disabled = true;
+      return true;
+   }
+  
 
 }
 
