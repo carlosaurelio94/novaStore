@@ -2,6 +2,8 @@ package com.tienda.tienda_de_ropa.controllers;
 
 import com.tienda.tienda_de_ropa.dtos.CompraDTO;
 import com.tienda.tienda_de_ropa.models.*;
+import com.tienda.tienda_de_ropa.repositories.FacturaRepository;
+import com.tienda.tienda_de_ropa.repositories.OrdenCompraRepository;
 import com.tienda.tienda_de_ropa.service.ClienteService;
 import com.tienda.tienda_de_ropa.service.CompraService;
 import com.tienda.tienda_de_ropa.service.OrdenCompraService;
@@ -16,6 +18,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -29,16 +32,25 @@ public class CompraController {
     ProductoService productoService;
     @Autowired
     OrdenCompraService ordenCompraService;
+    @Autowired
+    FacturaRepository facturaRepository;
+    @Autowired
+    OrdenCompraRepository ordenCompraRepository;
 
     @Transactional
     @PostMapping("/transaccional")
     public ResponseEntity<?> crearTransferencias(
-            Authentication authentication,
-            @RequestParam Double monto) {
+            Authentication authentication) {
         Cliente clienteAutenticado =clienteService.findByCorreo(authentication.getName());
         Carrito carrito = clienteAutenticado.getCarrito();
         Factura factura = new Factura(carrito) ;
+        Double monto = factura.getPrecioTotal();
+        Set<OrdenCompra> ordenCompraSet = carrito.getOrdenCompra();
 
+
+        if(clienteAutenticado == null) {
+            return new ResponseEntity<>("El cliente no está autenticado", HttpStatus.FORBIDDEN);
+        }
         if(carrito.getOrdenCompra().size() == 0){
             return new ResponseEntity<>("No agregaste productos", HttpStatus.FORBIDDEN);
         }
@@ -49,9 +61,11 @@ public class CompraController {
             return new ResponseEntity<>("No puedes ingresar menor o igual a cero", HttpStatus.FORBIDDEN);
         }
 
+
         Compra compraRealizada = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,factura.getPrecioTotal()/10,"Muchos productos",factura.getPrecioTotal(),clienteAutenticado);
         compraService.guardarCompra(compraRealizada);
-        carrito.getOrdenCompra().removeAll(carrito.getOrdenCompra());
+        facturaRepository.save(factura);
+        ordenCompraRepository.deleteAll(ordenCompraSet);
         clienteService.guardarCliente(clienteAutenticado);
 
         return new ResponseEntity<>("Se Realizo la transaccion con exito",HttpStatus.CREATED);

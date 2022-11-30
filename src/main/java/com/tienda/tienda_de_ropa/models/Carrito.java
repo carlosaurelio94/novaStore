@@ -1,5 +1,6 @@
 package com.tienda.tienda_de_ropa.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -13,6 +14,8 @@ public class Carrito {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
+
+
     @OneToMany(mappedBy="carrito", fetch=FetchType.EAGER)
     Set<Factura> facturas = new HashSet<>();
     @OneToMany(mappedBy="carrito", fetch=FetchType.EAGER)
@@ -32,6 +35,7 @@ public class Carrito {
         return id;
     }
 
+    @JsonIgnore
     public Set<Factura> getFacturas() {
         return facturas;
     }
@@ -39,7 +43,7 @@ public class Carrito {
     public void setFacturas(Set<Factura> facturas) {
         this.facturas = facturas;
     }
-
+    @JsonIgnore
     public Set<OrdenCompra> getOrdenCompra() {
         return ordenCompra;
     }
@@ -48,6 +52,7 @@ public class Carrito {
         this.ordenCompra = ordenCompra;
     }
 
+    @JsonIgnore
     public Cliente getCliente() {
         return cliente;
     }
@@ -56,13 +61,13 @@ public class Carrito {
         this.cliente = cliente;
     }
 
-    @Override
-    public String toString() {
-        return "Carrito{" +
-                "id=" + id +
-                ", facturas=" + facturas +
-                ", ordenCompra=" + ordenCompra +
-                ", cliente=" + cliente +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Carrito{" +
+//                "id=" + id +
+//                ", facturas=" + facturas +
+//                ", ordenCompra=" + ordenCompra +
+//                ", cliente=" + cliente +
+//                '}';
+//    }
 }

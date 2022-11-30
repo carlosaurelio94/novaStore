@@ -100,7 +100,7 @@ public class ProductoController {
         producto.setStock(producto.getStock() - 1);
         productoService.guardarProducto(producto);
         ordenCompra.setCantidad(ordenCompra.getCantidad() + 1);
-        ordenCompra.setPrecio(producto.getPrecio() + producto.getPrecio());
+        ordenCompra.setPrecio(ordenCompra.getPrecio() + producto.getPrecio());
         ordenCompraService.guardarOrdenCompra(ordenCompra);
 
         return new ResponseEntity<>("Este producto ha sido añadido al carrito", HttpStatus.ACCEPTED);
@@ -115,7 +115,6 @@ public class ProductoController {
         Cliente clienteAutenticado = clienteService.findByCorreo(autenticado.getName());
         Carrito carrito = clienteAutenticado.getCarrito();
         Producto producto = productoService.productoPorId(id);
-        boolean isOrdenCompra = carrito.getOrdenCompra().contains(producto);
         Set<OrdenCompra> ordenCompraSet = carrito.getOrdenCompra().stream()
                 .filter(ordenCompra -> ordenCompra.getProducto().getNombre().equals(producto.getNombre())).collect(Collectors.toSet());
         OrdenCompra ordenCompra = ordenCompraSet.stream().findFirst().orElse(null);
@@ -123,11 +122,11 @@ public class ProductoController {
         if(producto == null) {
             return new ResponseEntity<>("El producto no existe", HttpStatus.FORBIDDEN);
         }
-        if(producto.getStock() == 0) {
-            return new ResponseEntity<>("No quedan más unidades de este producto", HttpStatus.FORBIDDEN);
+        if(id==0) {
+            return new ResponseEntity<>("No hay ningún producto con este ID", HttpStatus.ACCEPTED);
         }
-        if (isOrdenCompra == false) {
-            return new ResponseEntity<>("Este producto no ha sido añadido al carrito", HttpStatus.ACCEPTED);
+        if (ordenCompraSet.size() < 1) {
+            return new ResponseEntity<>("Este producto no ha sido añadido al carrito1", HttpStatus.ACCEPTED);
         }
         if (ordenCompra.getCantidad() == 0) {
             return new ResponseEntity<>("Este producto no ha sido añadido al carrito", HttpStatus.ACCEPTED);
@@ -136,10 +135,10 @@ public class ProductoController {
         producto.setStock(producto.getStock() + 1);
         productoService.guardarProducto(producto);
         ordenCompra.setCantidad(ordenCompra.getCantidad() - 1);
-        ordenCompra.setPrecio(producto.getPrecio() - producto.getPrecio());
+        ordenCompra.setPrecio(ordenCompra.getPrecio() - producto.getPrecio());
         ordenCompraService.guardarOrdenCompra(ordenCompra);
 
-        return new ResponseEntity<>("Este producto ha sido añadido al carrito", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("Este producto ha sido restado del carrito", HttpStatus.ACCEPTED);
     }
 
 
