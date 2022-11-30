@@ -19,7 +19,6 @@ public class FacturaDTO {
         this.id = factura.getId();
         this.precioTotal = factura.getPrecioTotal();
         this.fechaCreacion = factura.getFechaCreacion();
-        this.carrito = factura.getCarrito();
     }
 
     public Long getId() {
