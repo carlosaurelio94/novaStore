@@ -17,8 +17,7 @@ public class Cliente {
     private String correo;
     private String clave;
     private double puntos;
-    private boolean habilitado = false;
-
+    private boolean habilitado;
     private String token;
 
     @OneToMany(mappedBy= "cliente", fetch= FetchType.EAGER)
