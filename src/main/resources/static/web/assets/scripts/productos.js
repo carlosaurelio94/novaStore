@@ -2,6 +2,7 @@ const app = Vue.createApp({
     data() {
         return{
            productos:[],
+           articulosCarrito: [],
         }
     
 
@@ -9,7 +10,10 @@ const app = Vue.createApp({
     },
 
     created(){
-        this.loadData("/api/prueba2");
+        this.loadData("/api/prueba2")
+        document.addEventListener('DOMContentLoaded', () => {
+            this.articulosCarrito = Json.parse(localStorage.getItem('carrito')) || [];
+        })
     },
 
     methods: {
@@ -17,10 +21,15 @@ const app = Vue.createApp({
             axios.get(url)
             .then(response=>{
                 this.productos = response.data
-                console.log(this.productos)
             })
             .catch(error=>console.log(error))
         },
+
+        eliminarProducto(e){
+            const productoId = e.target.getAttribute("data-id")
+            this.articulosCarrito = this.articulosCarrito.filter(producto => producto.id !== productoId)
+            this.sincronizarStorage()      
+          },
         
 
         modificarSaldo(saldo) {
@@ -37,10 +46,23 @@ const app = Vue.createApp({
         datemodified(date) {
             return new Date(date).toLocaleDateString('es-co', { year: "numeric", month: "short", day: "numeric" })
         },
+      
+      
+         
 
         
     },
     computed: {
+        double_filter() {
+            let first_filter = this.backupEVENTS.filter(events => events.name.toLowerCase().includes(this.search_text.toLowerCase()))
+            if (this.filtrocategories.length) {
+                this.EVENTS = first_filter.filter(events => this.filtrocategories.includes(events.category))
+            } else {
+                this.EVENTS = first_filter
+            }
+        },
+        
+        
         
 },
 
@@ -113,4 +135,10 @@ function fillColor(){
     slidertrack.style.background=`linear-gradient(to-right, #dadae5 ${percent1}% , #3264fe ${percent1}% , #3264fe${percent2}% , #dadae5 ${percent2}%)`;
          /* console.log(slidertrack.style.background) */
 }
+
+const carrito = document.querySelector('.carrito')
+carrito.addEventListener('click',function(){
+   document.getElementById('carrito_lateral').classList.toggle('activo');   
+  
+});
 
