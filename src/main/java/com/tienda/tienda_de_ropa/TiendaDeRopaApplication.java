@@ -64,7 +64,7 @@ public class TiendaDeRopaApplication {
 
 			System.out.println("Servidor iniciado!");
 
-			System.out.println("Servidor iniciado!");
+			
 			Producto producto1 = new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669746933/Camisetas%20del%20mundial/Alemania/camisetas-adidas-alemania-2022-1-removebg-preview_cd0yqr.png","https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669746933/Camisetas%20del%20mundial/Alemania/camisetas-adidas-alemania-2022-2-removebg-preview_a01no4.png"), "Camiseta Alemania", 15, 120.00, List.of("XS", "S"));
 			productoRepository.save(producto1);
 
