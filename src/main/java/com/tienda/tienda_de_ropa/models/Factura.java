@@ -1,5 +1,6 @@
 package com.tienda.tienda_de_ropa.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -59,6 +60,7 @@ public class Factura {
         this.fechaCreacion = fechaCreacion;
     }
 
+    @JsonIgnore
     public Carrito getCarrito() {
         return carrito;
     }
