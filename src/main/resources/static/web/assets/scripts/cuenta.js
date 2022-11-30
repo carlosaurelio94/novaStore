@@ -20,8 +20,6 @@ createApp({
                 .then(res => {
                     this.cliente = res.data
                     this.compras = this.cliente.compras
-                    /* this.horaActual()
-                    this.intervalo() */
                     console.log(this.compras);
                 })
                 .catch(error => {

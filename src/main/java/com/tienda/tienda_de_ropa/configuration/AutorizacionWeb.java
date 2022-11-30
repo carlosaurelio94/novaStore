@@ -23,7 +23,6 @@ public class AutorizacionWeb extends WebSecurityConfigurerAdapter {
                 //.antMatchers("/rest/**").hasAuthority("ADMIN")
                 //.antMatchers(HttpMethod.GET, "/api/clients").hasAuthority("ADMIN")
                 .antMatchers("/web/index.html", "/web/assets/**", "/api/login", "/api/clientes").permitAll();
-                //.antMatchers(HttpMethod.POST , "/api/accounts").hasAuthority("CLIENT")
                 //.antMatchers("/web/account.html","/web/accounts.html","/web/cards.html", "/web/createCard.html", "/web/profile.html", "/web/settings.html").hasAuthority("CLIENT")
                 //.antMatchers(HttpMethod.POST , "/api/clientes").permitAll();
         http.formLogin()
