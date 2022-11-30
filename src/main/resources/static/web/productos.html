@@ -32,7 +32,7 @@
                                 <a class="nav-link fs-3 text-light" href="./productos.html">Productos</a>
                             </li>
                         </ul>
-                        <div class="">
+                        <div>
                             <a href="#" class="registrarse fs-3 text-light text-decoration-none">Registrarse</a>
                             <a href="#" class="ingresar fs-3 text-light text-decoration-none">Ingresar</a>
                         </div>
@@ -50,23 +50,21 @@
                     class="ingresar d-flex flex-column justify-content-center text-center text-light align-items-center gap-4">
                     <h1 class="tittles mt-4 text-light">Carrito</h1>
                     <div class="carrito-previsualización d-flex flex-row" v-for="producto of productos">
-                        <a @click="eliminarProducto" href="#"
-                            class="borrar-producto text-light text-decoration-none border align-self-center m-1"
-                            style="width:25px ;" :data-id="producto.id">X</a>
+                        <a href="#" class="borrar-producto text-light text-decoration-none border align-self-center m-1"
+                            style="width:25px ;">X</a>
                         <div>
-                            <img :src="producto.images" alt=""
-                                style="width: 130px; height:140px">
+                            <img :src="producto.images" alt="" style="width: 130px; height:140px">
                         </div>
                         <div class="carrito_articulos d-flex flex-column">
                             <legend class="nombre fs-5">{{producto.nombre}}</legend>
                             <legend class="cantidad fs-5">Precio: {{modificarSaldo(producto.precio)}}</legend>
-                            <legend class="precio fs-5">{{producto.cantidad}}</legend>
+                            <legend class="precio fs-5"></legend>
                         </div>
                     </div>
                     <h2>Subtotal</h2>
-                    <p>$<span>{{sumar}}</span></p>
+                    <p>$<span></span></p>
                     <p>Este precio no es el final, no contempla costos de envío</p>
-                    <button  @click="vaciarCarrito" class="boton bg-danger p-2">Vaciar Carrito</button>
+                    <button class="boton bg-danger p-2">Vaciar Carrito</button>
                     <button class="boton bg-primary p-2">Finalizar compra</button>
                 </div>
             </div>
@@ -87,30 +85,30 @@
                                     aria-expanded="false">
                                     Categoría
                                 </a>
-                                <ul class="dropdown-menu p-2">
+                                <ul class="dropdown-menu text-start">
                                     <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label for="talla">Accesorios</label>
+                                        <label class="p-1" for="talla">Accesorios</label>
                                     </div>
-                                    <div>
+                                    <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label for="talla">Balones</label>
+                                        <label class="p-1" for="talla">Balones</label>
                                     </div class="dropdown-item">
-                                    <div>
+                                    <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label for="talla">Calzado</label>
+                                        <label class="p-1" for="talla">Calzado</label>
                                     </div>
                                     <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label for="talla">Camisas</label>
+                                        <label class="p-1" for="talla">Camisas</label>
                                     </div>
                                     <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label for="talla">Deportes</label>
+                                        <label class="p-1" for="talla">Deportes</label>
                                     </div>
                                     <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label for="talla">Mundial</label>
+                                        <label class="p-1" for="talla">Mundial</label>
                                     </div>
                                 </ul>
                             </li>
@@ -122,27 +120,27 @@
                                 <ul class="dropdown-menu p-3">
                                     <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label for="talla">6</label>
+                                        <label  class="p-1" for="talla">6</label>
                                     </div>
                                     <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label for="talla">7</label>
+                                        <label  class="p-1" for="talla">7</label>
                                     </div>
                                     <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label for="talla">8</label>
+                                        <label  class="p-1" for="talla">8</label>
                                     </div>
                                     <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label for="talla">9</label>
+                                        <label  class="p-1" for="talla">9</label>
                                     </div>
                                     <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label for="talla">10</label>
+                                        <label  class="p-1" for="talla">10</label>
                                     </div>
                                     <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label for="talla">11</label>
+                                        <label  class="p-1" for="talla">11</label>
                                     </div>
                                 </ul>
                             </li>
@@ -152,21 +150,13 @@
                                     Precio
                                 </a>
                                 <ul class="dropdown-menu p-3">
-                                    <div
-                                        class="contenedor_precio dropdown-item d-flex justify-content-center flex-column">
-                                        <div class="slider">
-                                            <div class="values d-flex flex-row justify-content-center">
-                                                <div id="range1">0</div>
-                                                <div>&dash;</div>
-                                                <div id="range2">100</div>
-                                            </div>
-                                            <div class="slider-track"></div>
-                                            <input v-model="" type="range" min="1000" max="100000" value="1000"
-                                                id="slider-1" oninput="slideuno()" step="50">
-                                            <input v-model="" type="range" min="1000" max="100000" value="70000"
-                                                id="slider-2" oninput="slidedos()" step="50">
-                                        </div>
+                                    <p>Máximo</p>
+                                    <div class="dropdown-item">
+                                        <input v-model="amount" style="width:120px ;" min="1000" max="100000" type="range" class="form-range" id="customRange1">
                                     </div>
+                                    <p>{{modificarSaldo(amount)}}</p>
+                                    
+
                                 </ul>
                             </li>
                             <div class="botón-envio d-flex justify-content-center">
@@ -176,6 +166,7 @@
                     </div>
                 </div>
             </nav>
+
             <!-- <div v-if="productoFiltrado.length == 0" class="text-center pt-5">
                 <h2 class="display-5 fw-bold w-100 text-center py-5 text-white">No hay ningun elemento que se
                     acomode a su busqueda.</h2>
@@ -202,7 +193,8 @@
                                                 <label class="label text-dark" value="">{{producto.talle}}</label>
                                             </fieldset>
                                         </div>
-                                        <button @click="agregarProducto" class="boton bg-dark p-1 rounded-pill">Comprar</button>
+                                        <button @click="agregarProducto"
+                                            class="boton bg-dark p-1 rounded-pill">Comprar</button>
                                     </div>
                                 </template>
                             </div>
