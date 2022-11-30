@@ -11,7 +11,7 @@ const app = Vue.createApp({
     },
 
     created(){
-        this.loadData("/api/prueba2")
+        this.loadData("/api/productos")
         document.addEventListener('DOMContentLoaded', () => {
             this.articulosCarrito = Json.parse(localStorage.getItem('carrito')) || [];
         })
@@ -21,6 +21,7 @@ const app = Vue.createApp({
         loadData(url){
             axios.get(url)
             .then(response=>{
+                console.log(response)
                 this.productos = response.data
             })
             .catch(error=>console.log(error))
