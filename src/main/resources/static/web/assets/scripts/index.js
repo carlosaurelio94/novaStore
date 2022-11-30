@@ -1,12 +1,11 @@
-/* new fullpage('#fullpage', {
+new fullpage('#fullpage', {
     
-	autoScrolling: true, 
-	scrollingSpeed: 1000, 
-    
-    
+    autoScrolling: true, 
+    scrollingSpeed: 1000, 
     
     
-}) */
+
+})
 
 
 
