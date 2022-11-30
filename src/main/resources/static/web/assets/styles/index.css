@@ -1,12 +1,13 @@
+
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Libre Franklin', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 body::-webkit-scrollbar {
     display: none;
@@ -21,17 +22,144 @@ main {
 
 
 
-
-#header{
-    width: 100%;
-    height: 3vh;
-    top: 0 px;
+.menu-open, .menu-close{
     position: absolute;
-    z-index: 999;
+    top: 0;
+    right: 0;
+    padding: 40px;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 997;
+    
+}
+
+.menu-open{
+    color: #fff;        
+    max-height: 10vh;
+    top: 0;
+    position: fixed;
+    z-index: 997;
     background-color: none;
     opacity: 1;
-    
+    transition: all 0.3s ease;   
+}
 
+.menu-open.hide{
+    top: -50vh;
+}
+
+
+.nav-container{
+    position: fixed;
+    left: -120vw;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    z-index: 999;
+    
+    
+}
+
+
+.contenedor_general span{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    box-shadow: 1px 1px 5px rgba(0,0,0,.3);
+    border-radius: 5px;
+    transition: 1s;
+    z-index:-1
+  }
+
+.menu__item {
+	position: relative;
+	padding: 0 6vw;
+}
+
+.menu__item-link {
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+	transition: opacity 0.4s;
+    text-decoration: none;
+    color: black;
+}
+
+.menu__item-link::before {
+	all: initial;
+	counter-increment: menu;
+	position: absolute;
+	bottom: 60%;
+	left: 0;
+	pointer-events: none;
+}
+
+.menu__item-link:hover {
+	transition-duration: 0.3s;
+	opacity: 0;
+    color: white;
+}
+
+.menu__item-img {
+	z-index: 2;
+	pointer-events: none;
+	position: absolute;
+	height: 12vh;
+	max-height: 600px;
+	opacity: 0;
+	left: 8%;
+	top: 10%;
+	transform: scale(0);
+}
+
+.menu__item-link:hover + .menu__item-img {
+	opacity: 1;
+	transform: scale(1);
+	transition: all 0.4s;
+}
+
+.menu {
+	padding: 10vh 0 25vh;
+	--offset: 20vw;
+	--move-initial: calc(-25% + var(--offset));
+	--move-final: calc(-50% + var(--offset));
+	font-size: 7vw;
+}
+
+.marquee {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	color: rgb(214, 214, 214);
+	pointer-events: none;
+}
+
+.marquee__inner {
+	width: fit-content;
+	display: flex;
+	position: relative;
+	opacity: 0;
+	transition: all 0.1s;
+	transform: translateX(60px);
+}
+
+.menu__item-link:hover ~ .marquee .marquee__inner {
+	opacity: 1;
+	transform: translateX(0px);
+	transition-duration: 0.4s;
+}
+
+.menu__item-link,
+.marquee span {
+	white-space: nowrap;
+	font-size: 7vw;
+	padding: 0 1vw;
+	line-height: 1.15;
+}
+
+.marquee span {
+	font-style: italic;
 }
 
 
@@ -80,17 +208,17 @@ main {
 
 
 
-.new_arrivals{
+/* .new_arrivals{
     
-    background-image: url(./assets/images/lines-and-polka-dots-graffiti-5clvcr06scp2xn0p.jpg);
+    background-image: url(../images/lines-and-polka-dots-graffiti-5clvcr06scp2xn0p.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-}
+} */
 
 .world_cup{
     
-    background-image: url(./assets/images/world-cup-trophy-shawn-morrel.jpg);
+    background-image: url(../images/world-cup-trophy-shawn-morrel.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -103,73 +231,7 @@ main {
 }
 
 
-/* LOGIN */
 
-.ingresar, .registrarse{
-    cursor: pointer;
-    margin-right: 1rem;
-}
-
-
-
-#ingreso_lateral{
-    position:fixed;
-    width: 50vw;
-    height: 100%;
-    background-color: black;
-    transition: all 500ms linear;
-    left: -50vw;
-}
-
-#ingreso_lateral.activo{
-    left: 0px;
-}
-
-
-#ingreso_lateral > .logo, 
-#ingreso_lateral2 > .logo{
-    display: block;
-    margin:0 auto;
-    width: 75%;
-    height: 10vh;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-#ingreso_lateral.activo > .logo, 
-#ingreso_lateral2.activo > .logo{
-    display: block;
-    margin:0 auto;
-    width: 75%;
-    height: 10vh;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-#ingreso_lateral2{
-    position:fixed;
-    width: 50vw;
-    height: 100%;
-    background-color: black;
-    transition: all 500ms linear;
-    left: -50vw;
-}
-
-
-
-#ingreso_lateral2.activo{
-    left: 0px;
-}
-
-
-
-.ocultar{
-    display: none;
-}
-
-.mostrar{
-    display: block;
-}
 
 /* SUPERNOVA */
 
@@ -195,14 +257,14 @@ main {
 }
 
 .arg_container{
-    background-image: url(./assets/images/im-2-d_tcm216-947942.webp);
+    background-image: url(../images/im-2-d_tcm216-947942.webp);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 .esp_container{
-    background-image: url(./assets/images/espana.r_d.390-297.jpeg);
+    background-image: url(../images/espana.r_d.390-297.jpeg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -339,7 +401,7 @@ main {
 }
 
 .image_container{
-    background-image: url(./assets/images/Zapatillas_Supernova+_Negro_GW9107_44_detail.jpg);
+    background-image: url(../images/Zapatillas_Supernova+_Negro_GW9107_44_detail.jpg);
     background-position:top;
     background-size:cover;
      
@@ -356,7 +418,7 @@ main {
 }
 
 .image_container1{
-    background-image: url(./assets/images/3a760bb02c5e45918c40ad180158b797_9366.jpg);
+    background-image: url(../images/3a760bb02c5e45918c40ad180158b797_9366.jpg);
     background-position:top;
     background-size:cover;
     background-repeat: no-repeat;
@@ -372,7 +434,7 @@ main {
 }
 
 .arg .image_container{
-    background-image: url(./assets/images/frenteArgentina-removebg-preview.png);    
+    background-image: url(../images/frenteArgentina-removebg-preview.png);    
     background-size: contain;
     background-repeat: no-repeat;
     transition: 0.5s ease;
@@ -380,11 +442,11 @@ main {
 }
 
 .arg .image_container:hover{
-    background-image: url(./assets/images/image-removebg-preview.png);
+    background-image: url(../images/image-removebg-preview.png);
 }
 
 .esp .image_container{
-    background-image: url(./assets/images/frenteEspaña-removebg-preview.png);    
+    background-image: url(../images/frenteEspaña-removebg-preview.png);    
     background-position: top;
     background-size: contain;
     background-repeat: no-repeat;
@@ -393,7 +455,7 @@ main {
 }
 
 .esp .image_container:hover{
-    background-image: url(./assets/images/atrasEspaña-removebg-preview.png);
+    background-image: url(../images/atrasEspaña-removebg-preview.png);
 }
 
 .arg{
@@ -456,6 +518,16 @@ main {
     .word{
         font-size: 5rem;
         line-height: 2.5rem;
+    }
+
+    .menu__item-img {
+        
+        height: 6vh;
+        
+        opacity: 0;
+        left: 8%;
+        top: 10%;
+        transform: scale(0);
     }
     
 }
