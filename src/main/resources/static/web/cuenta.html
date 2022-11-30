@@ -48,7 +48,7 @@
             </nav>
         </header>
         <main class="">
-            <section class="d-flex flex-column justify-content-center align-items-center">    
+            <section class="d-flex flex-column justify-content-center align-items-center">
                 <div class="d-flex flex-wrap justify-content-center align-items-center">
                     <div class="caja1 border border-2 rounded-3">
                     </div>
@@ -59,8 +59,24 @@
                 </div>
                 <h2 class="text-center fw-bold">Bienvenido, {{cliente.nombre}} {{cliente.apellido}}</h2>
             </section>
-            <section class="d-flex flex-column">
+            <section class="d-flex flex-column align-items-center">
                 <h2 class="text-center p-5 fw-bold">Tus compras</h2>
+                <table class="col-8 border border-2 border-dark">
+                    <thead class="border border-2 border-dark">
+                        <th class="border border-2 border-dark text-center">Tipo</th>
+                        <th class="border border-2 border-dark text-center">Monto</th>
+                        <th class="border border-2 border-dark text-center">Fecha</th>
+                        <th class="border border-2 border-dark text-center">ID</th>
+                    </thead>
+                    <tbody>
+                        <template v-for="compra of compras">
+                            <td class="border border-2 border-dark text-center">{{compra.tipoTransaccion}}</td>
+                            <td class="border border-2 border-dark text-center">{{modificarSaldo(compra.monto)}}</td>
+                            <td class="border border-2 border-dark text-center">{{modificarFecha(compra.fecha)}}</td>
+                            <td class="border border-2 border-dark text-center">{{compra.id}}</td>
+                        </template>
+                    </tbody>
+                </table>
             </section>
             <section class="d-flex flex-column justify-content-center align-items-center">
                 <h2 class="text-center p-5 fw-bold">Usá tu Gift Card</h2>
@@ -69,7 +85,7 @@
                     <input type="text" class="form-control input" placeholder="1234-5678-1234-5678">
                     <button class="btn btn-dark boton">Enviar</button>
                 </form>
-            </section> 
+            </section>
         </main>
         <footer id="footer" class="d-flex flex-column justify-content-center align-items-around p-2">
 

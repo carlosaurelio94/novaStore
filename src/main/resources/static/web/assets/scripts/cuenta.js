@@ -4,6 +4,7 @@ createApp({
     data() {
         return {
             cliente: [],
+            compras: [],
             urlApi:"/api/clientes/actual"
         }
     },
@@ -17,10 +18,11 @@ createApp({
             axios
                 .get(url)
                 .then(res => {
-                    this.cliente = res
+                    this.cliente = res.data
+                    this.compras = this.cliente.compras
                     /* this.horaActual()
                     this.intervalo() */
-                    console.log(this.cliente);
+                    console.log(this.compras);
                 })
                 .catch(error => {
                     if (error.response.data == "THIS IS NOT YOUR ACCOUNT") {

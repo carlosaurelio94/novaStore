@@ -21,10 +21,10 @@ createApp({
 		iniciarSesion() {
 			let email = this.usuario.toLowerCase();
 			let password = this.password
-			return axios.post('/api/login', `email=${email}&password=${password}`)
+			return axios.post('/api/login', `correo=${email}&clave=${password}`)
 				.then(response => {
 					localStorage.setItem("cookie", "true")
-					window.location.assign("./accounts.html")
+					window.location.assign("./cuenta.html")
 				})
 				.catch(function (error) {
 					return Swal.fire({
