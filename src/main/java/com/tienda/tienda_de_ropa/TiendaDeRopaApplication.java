@@ -64,7 +64,7 @@ public class TiendaDeRopaApplication {
 
 			System.out.println("Servidor iniciado!");
 
-			Producto producto1 = new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669746933/Camisetas%20del%20mundial/Alemania/camisetas-adidas-alemania-2022-1-removebg-preview_cd0yqr.png"), "Camiseta Alemania", 1, 100.00, List.of("XS", "S", "M", "L", "XL", "XXL"));
+			Producto producto1 = new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669746933/Camisetas%20del%20mundial/Alemania/camisetas-adidas-alemania-2022-1-removebg-preview_cd0yqr.png"), "Camiseta Alemania", 5, 100.00, List.of("XS", "S", "M", "L", "XL", "XXL"));
 			productoRepository.save(producto1);
 
 			// Cliente admin = new Cliente("Sebas", "Granados", "loquesea@gmail.com", passwordEnconder.encode("1234"), 0);

@@ -11,6 +11,7 @@ public class OrdenCompraDTO {
     private int cantidad;
     private double precio;
     private LocalDateTime fechaCreacion;
+    private String nombreProducto;
    /* private Carrito carrito;
     private Producto producto;*/
 
@@ -22,6 +23,7 @@ public class OrdenCompraDTO {
         this.cantidad = ordenCompra.getCantidad();
         this.precio = ordenCompra.getPrecio();
         this.fechaCreacion = ordenCompra.getFechaCreacion();
+        this.nombreProducto = ordenCompra.getProducto().getNombre();
         /*this.carrito = ordenCompra.getCarrito();
         this.producto = ordenCompra.getProducto();*/
     }
@@ -42,7 +44,12 @@ public class OrdenCompraDTO {
         return fechaCreacion;
     }
 
-  /*  public Carrito getCarrito() {
+    public String getNombreProducto() {
+        return nombreProducto;
+    }
+
+
+    /*  public Carrito getCarrito() {
         return carrito;
     }
 
