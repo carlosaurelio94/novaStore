@@ -93,11 +93,11 @@ public class PDFService {
             Double precio = ordenComprasLista.get(i).getPrecio();
             table.addCell(new Phrase(String.valueOf(precio)));
         }
-        List<Double> monto = carrito.getOrdenCompra().stream().map(compra -> compra.getPrecio()).collect(Collectors.toList());
-        double total = 0.0;
-        for (double precio : monto) {
-            total = total + precio;
-        }
+//        List<Double> monto = carrito.getOrdenCompra().stream().map(compra -> compra.getPrecio()).collect(Collectors.toList());
+//        double total = 0.0;
+//        for (double precio : monto) {
+//            total = total + precio;
+//        }
 
        // table.writeSelectedRows(0, -1, 50, pos, writer.getDirectContent());
 
