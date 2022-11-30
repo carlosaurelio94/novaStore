@@ -29,7 +29,7 @@ public class PDFService {
 
     public void export (HttpServletResponse response, String email) throws IOException {
         Document document = new Document(PageSize.A5);
-        PdfWriter.getInstance(document, response.getOutputStream());
+        PdfWriter writer = PdfWriter.getInstance(document, response.getOutputStream());
 
         float width = document.getPageSize().getWidth();
         float height = document.getPageSize().getHeight();
@@ -41,7 +41,7 @@ public class PDFService {
 
         Font font8 = FontFactory.getFont(FontFactory.HELVETICA, 8);
 
-        float[] columnDefinitionSize = { 33.33F, 33.33F, 33.33F };
+        float[] columnDefinitionSize = { 25F, 25F, 25F, 25F };
 
         float pos = height / 2;
         PdfPTable table = null;
@@ -84,7 +84,10 @@ public class PDFService {
             table.addCell(new Phrase(ordenComprasLista.get(i).getCantidad()));
             table.addCell(new Phrase((float) ordenComprasLista.get(i).getPrecio()));
         }
-//        table.writeSelectedRows(0, -1, 50, pos, writer.getDirectContent());
+
+
+
+       // table.writeSelectedRows(0, -1, 50, pos, writer.getDirectContent());
 
 
         document.add(paragraph);

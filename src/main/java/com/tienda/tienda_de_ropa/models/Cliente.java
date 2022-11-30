@@ -1,5 +1,6 @@
 package com.tienda.tienda_de_ropa.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -87,22 +88,27 @@ public class Cliente {
         this.puntos = puntos;
     }
 
+    @JsonIgnore
     public Set<Compra> getCompras() {
         return compras;
     }
 
+    @JsonIgnore
     public void setCompras(Set<Compra> compras) {
         this.compras = compras;
     }
 
+    @JsonIgnore
     public Set<Contacto> getContactos() {
         return contactos;
     }
 
+    @JsonIgnore
     public void setContactos(Set<Contacto> contactos) {
         this.contactos = contactos;
     }
 
+    @JsonIgnore
     public Set<GiftCard> getGiftCards() {
         return giftCards;
     }
@@ -111,6 +117,7 @@ public class Cliente {
         this.giftCards = giftCards;
     }
 
+    @JsonIgnore
     public Carrito getCarrito() {
         return carrito;
     }
@@ -135,21 +142,21 @@ public class Cliente {
         this.token = token;
     }
 
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", correo='" + correo + '\'' +
-                ", clave='" + clave + '\'' +
-                ", puntos=" + puntos +
-                ", habilitado=" + habilitado +
-                ", token='" + token + '\'' +
-                ", compras=" + compras +
-                ", contactos=" + contactos +
-                ", giftCards=" + giftCards +
-                ", carrito=" + carrito +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Cliente{" +
+//                "id=" + id +
+//                ", nombre='" + nombre + '\'' +
+//                ", apellido='" + apellido + '\'' +
+//                ", correo='" + correo + '\'' +
+//                ", clave='" + clave + '\'' +
+//                ", puntos=" + puntos +
+//                ", habilitado=" + habilitado +
+//                ", token='" + token + '\'' +
+//                ", compras=" + compras +
+//                ", contactos=" + contactos +
+//                ", giftCards=" + giftCards +
+//                ", carrito=" + carrito +
+//                '}';
+//    }
 }
