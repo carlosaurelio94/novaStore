@@ -12,20 +12,38 @@ const app = Vue.createApp({
 
     created(){
         this.loadData("/api/productos")
-        document.addEventListener('DOMContentLoaded', () => {
-            this.articulosCarrito = Json.parse(localStorage.getItem('carrito')) || [];
-        })
+        this.carrito("/api/clientes/actual/carrito")
+        
     },
 
     methods: {
         loadData(url){
             axios.get(url)
             .then(response=>{
-                console.log(response)
+                console.log(response.data)
                 this.productos = response.data
             })
             .catch(error=>console.log(error))
         },
+
+        carrito(url){
+            axios.get(url)
+            .then(response=>{
+                console.log(response.data)
+                this.productos = response.data
+            })
+            .catch(error=>console.log(error))
+        },
+
+        agregarProducto(id){
+            axios.patch("/api/agregar",`id=${id}`)
+            .then(response=>{
+                console.log(response.data)
+                this.productos = response.data
+            })
+            .catch(error=>console.log(error))
+        },
+        
 
         eliminarProducto(e){
             const productoId = e.target.getAttribute("data-id")
@@ -94,49 +112,6 @@ const figuras = () =>{
 }
 
 figuras()
-
-window.onload=function(){
-    slidedos();
-    slideuno();
-
-}
-
-let slideruno=document.getElementById("slider-1");
-let sliderdos=document.getElementById("slider-2");
-
-let displayvaloruno=document.getElementById("range1")
-let displayvalordos=document.getElementById("range2")
-
-
-let mingap=1000;
-
-let slidertrack=document.querySelector(".slider-track");
-
-let slidervalormaximo = document.getElementById("slider-1").max;
-
-
-function slideuno(){
-    if(parseInt(sliderdos.value)-parseInt(slideruno.value)<=mingap){
-        slideruno.value = parseInt(sliderdos.value)-mingap;
-    }
-    displayvaloruno.textContent=slideruno.value;
-    fillColor();
-}
-
-function slidedos(){
-    if(parseInt(sliderdos.value)-parseInt(slideruno.value)<=mingap){
-        sliderdos.value = parseInt(slideruno.value)+mingap;
-    }
-    displayvalordos.textContent= sliderdos.value;
-    fillColor();
-}
-
-function fillColor(){
-    percent1 = (slideruno.value / slidervalormaximo) * 100;
-    percent2 = (sliderdos.value/slidervalormaximo) * 100;
-    slidertrack.style.background=`linear-gradient(to-right, #dadae5 ${percent1}% , #3264fe ${percent1}% , #3264fe${percent2}% , #dadae5 ${percent2}%)`;
-         /* console.log(slidertrack.style.background) */
-}
 
 const carrito = document.querySelector('.carrito')
 carrito.addEventListener('click',function(){
