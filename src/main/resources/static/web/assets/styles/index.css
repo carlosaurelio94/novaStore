@@ -29,7 +29,7 @@ main {
     position: absolute;
     z-index: 999;
     background-color: none;
-    opacity: 0.8;
+    opacity: 1;
     
 
 }
@@ -105,8 +105,9 @@ main {
 
 /* LOGIN */
 
-.ingresar{
+.ingresar, .registrarse{
     cursor: pointer;
+    margin-right: 1rem;
 }
 
 
@@ -216,6 +217,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     
     
 }
@@ -237,6 +239,8 @@ main {
     color: white;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
 }
 

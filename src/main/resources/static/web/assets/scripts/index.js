@@ -4,8 +4,7 @@ new fullpage('#fullpage', {
     scrollingSpeed: 1000, 
     
     
-    
-    
+
 })
 
 

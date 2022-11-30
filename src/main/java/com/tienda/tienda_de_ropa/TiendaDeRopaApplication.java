@@ -35,7 +35,7 @@ public class TiendaDeRopaApplication {
 
 	@Bean
 	public CommandLineRunner initData(
-			ClienteRepository clienteRepository,
+					ClienteRepository clienteRepository,
 			ProductoRepository productoRepository,
 			ContactoRepository contactoRepository,
 			GiftCardRepository giftCardRepository,
@@ -62,9 +62,8 @@ public class TiendaDeRopaApplication {
 
 
 
-			System.out.println("Servidor iniciado!");
+			System.out.println("Servidor iniciado! a");
 
-			
 			Producto producto1 = new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669746933/Camisetas%20del%20mundial/Alemania/camisetas-adidas-alemania-2022-1-removebg-preview_cd0yqr.png","https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669746933/Camisetas%20del%20mundial/Alemania/camisetas-adidas-alemania-2022-2-removebg-preview_a01no4.png"), "Camiseta Alemania", 15, 120.00, List.of("XS", "S"));
 			productoRepository.save(producto1);
 
@@ -127,9 +126,6 @@ public class TiendaDeRopaApplication {
 
 			Producto producto21 = new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669748017/Camisetas%20del%20mundial/Japon/frenteJapon-removebg-preview_hmqup6.png","https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669748016/Camisetas%20del%20mundial/Japon/espaldaJapon-removebg-preview_bll3gf.png"), "Camiseta Japon ", 15, 80.00, List.of( "XS", "S", "M", "L", "XL", "XXL"));
 			productoRepository.save(producto21);
-
-			//Producto producto21 = new Producto(List.of("",""), "Camiseta ", 15, 80.00, List.of( "XS", "S", "M", "L", "XL", "XXL"));
-			//productoRepository.save(producto21);
 
 			// Cliente admin = new Cliente("Sebas", "Granados", "loquesea@gmail.com", passwordEnconder.encode("1234"), 0);
 		};

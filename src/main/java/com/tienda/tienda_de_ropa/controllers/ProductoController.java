@@ -3,6 +3,7 @@ package com.tienda.tienda_de_ropa.controllers;
 import com.tienda.tienda_de_ropa.dtos.ProductoDTO;
 import com.tienda.tienda_de_ropa.models.*;
 import com.tienda.tienda_de_ropa.repositories.OrdenCompraRepository;
+import com.tienda.tienda_de_ropa.repositories.ProductoRepository;
 import com.tienda.tienda_de_ropa.service.ClienteService;
 import com.tienda.tienda_de_ropa.service.OrdenCompraService;
 import com.tienda.tienda_de_ropa.service.ProductoService;
@@ -22,11 +23,14 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class ProductoController {
 
     @Autowired
     ProductoService productoService;
 
+    @Autowired
+    ProductoRepository productoRepository;
     @Autowired
     ClienteService clienteService;
 
@@ -76,9 +80,8 @@ public class ProductoController {
         Cliente clienteAutenticado = clienteService.findByCorreo(autenticado.getName());
         Carrito carrito = clienteAutenticado.getCarrito();
         Producto producto = productoService.productoPorId(id);
-        boolean isOrdenCompra = carrito.getOrdenCompra().contains(producto);
         Set<OrdenCompra> ordenCompraSet = carrito.getOrdenCompra().stream()
-                .filter(ordenCompra -> ordenCompra.getProducto().getNombre() == producto.getNombre()).collect(Collectors.toSet());
+                .filter(ordenCompra -> ordenCompra.getProducto().getNombre().equals(producto.getNombre())).collect(Collectors.toSet());
         OrdenCompra ordenCompra = ordenCompraSet.stream().findFirst().orElse(null);
 
         if(producto == null) {
@@ -87,18 +90,17 @@ public class ProductoController {
         if(producto.getStock() == 0) {
             return new ResponseEntity<>("No quedan más unidades de este producto", HttpStatus.FORBIDDEN);
         }
-
-        if (isOrdenCompra == false) {
+        if (ordenCompraSet.size() == 0) {
         producto.setStock(producto.getStock() - 1);
         productoService.guardarProducto(producto);
         ordenCompraService.guardarOrdenCompra(new OrdenCompra(1, producto.getPrecio(), LocalDateTime.now(), carrito, producto));
-        return new ResponseEntity<>("Este producto ha sido añadido al carrito", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("Este producto ha sido añadido al carrito1", HttpStatus.ACCEPTED);
         }
 
         producto.setStock(producto.getStock() - 1);
         productoService.guardarProducto(producto);
         ordenCompra.setCantidad(ordenCompra.getCantidad() + 1);
-        ordenCompra.setPrecio(producto.getPrecio() + producto.getPrecio());
+        ordenCompra.setPrecio(ordenCompra.getPrecio() + producto.getPrecio());
         ordenCompraService.guardarOrdenCompra(ordenCompra);
 
         return new ResponseEntity<>("Este producto ha sido añadido al carrito", HttpStatus.ACCEPTED);
@@ -113,7 +115,6 @@ public class ProductoController {
         Cliente clienteAutenticado = clienteService.findByCorreo(autenticado.getName());
         Carrito carrito = clienteAutenticado.getCarrito();
         Producto producto = productoService.productoPorId(id);
-        boolean isOrdenCompra = carrito.getOrdenCompra().contains(producto);
         Set<OrdenCompra> ordenCompraSet = carrito.getOrdenCompra().stream()
                 .filter(ordenCompra -> ordenCompra.getProducto().getNombre().equals(producto.getNombre())).collect(Collectors.toSet());
         OrdenCompra ordenCompra = ordenCompraSet.stream().findFirst().orElse(null);
@@ -121,11 +122,11 @@ public class ProductoController {
         if(producto == null) {
             return new ResponseEntity<>("El producto no existe", HttpStatus.FORBIDDEN);
         }
-        if(producto.getStock() == 0) {
-            return new ResponseEntity<>("No quedan más unidades de este producto", HttpStatus.FORBIDDEN);
+        if(id==0) {
+            return new ResponseEntity<>("No hay ningún producto con este ID", HttpStatus.ACCEPTED);
         }
-        if (isOrdenCompra == false) {
-            return new ResponseEntity<>("Este producto no ha sido añadido al carrito", HttpStatus.ACCEPTED);
+        if (ordenCompraSet.size() < 1) {
+            return new ResponseEntity<>("Este producto no ha sido añadido al carrito1", HttpStatus.ACCEPTED);
         }
         if (ordenCompra.getCantidad() == 0) {
             return new ResponseEntity<>("Este producto no ha sido añadido al carrito", HttpStatus.ACCEPTED);
@@ -134,19 +135,24 @@ public class ProductoController {
         producto.setStock(producto.getStock() + 1);
         productoService.guardarProducto(producto);
         ordenCompra.setCantidad(ordenCompra.getCantidad() - 1);
-        ordenCompra.setPrecio(producto.getPrecio() - producto.getPrecio());
+        ordenCompra.setPrecio(ordenCompra.getPrecio() - producto.getPrecio());
         ordenCompraService.guardarOrdenCompra(ordenCompra);
 
-        return new ResponseEntity<>("Este producto ha sido añadido al carrito", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("Este producto ha sido restado del carrito", HttpStatus.ACCEPTED);
     }
 
-    /*
-    @GetMapping("/prueba")
-    public Producto prueba() {
-        return new Producto("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669677008/kitten_mndwlu.png",
-                "Gato", 1, 100.00, ProductoTalle.XL);
-    }
 
+//    @GetMapping("/prueba")
+//    public Producto prueba() {
+//        return new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669677008/kitten_mndwlu.png", "https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669729895/imagen_muetoo.jpg"),
+//                "Gato", 1, 100.00, ProductoTalle.XL);
+//    }
+
+//    @GetMapping("/prueba2")
+//    public Set<ProductoDTO> hola() {
+//        return productoRepository.findAll().stream().map(producto -> new ProductoDTO(producto)).collect(Collectors.toSet());
+//    }
+/*
     @PostMapping("/prueba")
     public ResponseEntity<?> prueba2(@RequestParam String foto) throws IOException {
         Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(

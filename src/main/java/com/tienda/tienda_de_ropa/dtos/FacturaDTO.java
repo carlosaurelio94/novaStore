@@ -10,7 +10,6 @@ public class FacturaDTO {
     private Long id;
     private double precioTotal;
     private LocalDateTime fechaCreacion;
-    private Carrito carrito;
 
     public FacturaDTO() {
     }
@@ -19,7 +18,6 @@ public class FacturaDTO {
         this.id = factura.getId();
         this.precioTotal = factura.getPrecioTotal();
         this.fechaCreacion = factura.getFechaCreacion();
-        this.carrito = factura.getCarrito();
     }
 
     public Long getId() {
@@ -42,11 +40,4 @@ public class FacturaDTO {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public Carrito getCarrito() {
-        return carrito;
-    }
-
-    public void setCarrito(Carrito carrito) {
-        this.carrito = carrito;
-    }
 }
