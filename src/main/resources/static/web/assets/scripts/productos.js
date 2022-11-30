@@ -4,6 +4,7 @@ const app = Vue.createApp({
            productos:[],
            articulosCarrito: [],
            amount: "",
+           unidades:"",
         }
     
 
