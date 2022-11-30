@@ -62,33 +62,33 @@
 
             <div class="actual-form">
               <div class="input-wrap">
-                <input type="text" minlength="4" class="input-field" autocomplete="off" required />
+                <input type="text" minlength="4" v-model="firstName" class="input-field" autocomplete="off" required />
                 <label>Nombre</label>
               </div>
 
               <div class="input-wrap">
-                <input type="text" minlength="4" class="input-field" autocomplete="off" required />
+                <input type="text" minlength="4" v-model="lastName" class="input-field" autocomplete="off" required />
                 <label>Apellido</label>
               </div>
 
               <div class="input-wrap">
-                <input type="email" class="input-field" autocomplete="off" required />
+                <input type="email" class="input-field" v-model="correoRegistro" autocomplete="off" required />
                 <label>Email</label>
               </div>
 
               <div class="input-wrap">
-                <input type="password" minlength="4" class="input-field" autocomplete="off" required />
+                <input type="password" minlength="4" v-model="password1" class="input-field" autocomplete="off" required />
                 <label>Contraseña</label>                
               </div>
 
               <div class="input-wrap">
-                <input type="password" minlength="4" class="input-field" autocomplete="off" required />
+                <input type="password" minlength="4" v-model="password2" class="input-field" autocomplete="off" required />
                 <label>Confirma tu Contraseña</label>                
               </div>
 
               
 
-              <input type="submit" @click.prevent="iniciarSesion()" value="Unete" class="sign-btn" />
+              <input type="submit" @click.prevent="registrarse" value="Unete" class="sign-btn" />
 
               <p class="text">
                 Al unirme, estoy de acuerdo con los

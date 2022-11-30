@@ -8,9 +8,10 @@ createApp({
       password: "",
       firstName: "",
       lastName: "",
-      emailSignIn: "",
-      passwordSignIn: "",
-      passwordChange: ""
+      emailRegistro: "",
+      password1: "",
+      password2: "",
+      correoRegistro: ""
     }
   },
   created() {
@@ -36,22 +37,23 @@ createApp({
         })
     },
     registrarse() {
-      let email = this.email.toLowerCase()
-      let password = this.password
+      let email = this.correoRegistro.toLowerCase()
+      let password = this.password1
+      let password2 = this.password2
       let firstName = this.firstName.toLowerCase()
       let lastName = this.lastName.toLowerCase()
-      return axios.post('/api/clients', `firstName=${firstName}&lastName=${lastName}&email=${email}&password=${password}`)
-        .then(response => axios.post('/api/login', `email=${email}&password=${password}`))
+      return axios.post('/api/clientes', `nombre=${firstName}&apellido=${lastName}&correo=${email}&clave=${password}&clave2=${password2}`)
+      /*   .then(response => axios.post('/api/login', `correo=${email}&clave=${password}`))
         .then(res => {
           localStorage.setItem("cookie", "true")
-        })
+        }) */
         .then(response => Swal.fire({
           text: 'Succesful Registration',
           title: 'Welcome to Nova Bank',
           icon: 'success',
           confirmButtonColor: '#24cb24',
         }))
-        .then(response => window.location.assign("./accounts.html"))
+        .then(response => window.location.assign("./index.html"))
         .catch(function (error) {
           return Swal.fire({
             icon: "error",
