@@ -3,7 +3,7 @@ const app = Vue.createApp({
         return{
            productos:[],
            articulosCarrito: [],
-           amount: 200,
+           amount: "",
         }
     
 
