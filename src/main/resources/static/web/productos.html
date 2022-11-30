@@ -50,7 +50,7 @@
                 <div
                     class="ingresar d-flex flex-column justify-content-center text-center text-light align-items-center gap-4">
                     <h1 class="tittles mt-4 text-light">Carrito</h1>
-                    
+
                     <div class="carrito-previsualización d-flex flex-row flex-wrap">
                         <template v-for="articuloCarrito of articulosCarrito">
                             <div class="carrito_articulos d-flex flex-column m-2">
@@ -60,8 +60,8 @@
                             </div>
                         </template>
                     </div>
-                    <a href="./confirmar-compra.html"><button class="boton bg-primary p-2"  >Finalizar compra</button></a>
-                   
+                    <a href="./confirmar-compra.html"><button class="boton bg-primary p-2">Finalizar compra</button></a>
+
                 </div>
             </div>
             <h1 class="titulo text-center">PRODUCTOS</h1>
@@ -147,7 +147,7 @@
                                 <ul class="dropdown-menu p-3">
                                     <p>Máximo</p>
                                     <div class="dropdown-item">
-                                        <input v-model="amount" style="width:120px ;" min="10" max="200"
+                                        <input v-model="amount" style="width:120px ;" min="81" max="200" step="2"
                                             type="range" class="form-range" id="customRange1">
                                     </div>
                                     <p>{{modificarSaldo(amount)}}</p>
@@ -168,37 +168,36 @@
             <div class="contenedor_general m-2">
                 <div class="contenedor d-flex flex-row justify-content-center mt-5">
                     <div class="container d-flex flex-row flex-wrap justify-content-center">
-
-                        <div class="card" v-for="producto of productos">
-                            <div class="card-body">
-
-                                <div class="price">{{modificarSaldo(producto.precio)}}</div>
-                                <div class="imgBx">
-                                    <img :src="producto.imagenes[0]">
-                                </div>
-                                <p class="ultimas fs-3 text-danger" v-if="producto.stock<5">ULTIMAS</p>
-                                <div class="contentBx justify-content-center">
-                                    <h3 class="text text-dark fs-5">{{producto.nombre}}</h3>
-                                    <div class="size"><!-- 
+                        <template v-for="producto of productos">
+                            <div class="card" v-if="producto.precio < amount">
+                                <div class="card-body">
+                                    <div class="price">{{modificarSaldo(producto.precio)}}</div>
+                                    <div class="imgBx">
+                                        <img :src="producto.imagenes[0]">
+                                    </div>
+                                    <p class="ultimas fs-3 text-danger" v-if="producto.stock<5">ULTIMAS</p>
+                                    <div class="contentBx justify-content-center">
+                                        <h3 class="text text-dark fs-5">{{producto.nombre}}</h3>
+                                        <div class="size">
+                                            <!-- 
                                         <fieldset class="fieldset justify-content-center d-flex flex-row gap-2">
                                             <legend class="text-dark align-self-center fs-5">Size:</legend>
                                             <div v-for="talles in producto.talles">
                                                 <input class="input" v-model="talles" type="radio" name="" value=""
-                                                    id="" required :value="talles">
+                                                id="" required :value="talles">
                                                 <label class="label text-dark">{{talles}}</label>
                                             </div>
                                         </fieldset>
                                     </div> -->
-                                    <button @click="agregarProducto(producto.id)"
-                                        class="boton bg-dark p-1 rounded-pill">Comprar</button>
+                                            <button @click="agregarProducto(producto.id)"
+                                                class="boton bg-dark p-1 rounded-pill">Comprar</button>
+                                        </div>
+                                    </div>
                                 </div>
-
                             </div>
-                        </div>
-
+                        </template>
                     </div>
                 </div>
-            </div>
         </main>
         <footer class="footer d-flex flex-column">
             <div
