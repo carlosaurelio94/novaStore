@@ -39,7 +39,8 @@
                         <div>
                             <a href="" class="fs-3 text-light text-decoration-none">Cerrar sesión</a>
                         </div>
-                        <a class="carrito" href="#"><img src="./assets/images/cart.png" alt="Imagen carrito"></a>
+                        <a class="carrito" @click="carrito" href="#"><img src="./assets/images/cart.png"
+                                alt="Imagen carrito"></a>
                     </div>
                 </div>
             </nav>
@@ -49,17 +50,16 @@
                 <div
                     class="ingresar d-flex flex-column justify-content-center text-center text-light align-items-center gap-4">
                     <h1 class="tittles mt-4 text-light">Carrito</h1>
-                    <div class="carrito-previsualización d-flex flex-row">
-                        <a href="#" class="borrar-producto text-light text-decoration-none border align-self-center m-1"
-                            style="width:25px ;">X</a>
-                        <div>
-                            <img v-if="5" src="" alt="" style="width: 130px; height:140px">
-                        </div>
-                        <div class="carrito_articulos d-flex flex-column">
-                            <legend class="nombre fs-5"></legend>
-                            <legend class="cantidad fs-5"></legend>
-                            <legend class="precio fs-5"></legend>
-                        </div>
+                    <a href="#" class="borrar-producto text-light text-decoration-none border align-self-center m-1"
+                        style="width:25px ;">X</a>
+                    <div class="carrito-previsualización d-flex flex-row flex-wrap">
+                        <template v-for="articuloCarrito of articulosCarrito">
+                            <div class="carrito_articulos d-flex flex-column">
+                                <legend class="nombre fs-5">{{articuloCarrito.nombreProducto}}</legend>
+                                <legend class="cantidad fs-5">{{articuloCarrito.cantidad}}</legend>
+                                <legend class="precio fs-5">{{articuloCarrito.precio}}</legend>
+                            </div>
+                        </template>
                     </div>
                     <h2>Subtotal</h2>
                     <p>$<span></span></p>
@@ -120,27 +120,27 @@
                                 <ul class="dropdown-menu p-3">
                                     <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label  class="p-1" for="talla">6</label>
+                                        <label class="p-1" for="talla">6</label>
                                     </div>
                                     <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label  class="p-1" for="talla">7</label>
+                                        <label class="p-1" for="talla">7</label>
                                     </div>
                                     <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label  class="p-1" for="talla">8</label>
+                                        <label class="p-1" for="talla">8</label>
                                     </div>
                                     <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label  class="p-1" for="talla">9</label>
+                                        <label class="p-1" for="talla">9</label>
                                     </div>
                                     <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label  class="p-1" for="talla">10</label>
+                                        <label class="p-1" for="talla">10</label>
                                     </div>
                                     <div class="dropdown-item">
                                         <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label  class="p-1" for="talla">11</label>
+                                        <label class="p-1" for="talla">11</label>
                                     </div>
                                 </ul>
                             </li>
@@ -152,10 +152,11 @@
                                 <ul class="dropdown-menu p-3">
                                     <p>Máximo</p>
                                     <div class="dropdown-item">
-                                        <input v-model="amount" style="width:120px ;" min="1000" max="100000" type="range" class="form-range" id="customRange1">
+                                        <input v-model="amount" style="width:120px ;" min="1000" max="100000"
+                                            type="range" class="form-range" id="customRange1">
                                     </div>
                                     <p>{{modificarSaldo(amount)}}</p>
-                                    
+
 
                                 </ul>
                             </li>
@@ -177,28 +178,28 @@
 
                         <div class="card" v-for="producto of productos">
                             <div class="card-body">
-                                
-                                    <div class="price">{{modificarSaldo(producto.precio)}}</div>
-                                    <div class="imgBx">
-                                        <img :src="producto.imagenes[0]">
+
+                                <div class="price">{{modificarSaldo(producto.precio)}}</div>
+                                <div class="imgBx">
+                                    <img :src="producto.imagenes[0]">
+                                </div>
+                                <p class="ultimas fs-3 text-danger" v-if="producto.stock<5">ULTIMAS</p>
+                                <div class="contentBx justify-content-center">
+                                    <h3 class="text text-dark fs-5">{{producto.nombre}}</h3>
+                                    <div class="size">
+                                        <fieldset class="fieldset justify-content-center d-flex flex-row gap-2">
+                                            <legend class="text-dark align-self-center fs-5">Size:</legend>
+                                            <div v-for="talles in producto.talles">
+                                                <input class="input" v-model="talles" type="radio" name="" value=""
+                                                    id="" required :value="talles">
+                                                <label class="label text-dark">{{talles}}</label>
+                                            </div>
+                                        </fieldset>
                                     </div>
-                                    <p class="ultimas fs-3 text-danger" v-if="producto.stock<5">ULTIMAS</p>
-                                    <div class="contentBx justify-content-center">
-                                        <h3 class="text text-dark fs-5">{{producto.nombre}}</h3>
-                                        <div class="size">
-                                            <fieldset class="fieldset justify-content-center d-flex flex-row gap-2">
-                                                <legend class="text-dark align-self-center fs-5">Size:</legend>
-                                                <div v-for="talles in producto.talles">
-                                                    <input class="input" v-model="talles" type="radio" name="" value="" id=""
-                                                    required  :value="talles">
-                                                    <label class="label text-dark">{{talles}}</label>
-                                                </div>
-                                            </fieldset>
-                                        </div>
-                                        <button @click="agregarProducto(producto.id)"
-                                            class="boton bg-dark p-1 rounded-pill">Comprar</button>
-                                    </div>
-                                
+                                    <button @click="agregarProducto(producto.id)"
+                                        class="boton bg-dark p-1 rounded-pill">Comprar</button>
+                                </div>
+
                             </div>
                         </div>
 

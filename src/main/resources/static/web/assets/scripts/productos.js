@@ -12,7 +12,7 @@ const app = Vue.createApp({
 
     created(){
         this.loadData("/api/productos")
-        this.carrito("/api/clientes/actual/carrito")
+        
         
     },
 
@@ -26,11 +26,11 @@ const app = Vue.createApp({
             .catch(error=>console.log(error))
         },
 
-        carrito(url){
-            axios.get(url)
+        carrito(){
+            return axios.get("/api/clientes/actual/carrito")
             .then(response=>{
-                console.log(response.data)
-                this.productos = response.data
+                this.articulosCarrito = response.data.ordenCompra
+                console.log(this.articulosCarrito);
             })
             .catch(error=>console.log(error))
         },
@@ -80,10 +80,7 @@ const app = Vue.createApp({
             } else {
                 this.EVENTS = first_filter
             }
-        },
-        
-        
-        
+        },       
 },
 
 })

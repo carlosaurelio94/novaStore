@@ -7,9 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Inicio de Sesion || Registro</title>
   <link rel="stylesheet" href="./assets/styles/login.css" />
+  <link rel="shortcut icon" href="./assets/images/Hamburger_icon.svg.png" type="image/x-icon">
 </head>
 
 <body>
+  <div id="app">
+
+  
   <main class="contenedor_general">
     
     <div class="box">
@@ -29,16 +33,16 @@
 
             <div class="actual-form">
               <div class="input-wrap">
-                <input type="text" minlength="4" class="input-field" autocomplete="off" required />
+                <input type="text" minlength="4" v-model="email" class="input-field" autocomplete="off" required />
                 <label>Email</label>
               </div>
 
               <div class="input-wrap">
-                <input type="password" minlength="4" class="input-field" autocomplete="off" required />
+                <input type="password" minlength="4" v-model="password" class="input-field" autocomplete="off" required />
                 <label>Contraseña</label>
               </div>
 
-              <input type="submit" value="Inicia Sesion" class="sign-btn" />
+              <button @click.prevent="iniciarSesion()" value="Inicia Sesion" class="sign-btn" >Inicia Sesión</button>
 
               
             </div>
@@ -84,7 +88,7 @@
 
               
 
-              <input type="submit" value="Unete" class="sign-btn" />
+              <input type="submit" @click.prevent="iniciarSesion()" value="Unete" class="sign-btn" />
 
               <p class="text">
                 Al unirme, estoy de acuerdo con los
@@ -102,9 +106,9 @@
             src="./assets/images/y2mate.com - FIFA World Cup 2022  Family Reunion_1080p.mp4"
             type="video/mp4"></video>
           <div class="images-wrapper">
-            <img src="./img/image1.png" class="image img-1 show" alt="" />
+            <!-- <img src="./img/image1.png" class="image img-1 show" alt="" />
             <img src="./img/image2.png" class="image img-2" alt="" />
-            <img src="./img/image3.png" class="image img-3" alt="" />
+            <img src="./img/image3.png" class="image img-3" alt="" /> -->
           </div>
 
           <div class="text-slider">
@@ -127,9 +131,11 @@
     </div>
 
   </main>
-
+</div>
   <!-- Javascript file -->
-
+  <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="./assets/scripts/login.js"></script>
 </body>
 
