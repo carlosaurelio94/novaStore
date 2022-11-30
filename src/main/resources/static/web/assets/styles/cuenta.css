@@ -1,0 +1,58 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.caja1 {
+    min-height: 95vh;
+    width: 33vw;
+}
+
+.caja1:nth-child(1) {
+    background-image: url(../images/benzema.jpg);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+}
+.caja1:nth-child(2) {
+    background-image: url(../images/messi.jpeg);
+    background-size: cover;
+    background-position: center;    
+}
+.caja1:nth-child(3) {
+    background-image: url(../images/putellas.jpg);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+}
+
+section {
+    
+}
+
+section:nth-child(1) {
+    background-color: antiquewhite;
+    min-height: 100vh;
+    width: 99vw;
+}
+section:nth-child(2) {
+    background-color: palegreen;
+    min-height: 50vh;
+    width: 99vw;
+}
+section:nth-child(3) {
+    background-color: paleturquoise;
+    min-height: 50vh;
+    width: 99vw;
+}
+
+.boton {
+    width: 100px;
+    align-self: center;
+}
+
+.input {
+    width: 240px;
+    align-self: center;
+}
