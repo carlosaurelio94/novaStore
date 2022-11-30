@@ -11,10 +11,7 @@ const app = Vue.createApp({
     },
 
     created(){
-        this.loadData("/api/prueba2")
-        document.addEventListener('DOMContentLoaded', () => {
-            this.articulosCarrito = Json.parse(localStorage.getItem('carrito')) || [];
-        })
+        this.loadData("/api/productos")
     },
 
     methods: {
@@ -93,12 +90,12 @@ const figuras = () =>{
 }
 
 figuras()
-
+/* 
 window.onload=function(){
     slidedos();
     slideuno();
 
-}
+} */
 
 let slideruno=document.getElementById("slider-1");
 let sliderdos=document.getElementById("slider-2");
