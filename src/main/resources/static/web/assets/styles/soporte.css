@@ -19,7 +19,7 @@
     z-index:-1
 }
 main{
-    height: 100vh;
+    height: 125vh;
     width: 100vw;
 }
 .Caja_contenido{
@@ -30,9 +30,9 @@ main{
 }
 .caja_contenido_hijo{
     width: 60%;
-    height: 40rem;
+    height: 30%;
     border: 1px black solid;
-    margin-top: 5rem;
+    margin-top: 3rem;
     border-radius: 10px;
     background-color: #ededed;
     display: flex;
@@ -58,4 +58,18 @@ main{
 }
 .inputs{
     text-align: start;
+}
+
+.botonEnviar{
+    background: #dc7300;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: 5px;
+    border: 0px;
+    height: 6vh;
+    margin-top: 0.5rem;
+}
+.correo{
+    margin-top: -1.4rem;
+    margin-bottom: 2rem !important;
 }

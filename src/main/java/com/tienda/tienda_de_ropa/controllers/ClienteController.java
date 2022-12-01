@@ -98,7 +98,7 @@ public class ClienteController {
         return new ClienteDTO(clienteService.findByCorreo(authentication.getName()));
     }
 
-    @DeleteMapping(path ="/clientes")
+    @PatchMapping(path ="/clientes")
     public ResponseEntity<?> eliminarCliente(
             @RequestParam Long id)
     {

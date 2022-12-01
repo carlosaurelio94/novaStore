@@ -142,6 +142,17 @@ public class ProductoController {
     }
 
 
+    @PatchMapping("/productos")
+    public ResponseEntity<?> eliminarproducto(@RequestParam Long id){
+        Producto productoSeleccionado = productoService.productoPorId(id);
+        if (productoSeleccionado == null){
+            return new ResponseEntity<>("No se encontro el producto",HttpStatus.FORBIDDEN);
+        }
+        productoService.eliminarProducto(productoSeleccionado);
+        return new ResponseEntity<>("Se elimino el producto",HttpStatus.ACCEPTED);
+    }
+
+
 //    @GetMapping("/prueba")
 //    public Producto prueba() {
 //        return new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669677008/kitten_mndwlu.png", "https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669729895/imagen_muetoo.jpg"),
