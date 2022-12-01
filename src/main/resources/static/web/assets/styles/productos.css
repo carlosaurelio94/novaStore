@@ -305,13 +305,13 @@ footer {
   height: 100%;
   background-color: black;
   transition: all 500ms linear;
-  right: -315px;
+  left: -315px;
   z-index: 1000;
   overflow: scroll;
 }
 
 #carrito_lateral.activo {
-  right: 0px;
+  left: 0px;
 }
 
 
@@ -375,7 +375,7 @@ footer {
     background-color: none;
     opacity: 1;
     transition: all 0.3s ease;
-    left: 0;
+    right: 100px;
   }
 
 .menu-open.hide {
