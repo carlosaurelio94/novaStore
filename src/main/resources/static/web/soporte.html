@@ -106,7 +106,7 @@
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
                         <label class="form-check-label" for="flexRadioDefault2">
                           Seguimiento de una devolución/reembolso
                         </label>
@@ -118,7 +118,7 @@
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
                         <label class="form-check-label" for="flexRadioDefault4">
                           hacer un intercambio
                         </label>
@@ -130,7 +130,7 @@
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault6" checked>
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault6">
                         <label class="form-check-label" for="flexRadioDefault6">
                           Preguntar sobre un producto
                         </label>
@@ -143,7 +143,7 @@
                       </div>
                       
                     </div>
-                      <button class="botonEnviar">Enviar</button>
+                      <button type="submit" class="botonEnviar" v-on:click="alerta()">Enviar</button>
                       <h6>Con fines de control de calidad, su sesión de chat se graba y Nova Store puede monitorearla o revisarla.</h6>
                 </div>
             </div>
@@ -168,8 +168,7 @@
               <h5>LA TIENDA</h5>
               <div><a href="./comprar.html" class="vinculos text-decoration-none text-light">¿Cómo comprar?</a>
               </div>
-              <div><a href="./soporte.html" class="vinculos text-decoration-none text-light">Soporte</a>
-              </div>
+              
 
           </div>
           
@@ -210,6 +209,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
     <script src="./assets/scripts/soporte.js"></script>
 </body>

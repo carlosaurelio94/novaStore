@@ -22,10 +22,9 @@ createApp({
     iniciarSesion() {
       let email = this.email.toLowerCase();
       let password = this.password
-      if(
-        email.includes("adminnova")){
-          return axios.post('/api/login', `correo=${email}&clave=${password}`).then(response => {
-            window.location.assign("../../web/clientes.html")
+      return axios.post('/api/login', `correo=${email}&clave=${password}`)
+        .then(response => {
+          window.location.assign("./productos.html")
         })
         .catch(function (error) {
           return Swal.fire({
@@ -36,22 +35,6 @@ createApp({
 /*             footer: '<a href="">Why do I have this issue?</a>'
  */          })
         })
-        }
-        else{
-          return axios.post('/api/login', `correo=${email}&clave=${password}`).then(response => {
-            window.location.assign("./productos.html")})
-            .catch(function (error) {
-              return Swal.fire({
-                icon: "error",
-                title: "Error " + error.response.status,
-                text: "Ha ocurrido un error.",
-                confirmButtonColor: '#ff4545',
-    /*             footer: '<a href="">Why do I have this issue?</a>'
-     */          })
-            })
-        }
-      }
-          
     },
     registrarse() {
       let email = this.correoRegistro.toLowerCase()
@@ -65,12 +48,12 @@ createApp({
           localStorage.setItem("cookie", "true")
         }) */
         .then(response => Swal.fire({
-          text: 'Verifica tu correo electrónico',
+          text: 'Registro exitoso',
           title: 'Bienvenido a Nova Store',
           icon: 'success',
           confirmButtonColor: '#24cb24',
         }))
-        .then(response => window.location.assign("./login.html"))
+        .then(response => window.location.assign("./index.html"))
         .catch(function (error) {
           return Swal.fire({
             icon: "error",
@@ -112,7 +95,7 @@ createApp({
     },
 
   },
-).mount('#app')
+}).mount('#app')
 
 
 

@@ -52,6 +52,7 @@ const app = Vue.createApp({
               'Eliminado!',
               'Se ha eliminado el cliente',
               'success', 
+
          )
             }
         })
