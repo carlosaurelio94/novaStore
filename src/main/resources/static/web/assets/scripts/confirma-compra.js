@@ -121,7 +121,11 @@ const app = Vue.createApp({
             return new Date(date).toLocaleDateString('es-co', { year: "numeric", month: "short", day: "numeric" })
         },
 
-
+        cerrarSesion() {
+            axios.post('/api/logout').then(response => {
+            })
+            location.assign("./index.html")
+        },
 
 
 
@@ -248,3 +252,28 @@ const figuras = () =>{
 }
 
 figuras()
+
+
+
+const contenedor1 = document.querySelector('.contenedor_general1')
+
+
+const figuras1 = () =>{
+    for(let i= 0; i <= 35; i++){
+        let figura = document.createElement('span')
+        let select = Math.round(colores.length * Math.random())
+
+        figura.style.top = innerHeight*Math.random() + 'px'
+        figura.style.left = innerWidth*Math.random() + 'px'
+        figura.style.background = colores[select >= colores.length ?  select -1: select]
+
+        contenedor1.appendChild(figura)
+
+        setInterval(() =>{
+            figura.style.top = innerHeight*Math.random() + 'px'
+            figura.style.left = innerWidth*Math.random() + 'px'
+        },2500)
+    }
+}
+
+figuras1()

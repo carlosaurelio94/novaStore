@@ -36,12 +36,24 @@ const app = Vue.createApp({
             .then(response=>{
                 this.articulosCarrito = response.data.ordenCompra
                 this.articulosCarrito.sort((a,b) => a.id - b.id)
+                console.log(this.articulosCarrito);
             })
             .catch(error=>console.log(error))
         },
 
         agregarProducto(id){
             axios.patch("/api/agregar",`id=${id}`)
+            .then(response=>{
+                console.log(response.data)
+                this.productos = response.data
+                this.loadData("/api/productos")
+                this.carrito()
+                console.log(id);
+            })
+            .catch(error=>console.log(error))
+        },
+        restarProducto(id){
+            axios.patch("/api/restar",`id=${id}`)
             .then(response=>{
                 console.log(response.data)
                 this.productos = response.data
@@ -89,7 +101,11 @@ const app = Vue.createApp({
         datemodified(date) {
             return new Date(date).toLocaleDateString('es-co', { year: "numeric", month: "short", day: "numeric" })
         },
-      
+        cerrarSesion() {
+            axios.post('/api/logout').then(response => {
+            })
+            location.assign("./index.html")
+        },
       
          
 

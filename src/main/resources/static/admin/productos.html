@@ -30,6 +30,9 @@
                         <div class="collapse navbar-collapse" id="navbarText">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
+                                    <a class="nav-link fs-3 text-light" aria-current="page" href="../web/index.html">Inicio</a>
+                                  </li>
+                                <li class="nav-item">
                                     <a class="nav-link fs-3 text-light" aria-current="page" id="active"
                                         href="./clientes.html">Clientes</a>
                                 </li>
@@ -84,7 +87,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary" @click="crearProducto()">Crear</button>
+                            <button type="button" class="btn btn-primary" v-on:click="alerta()">Crear</button>
                         </div>
                     </div>
                 </div>
@@ -124,13 +127,6 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
     <script src="./assets/js/crearProductos.js"></script>
-    <script>const myModal = document.getElementById('myModal')
-        const myInput = document.getElementById('myInput')
-
-        myModal.addEventListener('shown.bs.modal', () => {
-            myInput.focus()
-        })
-    </script>
 </body>
 
 </html>
