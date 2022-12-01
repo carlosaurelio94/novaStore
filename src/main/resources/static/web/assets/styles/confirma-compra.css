@@ -94,7 +94,7 @@ textarea {
 .menu-open {
     color: black;
     max-height: 10vh;
-    top: 0;
+    top: -30px;
     position: fixed;
     z-index: 994;
     background-color: none;
