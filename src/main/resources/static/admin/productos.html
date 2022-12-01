@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/crearProductos.css">
 </head>
+
 <body>
     <div id="app">
 
@@ -31,47 +33,86 @@
                                         href="./clientes.html">Inicio</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link fs-3 text-light" href="./productos.html">Crear Producto</a>
+                                    <a class="nav-link fs-3 text-light" href="./productos.html">Producto</a>
                                 </li>
                             </ul>
-                            
+
                         </div>
                     </div>
                 </nav>
             </header>
 
-            <div class="crearProducto">
-                <button @click="toggleModal()">crearClientes</button>
-            </div>
-            <div class="background" @click="toggleModal()">
-            </div>
-            <div class="modal">
-                <form>
-                    <label v-model="nombre">Nombre: <input type="text"></label>
-                    <label v-model="stock">Stock <input type="text"></label>
-                    <label v-model="precio">Precio-: <input type="text"></label>
-                    <label v-model="talle">Talle: <input type="text"></label>
-                    <button @click="crearProducto()">crear</button>
-                </form>
+            <div class="contenedorBoton">
+                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Crear Producto
+                </button>
+              </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Crear producto</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="question">
+                                    <input type="url" v-model="imagen" required />
+                                    <label>Imagen</label>
+                                </div>
+                                <div class="question">
+                                    <input type="text" v-model="nombre" required>
+                                    <label>Nombre </label>
+                                </div>
+                                <div class="question">
+                                    <input type="number" v-model="stock" required>
+                                    <label>Stock</label>
+                                </div>
+                                <div class="question">
+                                    <input type="number" v-model="precio" required>
+                                    <label>Precio</label>
+                                </div>
+                                <div class="question">
+                                    <input type="text" v-model="talle" required>
+                                    <label>Talle </label>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary" @click="crearProducto()">Crear</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <table>
-                <tr>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Stock</th>
-                    <th>Precio</th>
 
-                </tr>
-                <tr v-for="producto of productos">
-                    <td>{{producto.id}}</td>
-                    <td>{{producto.nombre}}</td>
-                    <td>{{producto.stock}}</td>
-                    <td>${{producto.precio}} <button @click="eliminarProducto"> eliminar </button></td>
-                </tr>                
-            </table>
+            <div class="contenedorTabla">
 
-            
+
+                <table>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Stock</th>
+                        <th>Precio</th>
+                        <th>Eliminar/Agregar</th>
+                    </tr>
+                    <tr v-for="producto of productos">
+                        <td v-model="id">{{producto.id}}</td>
+                        <td>{{producto.nombre}}</td>
+                        <td>{{producto.stock}}</td>
+                        <td>${{producto.precio}}</td>
+                        <td><button class="restar" @click="restarProducto(producto.id)"> - </button>
+                            <button class="sumar" @click="agregarProducto(producto.id)"> + </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
 
         </main>
     </div>
@@ -81,9 +122,14 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.15/fullpage.js"></script>
     <script src="./assets/js/crearProductos.js"></script>
-    <!-- JavaScript Bundle with Popper -->
+    <script>const myModal = document.getElementById('myModal')
+        const myInput = document.getElementById('myInput')
+
+        myModal.addEventListener('shown.bs.modal', () => {
+            myInput.focus()
+        })
+    </script>
 </body>
+
 </html>
