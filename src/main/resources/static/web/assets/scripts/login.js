@@ -48,12 +48,12 @@ createApp({
           localStorage.setItem("cookie", "true")
         }) */
         .then(response => Swal.fire({
-          text: 'Verifica tu correo electrónico',
+          text: 'Registro exitoso',
           title: 'Bienvenido a Nova Store',
           icon: 'success',
           confirmButtonColor: '#24cb24',
         }))
-        .then(response => window.location.assign("./login.html"))
+        .then(response => window.location.assign("./index.html"))
         .catch(function (error) {
           return Swal.fire({
             icon: "error",
