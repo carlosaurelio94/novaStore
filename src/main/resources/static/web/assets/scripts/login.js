@@ -48,8 +48,8 @@ createApp({
           localStorage.setItem("cookie", "true")
         }) */
         .then(response => Swal.fire({
-          text: 'Registro exitoso',
-          title: 'Bienvenido a Nova Store',
+          text: 'Verifica tu buzón de correo electrónico',
+          title: 'Antes de continuar',
           icon: 'success',
           confirmButtonColor: '#24cb24',
         }))
