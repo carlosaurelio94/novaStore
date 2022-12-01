@@ -1,6 +1,7 @@
 package com.tienda.tienda_de_ropa.service;
 
 import com.tienda.tienda_de_ropa.dtos.ProductoDTO;
+import com.tienda.tienda_de_ropa.models.Cliente;
 import com.tienda.tienda_de_ropa.models.Producto;
 
 import java.util.List;
@@ -14,4 +15,5 @@ public interface ProductoService {
 
     public List<ProductoDTO> traerTodos();
 
+    public void eliminarProducto(Producto producto);
 }

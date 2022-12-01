@@ -35,4 +35,9 @@ public class ProductoServiceImplement  implements ProductoService {
     public List<ProductoDTO> traerTodos() {
         return productoRepository.findAll().stream().map(producto -> new ProductoDTO(producto)).collect(Collectors.toList());
     }
+
+    @Override
+    public void eliminarProducto(Producto producto) {
+        productoRepository.delete(producto);
+    }
 }

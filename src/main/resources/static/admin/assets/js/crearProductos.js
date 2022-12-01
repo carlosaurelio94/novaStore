@@ -35,12 +35,9 @@ const app = Vue.createApp({
       crearProducto(){
         axios.post("/api/producto",`URLImagen=${this.imagen}&nombre=${this.nombre}&stock=${this.stock}&precio=${this.precio}&talle=${this.talle}`).then(()=>this.cargarData(this.urlApi))
       },
-      restarProducto(id){
-        axios.patch("/api/restar",`id=${id}`).then(()=>this.cargarData(this.urlApi))
+      eliminarProducto(id){
+        axios.patch("/api/productos",`id=${id}`).then(()=> this.cargarData(this.urlApi))
       },
-      agregarProducto(id){
-        axios.patch("/api/agregar",`id=${id}`).then(()=>this.cargarData(this.urlApi))
-    }
     },
   });
   app.mount("#app");
