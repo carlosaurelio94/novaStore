@@ -355,18 +355,18 @@ footer {
 
 }
 
-.menu-open {
-  color: black;
-  max-height: 10vh;
-  width: 20px;
-  top: 0;
-  position: fixed;
-  z-index: 994;
-  background-color: none;
-  opacity: 1;
-  transition: all 0.3s ease;
-  left: 0;
-}
+  .menu-open {
+    color: black;
+    max-height: 10vh;
+    width: 20px;
+    top: 0;
+    position: fixed;
+    z-index: 994;
+    background-color: none;
+    opacity: 1;
+    transition: all 0.3s ease;
+    left: 0;
+  }
 
 .menu-open.hide {
   top: -50vh;
