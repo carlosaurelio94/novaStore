@@ -7,6 +7,7 @@ const app = Vue.createApp({
            unidades:"",
            buscar:"",
            cantidad:"",
+           productosBackUp: []
         }
     
 
@@ -25,6 +26,7 @@ const app = Vue.createApp({
             .then(response=>{
                 console.log(response.data)
                 this.productos = response.data
+                this.productosBackUp = response.data
             })
             .catch(error=>console.log(error))
         },
@@ -79,8 +81,25 @@ const app = Vue.createApp({
     },
     computed: {
         filtro_texto() {
-           return this.productos.filter(producto=> producto.nombre.toLowerCase().includes(this.buscar.toLowerCase()))
-            }       
+            let primerFiltro = this.productosBackUp.filter(prod => prod.nombre.toLowerCase().includes(this.buscar.toLowerCase()))
+            if (this.amount) {
+                this.productos = primerFiltro.filter(prod => prod.precio <= this.amount)
+            }
+            else {
+                this.productos = primerFiltro
+            }
+           this.productos = this.productos.filter(producto=> producto.nombre.toLowerCase().includes(this.buscar.toLowerCase()))
+            }       ,
+
+            filtroChecksM() {
+                let primerFiltro = this.medicamentosBackUp.filter(med => med.nombre.toLowerCase().includes(this.textoIngresado.toLowerCase()))
+                if (this.checksMas.length || this.checksMenos.length) {
+                    this.medicamentos = primerFiltro.filter(med => med.precio <= parseInt(this.checksMenos) || med.precio >= parseInt(this.checksMas))
+                }
+                else {
+                    this.medicamentos = primerFiltro
+                }
+            },
 },
 
 })
