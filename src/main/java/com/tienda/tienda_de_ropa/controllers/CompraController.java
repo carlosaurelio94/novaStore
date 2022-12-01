@@ -1,9 +1,13 @@
 package com.tienda.tienda_de_ropa.controllers;
 
-import com.tienda.tienda_de_ropa.models.Cliente;
-import com.tienda.tienda_de_ropa.models.Compra;
-import com.tienda.tienda_de_ropa.models.TipoTransaccion;
+import com.tienda.tienda_de_ropa.dtos.CompraDTO;
+import com.tienda.tienda_de_ropa.models.*;
+import com.tienda.tienda_de_ropa.repositories.FacturaRepository;
+import com.tienda.tienda_de_ropa.repositories.OrdenCompraRepository;
 import com.tienda.tienda_de_ropa.service.ClienteService;
+import com.tienda.tienda_de_ropa.service.CompraService;
+import com.tienda.tienda_de_ropa.service.OrdenCompraService;
+import com.tienda.tienda_de_ropa.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,20 +16,43 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class CompraController {
     @Autowired
     ClienteService clienteService;
+    @Autowired
+    CompraService compraService;
+    @Autowired
+    ProductoService productoService;
+    @Autowired
+    OrdenCompraService ordenCompraService;
+    @Autowired
+    FacturaRepository facturaRepository;
+    @Autowired
+    OrdenCompraRepository ordenCompraRepository;
 
     @Transactional
     @PostMapping("/transaccional")
-    public ResponseEntity<Object> crearTransferencias(Authentication authentication, @RequestParam TipoTransaccion tipoTransaccion,
-                                                      @RequestParam Double monto) {
-        //Cliente clienteAutenticado =clienteService.findByCorreo(authentication.getName());
-        if (tipoTransaccion == null){
-            return new ResponseEntity<>("No ingresaste el tipo de transaccion", HttpStatus.FORBIDDEN);
+    public ResponseEntity<?> crearTransferencias(
+            Authentication authentication) {
+        Cliente clienteAutenticado =clienteService.findByCorreo(authentication.getName());
+        Carrito carrito = clienteAutenticado.getCarrito();
+        Factura factura = new Factura(carrito) ;
+        Double monto = factura.getPrecioTotal();
+        Set<OrdenCompra> ordenCompraSet = carrito.getOrdenCompra();
+
+
+        if(clienteAutenticado == null) {
+            return new ResponseEntity<>("El cliente no está autenticado", HttpStatus.FORBIDDEN);
+        }
+        if(carrito.getOrdenCompra().size() == 0){
+            return new ResponseEntity<>("No agregaste productos", HttpStatus.FORBIDDEN);
         }
         if (monto.isNaN()){
             return new ResponseEntity<>("No ingresaste un monto",HttpStatus.FORBIDDEN);
@@ -34,7 +61,80 @@ public class CompraController {
             return new ResponseEntity<>("No puedes ingresar menor o igual a cero", HttpStatus.FORBIDDEN);
         }
 
+
+        Compra compraRealizada = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,factura.getPrecioTotal()/10,"Muchos productos",factura.getPrecioTotal(),clienteAutenticado);
+        compraService.guardarCompra(compraRealizada);
+        facturaRepository.save(factura);
+        ordenCompraRepository.deleteAll(ordenCompraSet);
+        clienteService.guardarCliente(clienteAutenticado);
+
         return new ResponseEntity<>("Se Realizo la transaccion con exito",HttpStatus.CREATED);
+    }
+
+    @Transactional
+    @PostMapping("/transaccionPuntos")
+    public ResponseEntity<Object> compraPuntos(Authentication authenticatio){
+        Cliente clienteAutenticado = clienteService.findByCorreo(authenticatio.getName());
+        Carrito carrito = clienteAutenticado.getCarrito();
+        Factura factura = new Factura(carrito) ;
+        double cantidadPuntosCarrito = factura.getPrecioTotal()/10;
+        double puntosTotales = clienteAutenticado.getPuntos()-cantidadPuntosCarrito;
+        if (clienteAutenticado.getPuntos() <= 0){
+            return new ResponseEntity<>("No tienes puntos disponibles", HttpStatus.FORBIDDEN);
+        }
+        if (clienteAutenticado.getPuntos()<cantidadPuntosCarrito){
+            return new ResponseEntity<>("No tienes los puntos suficientes para realizar la compra",HttpStatus.FORBIDDEN);
+        }
+        if (puntosTotales <= 0){
+            return new ResponseEntity<>("No tienes los puntos suficientes para realizar la compra",HttpStatus.FORBIDDEN);
+        }
+        Compra compraPuntos = new Compra(LocalDateTime.now(),TipoTransaccion.DEBITO,puntosTotales,factura.getId().toString(),factura.getPrecioTotal(),clienteAutenticado);
+
+        compraService.guardarCompra(compraPuntos);
+        carrito.getOrdenCompra().removeAll(carrito.getOrdenCompra());
+        clienteAutenticado.setPuntos(puntosTotales);
+        clienteService.guardarCliente(clienteAutenticado);
+
+
+        return new ResponseEntity<>("Se Realizo la compra con exito",HttpStatus.ACCEPTED);
+    }
+
+//    @Transactional
+//    @PostMapping("/compra")
+//    public ResponseEntity<?> crearOrdenCompra(
+//            @RequestParam String nombreProducto,
+//            @RequestParam int cantidad,
+//            Authentication authentication)
+//    {
+//        Cliente clienteActual = this.clienteService.findByCorreo(authentication.getName());
+//        Producto productoEncontrado = productoService.productoPorNombre(nombreProducto.toLowerCase());
+//
+//
+//        if (nombreProducto.isEmpty()) {
+//            return new ResponseEntity<>("El nombre del producto no puede estar vacio", HttpStatus.FORBIDDEN);
+//        }
+//
+//        if (cantidad <= 0) {
+//            return new ResponseEntity<>("La cantidad no puede ser igual o menor a cero", HttpStatus.FORBIDDEN);
+//        }
+//
+//        if (productoService.productoPorNombre(nombreProducto.toLowerCase()) == null) {
+//            return new ResponseEntity<>("El producto no existe", HttpStatus.FORBIDDEN);
+//        }
+//
+//        if (cantidad > productoEncontrado.getStock()) {
+//            return new ResponseEntity<>("No podés comprar más del stock", HttpStatus.FORBIDDEN);
+//        }
+//
+//        OrdenCompra nuevaOrdenCompra = new OrdenCompra(cantidad, productoEncontrado.getPrecio() * cantidad, LocalDateTime.now(), clienteActual.getCarrito(), productoEncontrado);
+//        ordenCompraService.guardarOrdenCompra(nuevaOrdenCompra);
+//
+//        return new ResponseEntity<>("Orden de compra creada", HttpStatus.CREATED);
+//    }
+
+    @GetMapping("/compras")
+    public Set<CompraDTO> traerCompras(Authentication authentication) {
+        return compraService.traerCompras(authentication.getName());
     }
 }
 

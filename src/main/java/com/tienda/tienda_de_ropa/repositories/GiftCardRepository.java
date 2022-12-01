@@ -6,4 +6,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface GiftCardRepository extends JpaRepository<GiftCard, Long> {
+    GiftCard findByNumeroTarjeta (String numeroTarjeta);
 }

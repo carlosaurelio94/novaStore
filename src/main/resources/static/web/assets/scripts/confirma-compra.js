@@ -231,7 +231,7 @@ hideHeader()
 
 
 const contenedor = document.querySelector('.contenedor_general')
-const colores =['#CB51EE','#0073BC','#38B75E','#DE365C']
+const colores =['#cc51ee43','#0074bc37','#38b75e4b','#de365d43']
 
 const figuras = () =>{
     for(let i= 0; i <= 35; i++){

@@ -11,14 +11,11 @@ public class OrdenCompra {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private Long id;
-
     private int cantidad;
-
     private double precio;
-
     private LocalDateTime fechaCreacion;
 
-
+    private boolean isActive = true;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="carrito_id")
     private Carrito carrito;
@@ -79,6 +76,14 @@ public class OrdenCompra {
 
     public void setProducto(Producto producto) {
         this.producto = producto;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     @Override
