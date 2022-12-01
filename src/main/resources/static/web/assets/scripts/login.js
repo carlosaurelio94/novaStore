@@ -30,10 +30,10 @@ createApp({
           return Swal.fire({
             icon: "error",
             title: "Error " + error.response.status,
-            text: "Your email or password are incorrect. Try again",
+            text: "Ha ocurrido un error.",
             confirmButtonColor: '#ff4545',
-            footer: '<a href="">Why do I have this issue?</a>'
-          })
+/*             footer: '<a href="">Why do I have this issue?</a>'
+ */          })
         })
     },
     registrarse() {
@@ -48,8 +48,8 @@ createApp({
           localStorage.setItem("cookie", "true")
         }) */
         .then(response => Swal.fire({
-          text: 'Succesful Registration',
-          title: 'Welcome to Nova Bank',
+          text: 'Registro exitoso',
+          title: 'Bienvenido a Nova Store',
           icon: 'success',
           confirmButtonColor: '#24cb24',
         }))
@@ -81,6 +81,9 @@ createApp({
 /*                 footer: '<a href="">Why do I have this issue?</a>'
 */              })
         })
+    },
+    finalizarCompra() {
+      
     },
     signUp() {
       let container = document.getElementById('container');

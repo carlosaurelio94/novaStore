@@ -27,6 +27,13 @@ const app = Vue.createApp({
             productos: [],
             articulosCarrito: [],
             amount: "",
+            cliente: "",
+            total: 0,
+            cardNumber: "",
+            cardCvv: "",
+            paymentAmount: "",
+            paymentDescription: "",
+            ciudad: ""
         }
 
 
@@ -34,7 +41,7 @@ const app = Vue.createApp({
     },
 
     created() {
-        this.loadData("/api/clientes/actual/carrito")
+        this.loadData("/api/clientes/actual")
 
 
     },
@@ -43,8 +50,12 @@ const app = Vue.createApp({
         loadData(url) {
             axios.get(url)
                 .then(response => {
-                    this.productos = response.data.ordenCompra
-                    console.log(this.productos)
+                    this.cliente = response.data
+                    this.productos = response.data.carrito.ordenCompra
+                    this.precioTotal = this.productos.map(producto => producto.precio)
+                    let total = this.precioTotal.reduce((a, b) => a + b, 0)
+                    this.total = total
+                    console.log(this.cliente);
                 })
                 .catch(error => console.log(error))
         },
@@ -56,8 +67,59 @@ const app = Vue.createApp({
                 })
                 .catch(error => console.log(error))
         },
+        novaPayments() {
+            let number = this.cardNumber
+            let cvv = this.cardCvv
+            let amount = this.paymentAmount
+            let description = this.paymentDescription
+            let alert = Swal.fire({
+                title: '¿Estás seguro?',
+                text: "Una vez hecha la transacción no podemos deshacerla",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#24cb24',
+                cancelButtonColor: '#ff4545',
+                confirmButtonText: 'Yes, I am sure'
+            }).then(res => {
+                if (res.isConfirmed == true) {
+                    return axios.post('https://nova-bank-production-45f5.up.railway.app/api/payments',
+                        { number: number, cvv: cvv, amount: this.total + 150, description: description })
+                        .then(result => {
+                            if (result.status == 201) {
+                                return axios.get('/api/pdf/generate')
+                                    .then(result => window.location.assign(result.request.responseURL)
+                                    )
+                                    .catch(error => console.log(error)
+                                    )
+                            }
+                        })
+                        .then(() => {
+                            return axios.post('/api/transaccional')
+                        })
+                        .then(result =>
+                            Swal.fire({
+                                title: 'Pago exitoso',
+                                text: "Tu pago se hizo exitosamente",
+                                icon: 'success',
+                                confirmButtonColor: '#24cb24',
+                            })
+                        ).then(result =>
+                            window.location.assign("./productos.html")
+                        ) 
+                        .catch(error => Swal.fire({
+                            icon: 'error',
+                            title: 'Error ' + error.response.status,
+                            text: error.response.data,
+                            confirmButtonColor: '#ff4545',
+                        })
+                        )
+                }
+            })
+        },
 
+        pdf() {
 
+        },
         eliminarProducto(e) {
             const productoId = e.target.getAttribute("data-id")
             this.articulosCarrito = this.articulosCarrito.filter(producto => producto.id !== productoId)

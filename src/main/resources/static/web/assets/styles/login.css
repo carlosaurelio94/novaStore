@@ -44,7 +44,7 @@ main {
   position: relative;
   width: 100%;
   max-width: 1020px;
-  height: 750px;
+  height: 90vh;
   background-color: #fff;
   border-radius: 3.3rem;
   box-shadow: 20px 20px 30px 30px rgba(0, 0, 0, 0.27);
@@ -52,8 +52,8 @@ main {
 
 .inner-box {
   position: absolute;
-  width: calc(100% - 4.1rem);
-  height: calc(100% - 4.1rem);
+  width: 95%;
+  height: 95%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -69,6 +69,7 @@ main {
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   transition: 0.8s ease-in-out;
+  
 }
 
 form {
@@ -89,6 +90,7 @@ form {
 form.sign-up-form {
   opacity: 0;
   pointer-events: none;
+  
 }
 
 .logo {
@@ -416,11 +418,7 @@ main.sign-up-mode .carousel {
   .inner-box {
     padding: 1rem;
   }
-
-  .carousel {
-    padding: 1.5rem 1rem;
-    border-radius: 1.6rem;
-  }
+ 
 
   .text-wrap {
     margin-bottom: 1rem;
