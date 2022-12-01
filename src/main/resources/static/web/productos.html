@@ -14,6 +14,7 @@
 
 <body>
     <div id="app">
+        {{filtro_texto}}
         <header>
             <nav class="navbar navbar-expand-lg bg-dark nav-header sticky-top">
                 <div class="container-fluid d-flex gap-3">
@@ -82,19 +83,19 @@
                     <h3>Precio Máximo</h3>
                     <div>
                         <div>
-                            <input class="input" v-model="amount" style="width:230px ;" min="81" max="200" step="2" type="range"
+                            <input class="input" v-model="amount" style="width:230px ;" min="21" max="200" step="2" type="range"
                                 class="form-range">
                         </div>
                         <div class="text-center">{{modificarSaldo(amount)}}</div>
                     </div>
                 </div>
-                <!-- <div class="busqueda mt-3">
+                <div class="busqueda mt-3">
                     <form id="search" action="search">
                         <input v-model="buscar" id="buscar" type="text" placeholder="Busca tu camisa">
                         <button class="btn_search" type="submit" @click.prevent="filtro_texto"><img src="./assets/images/search-interface-symbol.png"
                             alt=""></button>
                     </form>
-                </div> -->
+                </div>
             </div>
 
 
@@ -102,7 +103,7 @@
                 <div class="contenedor d-flex flex-row justify-content-center mt-5">
                     <div class="container d-flex flex-row flex-wrap justify-content-center">
                         <template v-for="producto of productos">
-                            <div class="card" v-if="producto.precio < amount" v-if="productos.includes(buscar)">
+                            <div class="card" v-if="producto.precio < amount">
                                 <div class="card-body">
                                     <div class="price">{{modificarSaldo(producto.precio)}}</div>
                                     <div class="imgBx">
