@@ -1,19 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+
+
 * {
   font-family: "Poppins", sans-serif;
+  font-family: 'Cinzel', serif;
+  font-family: 'Rubik Distressed', cursive;
 }
 
-header{
+header {
   min-height: 10vh;
 }
 
-main{
+main {
   min-height: 80vh;
   padding-bottom: 5rem;
 }
 
-footer{
+footer {
   min-height: 10vh;
 }
 
@@ -21,7 +25,7 @@ footer{
   letter-spacing: 2px;
   border-radius: 5px 15px 0px 15px;
   display: inline;
-  color:white;
+  color: white;
   font-weight: bold;
   background-color: transparent;
   border-style: solid;
@@ -41,15 +45,12 @@ footer{
 
 }
 
-:root{
-  --border-color:linear-gradient(
-    to right,
-    rgba(0, 0, 255, 0.446) 0%,
-    black 100%
+:root {
+  --border-color: linear-gradient(to right,
+      rgba(0, 0, 255, 0.446) 0%,
+      black 100%);
 
-  );
-
-  --card-color:white;
+  --card-color: white;
 }
 
 .container {
@@ -70,7 +71,7 @@ footer{
   padding: 5px;
 }
 
-.card-body{
+.card-body {
   background: var(--card-color);
   width: 100%;
   height: 100%;
@@ -84,7 +85,7 @@ footer{
   left: 0;
   width: 100%;
   height: 100%;
-  background:black;
+  background: black;
   clip-path: circle(150px at 80% 20%);
   transition: 0.5s ease-in-out;
 }
@@ -114,7 +115,7 @@ footer{
   transition: 0.5s;
 }
 
-.text{
+.text {
   margin-top: 25px !important;
 }
 
@@ -127,7 +128,7 @@ footer{
   position: absolute;
   top: 50%;
   left: 45%;
-  transform: translate(-50%, -50%) ;
+  transform: translate(-50%, -50%);
   width: 270px;
   height: 300px;
 }
@@ -142,44 +143,44 @@ footer{
   z-index: 10;
 }
 
-.price{
-    z-index: 10;
-    font-size: x-large;
-    font-weight: 600;
-    color:white;
-    margin: 1px;
-    transform: translateX(70%);
-    transition: 0.5s;
- }
-
- .container .card:hover .price {
-    top: 0%;
-    transform: translateY(-10%);
-  }
-
-.price:hover{
-    transform: translate(5%,0%);
-    transition: 0.5s ease-in-out;
+.price {
+  z-index: 10;
+  font-size: x-large;
+  font-weight: 600;
+  color: white;
+  margin: 1px;
+  transform: translateX(70%);
+  transition: 0.5s;
 }
 
-.ultimas{
-    z-index: 10;
-    font-size: x-large;
-    font-weight: 600;
-    margin: 1px;
-    transform: translateX(0%);
-    
-    transition: 0.5s;
- }
+.container .card:hover .price {
+  top: 0%;
+  transform: translateY(-10%);
+}
 
- .container .card:hover .ultimas {
-    top: 0%;
-    transform: translate(65%,-100%);
-  }
+.price:hover {
+  transform: translate(5%, 0%);
+  transition: 0.5s ease-in-out;
+}
 
-.ultimas:hover{
-    transform: translate(5%,0%);
-    transition: 0.5s ease-in-out;
+.ultimas {
+  z-index: 10;
+  font-size: x-large;
+  font-weight: 600;
+  margin: 1px;
+  transform: translateX(0%);
+
+  transition: 0.5s;
+}
+
+.container .card:hover .ultimas {
+  top: 0%;
+  transform: translate(65%, -100%);
+}
+
+.ultimas:hover {
+  transform: translate(5%, 0%);
+  transition: 0.5s ease-in-out;
 }
 
 .container .card:hover .contentBx {
@@ -223,7 +224,7 @@ footer{
   margin-top: 15px !important;
 }
 
-.card-text{
+.card-text {
   z-index: -100000;
 }
 
@@ -253,10 +254,10 @@ footer{
 
 /* BACKGROUND */
 
-.contenedor_general, 
-.contenedor_general1{
+.contenedor_general,
+.contenedor_general1 {
   position: relative;
-  overflow: hidden;    
+  overflow: hidden;
 }
 
 
@@ -264,33 +265,33 @@ footer{
 
 
 .contenedor_general span,
-.contenedor_general1 span{
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    box-shadow: 1px 1px 5px rgba(0,0,0,.3);
-    border-radius: 5px;
-    transition: 1s;
-    z-index:-1
+.contenedor_general1 span {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, .3);
+  border-radius: 5px;
+  transition: 1s;
+  z-index: -1
 }
 
 /* INPUT RANGE */
 
 
-.ingresar{
+.ingresar {
   cursor: pointer;
 }
 
-.logo{
+.logo {
   display: block;
-  margin:0 auto;
+  margin: 0 auto;
   width: 100px;
   justify-content: center;
   margin-top: 20px;
 }
 
-#carrito_lateral{
-  position:fixed;
+#carrito_lateral {
+  position: fixed;
   width: 315px;
   height: 100%;
   background-color: black;
@@ -299,21 +300,21 @@ footer{
   z-index: 1000;
 }
 
-#carrito_lateral.activo{
+#carrito_lateral.activo {
   right: 0px;
 }
 
 
-.logo{
+.logo {
   display: block;
-  margin:0 auto;
+  margin: 0 auto;
   width: 100px;
   justify-content: center;
   margin-top: 20px;
 }
 
-#ingreso_lateral2{
-  position:fixed;
+#ingreso_lateral2 {
+  position: fixed;
   width: 300px;
   height: 100%;
   background-color: black;
@@ -321,21 +322,21 @@ footer{
   left: -300px;
 }
 
-#ingreso_lateral2.activo{
+#ingreso_lateral2.activo {
   left: 0px;
 }
 
-.ocultar{
+.ocultar {
   display: none;
 }
 
-.mostrar{
+.mostrar {
   display: block;
 }
 
-.txt_field:has(input:required) label:after{
+.txt_field:has(input:required) label:after {
   content: "*";
-  color:red;
+  color: red;
 
 }
 
@@ -344,135 +345,135 @@ footer{
 
 .menu-open,
 .menu-close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 40px;
-    font-size: 2rem;
-    cursor: pointer;
-    z-index: 995;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 40px;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 995;
 
 }
 
 .menu-open {
-    color: black;
-    max-height: 10vh;
-    top: 0;
-    position: fixed;
-    z-index: 994;
-    background-color: none;
-    opacity: 1;
-    transition: all 0.3s ease;
-    left: 0;
+  color: black;
+  max-height: 10vh;
+  top: 0;
+  position: fixed;
+  z-index: 994;
+  background-color: none;
+  opacity: 1;
+  transition: all 0.3s ease;
+  left: 0;
 }
 
 .menu-open.hide {
-    top: -50vh;
+  top: -50vh;
 }
 
 
 .nav-container {
-    position: fixed;
-    left: -120vw;
-    width: 100%;
-    height: 100vh;
-    background-color: white;
-    z-index: 999;
-    overflow: hidden;
+  position: fixed;
+  left: -120vw;
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+  z-index: 999;
+  overflow: hidden;
 }
 
 
 
 
 .menu__item {
-    position: relative;
-    padding: 0 6vw;
+  position: relative;
+  padding: 0 6vw;
 }
 
 .menu__item-link {
-    display: inline-block;
-    cursor: pointer;
-    position: relative;
-    transition: opacity 0.4s;
-    text-decoration: none;
-    color: black;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  transition: opacity 0.4s;
+  text-decoration: none;
+  color: black;
 }
 
 .menu__item-link::before {
-    all: initial;
-    counter-increment: menu;
-    position: absolute;
-    bottom: 60%;
-    left: 0;
-    pointer-events: none;
+  all: initial;
+  counter-increment: menu;
+  position: absolute;
+  bottom: 60%;
+  left: 0;
+  pointer-events: none;
 }
 
 .menu__item-link:hover {
-    transition-duration: 0.3s;
-    opacity: 0;
-    color: white;
+  transition-duration: 0.3s;
+  opacity: 0;
+  color: white;
 }
 
 .menu__item-img {
-    z-index: 2;
-    pointer-events: none;
-    position: absolute;
-    height: 12vh;
-    max-height: 600px;
-    opacity: 0;
-    left: 8%;
-    top: 10%;
-    transform: scale(0);
+  z-index: 2;
+  pointer-events: none;
+  position: absolute;
+  height: 12vh;
+  max-height: 600px;
+  opacity: 0;
+  left: 8%;
+  top: 10%;
+  transform: scale(0);
 }
 
 .menu__item-link:hover+.menu__item-img {
-    opacity: 1;
-    transform: scale(1);
-    transition: all 0.4s;
+  opacity: 1;
+  transform: scale(1);
+  transition: all 0.4s;
 }
 
 .menu {
-    padding: 10vh 0 25vh;
-    --offset: 20vw;
-    --move-initial: calc(-25% + var(--offset));
-    --move-final: calc(-50% + var(--offset));
-    font-size: 4vw;
+  padding: 10vh 0 25vh;
+  --offset: 20vw;
+  --move-initial: calc(-25% + var(--offset));
+  --move-final: calc(-50% + var(--offset));
+  font-size: 4vw;
 }
 
 .marquee {
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    color: rgb(214, 214, 214);
-    pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  color: rgb(214, 214, 214);
+  pointer-events: none;
 }
 
 .marquee__inner {
-    width: fit-content;
-    display: flex;
-    position: relative;
-    opacity: 0;
-    transition: all 0.1s;
-    transform: translateX(60px);
+  width: fit-content;
+  display: flex;
+  position: relative;
+  opacity: 0;
+  transition: all 0.1s;
+  transform: translateX(60px);
 }
 
 .menu__item-link:hover~.marquee .marquee__inner {
-    opacity: 1;
-    transform: translateX(0px);
-    transition-duration: 0.4s;
+  opacity: 1;
+  transform: translateX(0px);
+  transition-duration: 0.4s;
 }
 
 .menu__item-link,
 .marquee span {
-    white-space: nowrap;
-    font-size: 7vw;
-    padding: 0 1vw;
-    line-height: 1.15;
+  white-space: nowrap;
+  font-size: 7vw;
+  padding: 0 1vw;
+  line-height: 1.15;
 }
 
 .marquee span {
-    font-style: italic;
+  font-style: italic;
 }
 
 
@@ -486,7 +487,7 @@ footer{
     top: 10%;
     transform: scale(0);
   }
-  
+
   .menu {
     padding: 10vh 0 25vh;
     --offset: 20vw;
@@ -494,7 +495,7 @@ footer{
     --move-final: calc(-50% + var(--offset));
     font-size: 15vw;
   }
-  
+
   .menu__item-link,
   .marquee span {
     white-space: nowrap;
@@ -502,57 +503,54 @@ footer{
     padding: 0 1vw;
     line-height: 1.15;
   }
-  
+
   .menu-open,
   .menu-close {
-  
+
     font-size: 1.5rem;
-  
+
   }
 }
 
-@media screen and (min-width: 577px) and ( max-width: 1024px){
+@media screen and (min-width: 577px) and (max-width: 1024px) {
   .menu__item-img {
-        
+
     height: 6vh;
-    
+
     opacity: 0;
     left: 8%;
     top: 10%;
     transform: scale(0);
-}
+  }
 
-.menu__item-img {
+  .menu__item-img {
     height: 15vh;
     opacity: 0;
     left: 8%;
     top: 10%;
     transform: scale(0);
-}
+  }
 
-.menu {
+  .menu {
     padding: 10vh 0 25vh;
     --offset: 20vw;
     --move-initial: calc(-25% + var(--offset));
     --move-final: calc(-50% + var(--offset));
     font-size: 15vw;
-}
+  }
 
-.menu__item-link,
-.marquee span {
+  .menu__item-link,
+  .marquee span {
     white-space: nowrap;
     font-size: 5rem;
     padding: 0 1vw;
     line-height: 1.15;
-}
+  }
 
-.menu-open,
-.menu-close {
+  .menu-open,
+  .menu-close {
 
     font-size: 2.5rem;
 
+  }
 }
-}
-
-
-

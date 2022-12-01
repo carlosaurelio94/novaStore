@@ -50,6 +50,16 @@ const app = Vue.createApp({
             })
             .catch(error=>console.log(error))
         },
+        restarProducto(id){
+            axios.patch("/api/restar",`id=${id}`)
+            .then(response=>{
+                console.log(response.data)
+                this.productos = response.data
+                this.loadData("/api/productos")
+                this.carrito()
+            })
+            .catch(error=>console.log(error))
+        },
         
 
         eliminarProducto(e){
@@ -73,7 +83,11 @@ const app = Vue.createApp({
         datemodified(date) {
             return new Date(date).toLocaleDateString('es-co', { year: "numeric", month: "short", day: "numeric" })
         },
-      
+        cerrarSesion() {
+            axios.post('/api/logout').then(response => {
+            })
+            location.assign("./index.html")
+        },
       
          
 

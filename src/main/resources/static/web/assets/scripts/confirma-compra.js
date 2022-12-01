@@ -121,7 +121,11 @@ const app = Vue.createApp({
             return new Date(date).toLocaleDateString('es-co', { year: "numeric", month: "short", day: "numeric" })
         },
 
-
+        cerrarSesion() {
+            axios.post('/api/logout').then(response => {
+            })
+            location.assign("./index.html")
+        },
 
 
 

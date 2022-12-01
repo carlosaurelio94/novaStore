@@ -17,6 +17,7 @@ const app = Vue.createApp({
         datemodified(date) {
             return new Date(date).toLocaleDateString('es-co', { year: "numeric", month: "short", day: "numeric" })
         },
+		
 
         
     },
