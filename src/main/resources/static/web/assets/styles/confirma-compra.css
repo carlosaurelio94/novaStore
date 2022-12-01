@@ -67,6 +67,11 @@ footer{
 
 }
 
+
+textarea {
+    resize: none;
+}
+
 @media screen and (max-width:321px){
     .eliminar{
         width: 15px !important;
@@ -78,4 +83,5 @@ footer{
     }
 
 }
+
 
