@@ -358,6 +358,7 @@ footer {
 .menu-open {
   color: black;
   max-height: 10vh;
+  width: 20px;
   top: 0;
   position: fixed;
   z-index: 994;
