@@ -35,7 +35,7 @@ public class TiendaDeRopaApplication {
 
 	@Bean
 	public CommandLineRunner initData(
-					ClienteRepository clienteRepository,
+			ClienteRepository clienteRepository,
 			ProductoRepository productoRepository,
 			ContactoRepository contactoRepository,
 			GiftCardRepository giftCardRepository,
