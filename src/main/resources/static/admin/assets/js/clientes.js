@@ -5,10 +5,12 @@ const app = Vue.createApp({
         urlApi: "/api/clientes",
         clientes: [],
         id:"",
+        imagen:"",
         Nombre:"",
         Apellido:"",
         Correo:"",
         Clave:"",
+        Clave2:"",
       };
     },
     created() {
@@ -28,15 +30,12 @@ const app = Vue.createApp({
     //       .then(() => {Swal.fire('Loan Aproved', '', 'success')
     //       setTimeout(()=>window.location.assign("index.html"),"1500")});
     //   },
-      toggleModal(){
-        document.body.classList.toggle("open");
-      },
+      
       crearCliente(){
-        axios.post("/api/cliente",`nombre=${this.Nombre}&apellido=${this.Apellido}&correo=${this.Correo}&clave=${this.Clave}`)
+        axios.post("/api/clientes",`nombre=${this.Nombre}&apellido=${this.Apellido}&correo=${this.Correo}&clave=${this.Clave}&clave2=${this.Clave2}`)
       },
-      eliminarCliente(){
-        // axios.path("/api/clientes",`id=${this.id}`)
-        console.log(this.id)
+      eliminarCliente(id){
+        axios.patch("/api/clientes",`id=${id}`).then(()=>this.cargarData(this.urlApi))
       }
 
     },

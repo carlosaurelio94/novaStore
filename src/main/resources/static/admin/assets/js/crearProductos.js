@@ -4,6 +4,8 @@ const app = Vue.createApp({
         info: null,
         urlApi: "/api/productos",
         productos:[],
+        imagen:"",
+        id:"",
         nombre:"",
         stock:"",
         precio:"",
@@ -19,6 +21,7 @@ const app = Vue.createApp({
           response;
           this.info = response;
           this.productos = this.info.data;
+          console.log(this.id);
         });
       },
     //   logOut() {
@@ -30,12 +33,14 @@ const app = Vue.createApp({
         document.body.classList.toggle("open");
       },
       crearProducto(){
-        axios.post("/api/producto",`nombre=${this.Nombre}&stock=${this.stock}&precio=${this.precio}&talle=${this.talle}`)
+        axios.post("/api/producto",`URLImagen=${this.imagen}&nombre=${this.nombre}&stock=${this.stock}&precio=${this.precio}&talle=${this.talle}`).then(()=>this.cargarData(this.urlApi))
       },
-      eliminarProducto(){
-        axios.patch("/api/restar",`id=${this.id}`)
-      }
-
+      restarProducto(id){
+        axios.patch("/api/restar",`id=${id}`).then(()=>this.cargarData(this.urlApi))
+      },
+      agregarProducto(id){
+        axios.patch("/api/agregar",`id=${id}`).then(()=>this.cargarData(this.urlApi))
+    }
     },
   });
   app.mount("#app");
