@@ -33,6 +33,9 @@
             <div class="collapse navbar-collapse" id="navbarText">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
+                  <a class="nav-link fs-3 text-light" aria-current="page" href="../web/index.html">inicio</a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link fs-3 text-light" aria-current="page" id="active" href="#">Clientes</a>
                 </li>
                 <li class="nav-item">
@@ -67,19 +70,19 @@
                   <label>Nombre</label>
                 </div>
                 <div class="question">
-                  <input type="text" v-model="Apellido">
+                  <input type="text" v-model="Apellido" required>
                   <label >Apellido </label>
                 </div>
                 <div class="question">
-                  <input type="text" v-model="Correo">
+                  <input type="text" v-model="Correo" required>
                   <label>Correo</label>
                 </div>
                 <div class="question">
-                  <input type="password" v-model="Clave">
+                  <input type="password" v-model="Clave" required>
                   <label >Clave </label>
                 </div>
                 <div class="question">
-                  <input type="password" v-model="Clave2">
+                  <input type="password" v-model="Clave2" required>
                   <label >Confirmar Clave </label>
                 </div>
               </form>
