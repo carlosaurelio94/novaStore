@@ -36,6 +36,7 @@ const app = Vue.createApp({
             .then(response=>{
                 this.articulosCarrito = response.data.ordenCompra
                 this.articulosCarrito.sort((a,b) => a.id - b.id)
+                console.log(this.articulosCarrito);
             })
             .catch(error=>console.log(error))
         },
@@ -47,6 +48,7 @@ const app = Vue.createApp({
                 this.productos = response.data
                 this.loadData("/api/productos")
                 this.carrito()
+                console.log(id);
             })
             .catch(error=>console.log(error))
         },
