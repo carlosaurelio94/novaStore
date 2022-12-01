@@ -3,7 +3,7 @@ const app = Vue.createApp({
         return{
            productos:[],
            articulosCarrito: [],
-           amount: 200,
+           amount: 150,
            unidades:"",
            buscar:"",
            cantidad:"",
@@ -51,16 +51,6 @@ const app = Vue.createApp({
                 console.log(id);
             })
             .catch(error=>console.log(error))
-        },
-        restarProducto(id){
-            axios.patch("/api/restar",`id=${id}`)
-            .then(response=>{
-                console.log(response.data)
-                this.productos = response.data
-                this.loadData("/api/productos")
-                this.carrito()
-            })
-            .catch(error=>console.log(error))
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -77,6 +67,17 @@ const app = Vue.createApp({
                 icon: 'success',
                 title: 'Producto agregado al carrito'
               })
+        },
+        restarProducto(id){
+            axios.patch("/api/restar",`id=${id}`)
+            .then(response=>{
+                console.log(response.data)
+                this.productos = response.data
+                this.loadData("/api/productos")
+                this.carrito()
+            })
+            .catch(error=>console.log(error))
+            
         },
         
 
