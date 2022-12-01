@@ -5,6 +5,7 @@ const app = Vue.createApp({
            articulosCarrito: [],
            amount: 200,
            unidades:"",
+           buscar:"",
         }
     
 
@@ -74,14 +75,9 @@ const app = Vue.createApp({
         
     },
     computed: {
-        double_filter() {
-            let first_filter = this.backupEVENTS.filter(events => events.name.toLowerCase().includes(this.search_text.toLowerCase()))
-            if (this.filtrocategories.length) {
-                this.EVENTS = first_filter.filter(events => this.filtrocategories.includes(events.category))
-            } else {
-                this.EVENTS = first_filter
-            }
-        },       
+        filtro_texto() {
+           return this.productos.filter(producto=> producto.nombre.toLowerCase().includes(this.buscar.toLowerCase()))
+            }       
 },
 
 })

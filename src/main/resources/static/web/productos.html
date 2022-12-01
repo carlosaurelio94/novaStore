@@ -65,111 +65,33 @@
                 </div>
             </div>
             <h1 class="titulo text-center">PRODUCTOS</h1>
-            <nav class="navbar navbar-expand-lg bg-transparent">
-                <div class="container-fluid">
-                    <a class="navbar-brand fs-3 fw-bold">Filtrar</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    </button>
-                    <div class="collapse navbar-collapse d-flex justify-content-center align-items-center"
-                        id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <!-- <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle fs-3 fw-bold" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Categoría
-                                </a>
-                                <ul class="dropdown-menu text-start">
-                                    <div class="dropdown-item">
-                                        <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label class="p-1" for="talla">Accesorios</label>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label class="p-1" for="talla">Balones</label>
-                                    </div class="dropdown-item">
-                                    <div class="dropdown-item">
-                                        <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label class="p-1" for="talla">Calzado</label>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label class="p-1" for="talla">Camisas</label>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label class="p-1" for="talla">Deportes</label>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label class="p-1" for="talla">Mundial</label>
-                                    </div>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle fs-3 fw-bold" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Talla
-                                </a>
-                                <ul class="dropdown-menu p-3">
-                                    <div class="dropdown-item">
-                                        <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label class="p-1" for="talla">6</label>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label class="p-1" for="talla">7</label>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label class="p-1" for="talla">8</label>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label class="p-1" for="talla">9</label>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label class="p-1" for="talla">10</label>
-                                    </div>
-                                    <div class="dropdown-item">
-                                        <input v-model="" type="checkbox" name="" value="" id="talla">
-                                        <label class="p-1" for="talla">11</label>
-                                    </div>
-                                </ul>
-                            </li> -->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle fs-3 fw-bold" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Precio
-                                </a>
-                                <ul class="dropdown-menu p-3">
-                                    <p>Máximo</p>
-                                    <div class="dropdown-item">
-                                        <input v-model="amount" style="width:120px ;" min="81" max="200" step="2"
-                                            type="range" class="form-range" id="customRange1">
-                                    </div>
-                                    <p>{{modificarSaldo(amount)}}</p>
-                                </ul>
-                            </li>
-                            <!-- <div class="botón-envio d-flex justify-content-center">
-                                <button class="boton bg-dark p-1">Filtrar</button>
-                            </div> -->
-                        </ul>
+            <div class="filtros d-flex flex-row flex-wrap align-items-center justify-content-center gap-3">
+
+                <div class="navbar bg-transparent mt-3 d-flex flex-column justify-content-start gap-4">
+                    <h3>Precio Máximo</h3>
+                    <div>
+                        <div>
+                            <input class="input" v-model="amount" style="width:230px ;" min="81" max="200" step="2" type="range"
+                                class="form-range">
+                        </div>
+                        <div class="text-center">{{modificarSaldo(amount)}}</div>
                     </div>
                 </div>
-            </nav>
+                <!-- <div class="busqueda mt-3">
+                    <form id="search" action="search">
+                        <input v-model="buscar" id="buscar" type="text" placeholder="Busca tu camisa">
+                        <button class="btn_search" type="submit" @click.prevent="filtro_texto"><img src="./assets/images/search-interface-symbol.png"
+                            alt=""></button>
+                    </form>
+                </div> -->
+            </div>
 
-            <!-- <div v-if="productoFiltrado.length == 0" class="text-center pt-5">
-                <h2 class="display-5 fw-bold w-100 text-center py-5 text-white">No hay ningun elemento que se
-                    acomode a su busqueda.</h2>
-            </div> -->
+
             <div class="contenedor_general m-2">
                 <div class="contenedor d-flex flex-row justify-content-center mt-5">
                     <div class="container d-flex flex-row flex-wrap justify-content-center">
                         <template v-for="producto of productos">
-                            <div class="card" v-if="producto.precio < amount">
+                            <div class="card" v-if="producto.precio < amount" v-if="productos.includes(buscar)">
                                 <div class="card-body">
                                     <div class="price">{{modificarSaldo(producto.precio)}}</div>
                                     <div class="imgBx">
