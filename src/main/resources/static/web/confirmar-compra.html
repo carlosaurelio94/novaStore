@@ -60,20 +60,18 @@
                                 <th>Subtotal</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <template v-for="producto of productos">
-                                <tr class="text-center">
-                                    <td><button>
-                                            <lord-icon class="eliminar" src="https://cdn.lordicon.com/gsqxdxog.json"
-                                                trigger="hover" style="width:30px;height:30px">
-                                            </lord-icon>
-                                        </button></td>
-                                    <td>{{producto.nombreProducto}}</td>
-                                    <td>{{modificarSaldo(producto.precio/producto.cantidad)}}</td>
-                                    <td>{{producto.cantidad}}</td>
-                                    <td>{{modificarSaldo(producto.precio)}}</td>
-                                </tr>
-                            </template>
+                        <tbody class="bg-light">
+                            <tr class="text-center">
+                                <td><button>
+                                        <lord-icon class="eliminar" src="https://cdn.lordicon.com/gsqxdxog.json"
+                                            trigger="hover" style="width:30px;height:30px">
+                                        </lord-icon>
+                                    </button></td>
+                                <td>Camisa España</td>
+                                <td>90.000</td>
+                                <td>1</td>
+                                <td>90000</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -83,20 +81,20 @@
                     <form id="miformulario text-center">
                         <div class="txt_field mt-2">
                             <div class="txt_field col-12">
-                                <label for="nombre" class="nombres" required>Nombre</label>
+                                <label for="nombre" class="nombres fw-bold" required>Nombre</label>
                                 <input type="text" class="form-control" required requiredplaceholder=""
                                     aria-label="Username" aria-describedby="basic-addon1">
                             </div>
                         </div>
                         <div class="txt_field mt-2">
                             <div class="txt_field col-12">
-                                <label for="nombre" class="nombres" required>Apellidos</label>
+                                <label for="nombre" class="nombres fw-bold" required>Apellidos</label>
                                 <input type="text" class="form-control" required placeholder="" aria-label="Username"
                                     aria-describedby="basic-addon1">
                             </div>
                         </div>
                         <div class="txt_field col-12">
-                            <label for="inputCiudadLine2" class="control-label" required>Ciudad</label>
+                            <label for="inputCiudadLine2" class="control-label fw-bold" required>Ciudad</label>
                             <select class="form-control" v-model="ciudad" required id="inputCiudadLine2">
                                 <option selected disabled hidden value="">-</option>
                                 <option value="Arauca">Arauca</option>
@@ -136,7 +134,7 @@
                         <div class="txt_field mt-2 col-12">
                             <div class="input-group mb-3 flex-column">
                                 <div class="txt_field">
-                                    <label for="inputCiudadLine2" class="control-label" required>Dirección</label>
+                                    <label for="inputCiudadLine2" class="control-label fw-bold" required>Dirección</label>
                                     <input type="text" class="form-control" required placeholder=""
                                         aria-label="Username" aria-describedby="basic-addon1">
                                 </div>
@@ -145,7 +143,7 @@
                         <div class="txt_field mt-2 col-12">
                             <div class="input-group mb-3 flex-column">
                                 <div class="txt_field">
-                                    <label for="inputCiudadLine2" class="control-label" required>Teléfono</label>
+                                    <label for="inputCiudadLine2" class="control-label fw-bold" required>Teléfono</label>
                                     <input type="text" class="form-control" required placeholder=""
                                         aria-label="Username" aria-describedby="basic-addon1">
                                 </div>
@@ -154,7 +152,7 @@
                         <div class="txt_field mt-2 col-12">
                             <div class="input-group mb-3 flex-column">
                                 <div class="txt_field">
-                                    <label for="inputCiudadLine2" class="control-label" required>Correo
+                                    <label for="inputCiudadLine2" class="control-label fw-bold" required>Correo
                                         electrónico</label>
                                     <input type="text" class="form-control" required placeholder=""
                                         aria-label="Username" aria-describedby="basic-addon1">
@@ -164,7 +162,7 @@
                         <div class="txt_field mt-2 col-12">
                             <div class="input-group mb-3 flex-column">
                                 <div class="txt_field">
-                                    <label for="inputCiudadLine2" class="control-label" required>¿Tienes alguna
+                                    <label for="inputCiudadLine2" class="control-label fw-bold" required>¿Tienes alguna
                                         aclaración
                                         sobre tu pedido?</label>
                                     <input type="text" class="form-control" placeholder="" aria-label="Username"
@@ -212,8 +210,7 @@
             </div>
             <div>
                 <p>Tus datos personales se utilizarán para procesar tu pedido, mejorar tu experiencia en esta web y
-                    otros propósitos descritos en nuestra <a class="politica text-dark" href="">política de
-                        privacidad.</a></p>
+                    otros propósitos descritos en nuestra <a class="politica text-dark" href="">política de privacidad.</a></p>
             </div>
 
             <div class="botón-envio d-flex justify-content-center">

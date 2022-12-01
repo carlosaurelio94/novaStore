@@ -160,3 +160,26 @@ const app = Vue.createApp({
 
 })
 app.mount('#app')
+
+const contenedor = document.querySelector('.contenedor_general')
+const colores =['#cc51ee57','#0074bc31','#38b75e5e','#de365d63']
+
+const figuras = () =>{
+    for(let i= 0; i <= 35; i++){
+        let figura = document.createElement('span')
+        let select = Math.round(colores.length * Math.random())
+
+        figura.style.top = innerHeight*Math.random() + 'px'
+        figura.style.left = innerWidth*Math.random() + 'px'
+        figura.style.background = colores[select >= colores.length ?  select -1: select]
+
+        contenedor.appendChild(figura)
+
+        setInterval(() =>{
+            figura.style.top = innerHeight*Math.random() + 'px'
+            figura.style.left = innerWidth*Math.random() + 'px'
+        },2500)
+    }
+}
+
+figuras()
