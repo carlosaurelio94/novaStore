@@ -205,7 +205,7 @@ const figuras = () =>{
 		setInterval(() =>{
 			figura.style.top = innerHeight*Math.random() + 'px'
 			figura.style.left = innerWidth*Math.random() + 'px'
-		},2500)
+		},2000)
 	}
   }
   
