@@ -14,37 +14,64 @@
 
 <body>
     <div id="app">
-        <header>
-            <nav class="navbar navbar-expand-lg bg-dark nav-header sticky-top">
-                <div class="container-fluid d-flex gap-3">
-                    <img src="./assets/images/logo-solo.png" alt="logo nova">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarText">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link fs-3 text-light" aria-current="page" id="active"
-                                    href="./index.html">Inicio</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link fs-3 text-light" href="./productos.html">Productos</a>
-                            </li>
-                        </ul>
-                        <div v-if="!cliente">
-                            <a href="#" class="registrarse fs-3 text-light text-decoration-none">Registrarse</a>
-                            <a href="#" class="ingresar fs-3 text-light text-decoration-none">Ingresar</a>
+
+        <div class="menu-open" id="menu-open">
+            <p>Menu</p>
+        </div>
+        <div class="nav-container contenedor_general">
+            <div id="menu-close" class="menu-close">Cerrar</div>
+
+            <div class="menu">
+                <div class="menu__item">
+                    <a href="./index.html" class="menu__item-link">Inicio</a>
+                    <img src="./assets/images/football-ar-fw22-afa-jsy-launch-story-snippet-d_tcm216-911562.jpg" alt=""
+                        class="menu__item-img">
+                    <div class="marquee">
+                        <div class="marquee__inner">
+                            <span>Inicio - Inicio - Inicio - Inicio - Inicio - Inicio - Inicio</span>
                         </div>
-                        <div v-if="cliente">
-                            <a href="" class="fs-3 text-light text-decoration-none">Cerrar sesión</a>
-                        </div>
-                        <a class="carrito" @click="carrito" href="#"><img src="./assets/images/cart.png"
-                                alt="Imagen carrito"></a>
                     </div>
                 </div>
-            </nav>
-        </header>
+                <div class="menu__item">
+                    <a href="#" class="menu__item-link">Productos</a>
+                    <img src="./assets/images/3a760bb02c5e45918c40ad180158b797_9366.jpg" alt="" class="menu__item-img">
+                    <div class="marquee">
+                        <div class="marquee__inner">
+                            <span>Productos - Productos - Productos - Productos - Productos - Productos -
+                                Productos</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu__item">
+                    <a href="./login.html" class="menu__item-link">Ingresar</a>
+                    <img src="./assets/images/ae7bef9af16d45f7ad97aed300f57c5b_9366.jpg" alt="" class="menu__item-img">
+                    <div class="marquee">
+                        <div class="marquee__inner">
+                            <span>Ingresar - Ingresar - Ingresar - Ingresar - Ingresar - Ingresar - Ingresar</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu__item">
+                    <a href="./contact.html" class="menu__item-link">Contacto</a>
+                    <img src="./assets/images/football-ar-fw22-afa-jsy-launch-story-snippet-d_tcm216-911562.jpg" alt=""
+                        class="menu__item-img">
+                    <div class="marquee">
+                        <div class="marquee__inner">
+                            <span>Contacto - Contacto - Contacto - Contacto - Contacto - Contacto - Contacto</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu__item">
+                    <a href="" class="menu__item-link">Cerrar Sesion</a>
+                    <img src="./assets/images/football-ar-fw22-afa-jsy-launch-story-snippet-d_tcm216-911562.jpg" alt=""
+                        class="menu__item-img">
+                    <div class="marquee">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+       
         <main class="main-confirmar m-2">
             <div class="contenedor_general m-1">
                 <div>
@@ -324,6 +351,8 @@
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
         crossorigin="anonymous"></script>
     <script src="https://cdn.lordicon.com/fudrjiwc.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
     <script src="./assets/scripts/confirma-compra.js"></script>
     </div>
 </body>
