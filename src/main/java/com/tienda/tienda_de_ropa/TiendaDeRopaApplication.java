@@ -163,10 +163,10 @@ public class TiendaDeRopaApplication {
 			Producto producto33 = new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669861514/Zapatillas/LITE%20RACER%20CLN%202.0/image-removebg-preview_77_jhaery.png", "https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669861514/Zapatillas/LITE%20RACER%20CLN%202.0/image-removebg-preview_78_rbdvir.png"), "Zapatilla LITE RACER CLN 2.0  ", 10, 50.00, List.of( "XS", "S", "M", "L", "XL", "XXL"));
 			productoRepository.save(producto33);
 
-			Producto producto34 = new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669861488/Accesorios/Ball%20pump/wvrpvsbaxq8nnzne45th_l49xxv.webp"), "Inflador", 5, 20.00, List.of( "XS"));
+			Producto producto34 = new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669861487/Accesorios/Ball%20pump/image-removebg-preview_17_x8vsps.png"), "Inflador Nike", 5, 20.00, List.of( "XS"));
 			productoRepository.save(producto34);
 
-			Producto producto35 = new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669861489/Accesorios/Bottle/image-removebg-preview_19_hs4stk.png"), "Botella", 5, 15.00, List.of( "XS"));
+			Producto producto35 = new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669861489/Accesorios/Bottle/image-removebg-preview_19_hs4stk.png"), "Botella Nike", 5, 15.00, List.of( "XS"));
 			productoRepository.save(producto35);
 
 			Producto producto36 = new Producto(List.of("https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669861492/Accesorios/Gloves/image-removebg-preview_21_uvlitb.png","https://res.cloudinary.com/dqsq3fc1b/image/upload/v1669861489/Accesorios/Gloves/image-removebg-preview_20_gho10i.png"), "Guantes Deportivos", 5, 25.00, List.of( "XS"));
