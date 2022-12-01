@@ -33,7 +33,7 @@
             <div class="collapse navbar-collapse" id="navbarText">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link fs-3 text-light" aria-current="page" href="../web/index.html">Inicio</a>
+                  <a class="nav-link fs-3 text-light" aria-current="page" href="../web/index.html">inicio</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link fs-3 text-light" aria-current="page" id="active" href="#">Clientes</a>
@@ -50,7 +50,7 @@
 
       <!-- Button trigger modal -->
       <div class="contenedorBoton">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"  >
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
           Crear Cliente
         </button>
       </div>
@@ -89,7 +89,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-primary" v-on:click="alerta()">Crear</button>
+              <button type="button" class="btn btn-primary" @click="crearCliente()">Crear</button>
             </div>
           </div>
         </div>
@@ -113,7 +113,7 @@
                 <p>Id: {{cliente.id}} </p>
                 <p>Correo: {{cliente.correo}}</p>
                 <p>Puntos: {{cliente.puntos}}</p>
-                <button class="noselect" v-on:click="eliminarCliente(cliente.id)"><span class='text'>Eliminar</span><span
+                <button class="noselect" @click="eliminarCliente(cliente.id)"><span class='text'>Eliminar</span><span
                     class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                       <path
                         d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" />
@@ -135,13 +135,13 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.js"></script>
   <script src="./assets/js/clientes.js"></script>
 
-  <!-- <script>const myModal = document.getElementById('myModal')
+  <script>const myModal = document.getElementById('myModal')
     const myInput = document.getElementById('myInput')
 
     myModal.addEventListener('shown.bs.modal', () => {
       myInput.focus()
     })
-  </script> -->
+  </script>
   <!-- JavaScript Bundle with Popper -->
 </body>
 
