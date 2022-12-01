@@ -6,6 +6,7 @@ const app = Vue.createApp({
            amount: 200,
            unidades:"",
            buscar:"",
+           cantidad:"",
         }
     
 

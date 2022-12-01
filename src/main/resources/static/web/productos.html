@@ -55,7 +55,18 @@
                         <template v-for="articuloCarrito of articulosCarrito">
                             <div class="carrito_articulos d-flex flex-column m-2">
                                 <legend class="nombre fs-5">Producto: {{articuloCarrito.nombreProducto}}</legend>
-                                <legend class="cantidad fs-5">Unidades: {{articuloCarrito.cantidad}}</legend>
+                                <div class="unidades_aumentar d-flex flex-column align-items-center justify-content-center">
+                                    <p class="cantidad fs-5">Unidades:</p>
+                                    <div class="unidades-cambiar d-flex flex-row align-items-around justify-content-center gap-3">
+                                        <button class="boton-disminuir bg-danger" style="width: 25px; height:30px">
+                                            <a class="disminuir text-decoration-none text-light align-self-center" href="">-</a>
+                                        </button>
+                                        <p class="cantidades">{{articuloCarrito.cantidad}}</p>
+                                        <button class="boton-aumentar bg-primary text-center" style="width: 25px; height:30px">
+                                            <a class="aumentar text-decoration-none text-light align-self-start"href="">+</a>
+                                        </button>
+                                    </div>
+                                </div>
                                 <legend class="precio fs-5">Precio: {{modificarSaldo(articuloCarrito.precio)}}</legend>
                             </div>
                         </template>
