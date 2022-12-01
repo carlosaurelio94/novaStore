@@ -136,15 +136,30 @@
                 </div>
                 <div class="busqueda mt-3">
                     <form id="search" action="search" class="d-flex flex-row">
-                        <input class="form-control" v-model="buscar" id="buscar" type="text" placeholder="Buscar">
+                        <!-- <input class="form-control" v-model="buscar" id="buscar" type="text" placeholder="Buscar">
                         <button class="btn_search btn border border-1 border-dark rounded-2" type="submit" @click.prevent="filtro_texto"><img src="./assets/images/search-interface-symbol.png"
                             alt=""><span class="material-symbols-outlined" style="font-size: 25px;">
                                 search
-                                </span></button>
+                                </span></button> -->
+                                <select @click="filtro_texto" v-model="categoria" name="" id="" class="form-select">
+                                    <option selected disabled>seleccionar</option>
+                                    <option value="pelota">pelota</option>
+                                    <option value="camiseta" >camiseta</option>
+                                    <option value="botella">botella</option>
+                                    <option value="zapatilla">zapatilla</option>
+                                    <option value="inflador">inflador</option>
+                                    <option value="guante">guante</option>
+                                    <option value="vincha">vincha</option>
+                                    <option value="cinta">cinta</option>
+                                    <option value="raqueta">raqueta</option>
+                                    <option value="short">short</option>
+                                    <option value="botines">botines</option>
+                                </select>
                     </form>
                 </div>
             </div>
 
+            
 
             <div class="contenedor_general1 m-2">
                 <div class="contenedor d-flex flex-row justify-content-center mt-5">
