@@ -33,6 +33,7 @@ const app = Vue.createApp({
             cardCvv: "",
             paymentAmount: "",
             paymentDescription: "",
+            ciudad: ""
         }
 
 
@@ -52,9 +53,9 @@ const app = Vue.createApp({
                     this.cliente = response.data
                     this.productos = response.data.carrito.ordenCompra
                     this.precioTotal = this.productos.map(producto => producto.precio)
-                    let total = this.precioTotal.reduce((a,b) => a+b,0)
+                    let total = this.precioTotal.reduce((a, b) => a + b, 0)
                     this.total = total
-                    console.log(this.total);
+                    console.log(this.cliente);
                 })
                 .catch(error => console.log(error))
         },
@@ -82,26 +83,29 @@ const app = Vue.createApp({
             }).then(res => {
                 if (res.isConfirmed == true) {
                     return axios.post('https://nova-bank-production-45f5.up.railway.app/api/payments',
-                        { number: number, cvv: cvv, amount: this.total+150, description: description })
+                        { number: number, cvv: cvv, amount: this.total + 150, description: description })
                         .then(result => {
-                            if(result.status == 201) {
-                                return axios.post('/api/transaccional')
+                            if (result.status == 201) {
+                                return axios.get('/api/pdf/generate')
+                                    .then(result => window.location.assign(result.request.responseURL)
+                                    )
+                                    .catch(error => console.log(error)
+                                    )
                             }
                         })
                         .then(() => {
-                            return axios.get("/api/pdf/generate")
-                        }
-                        )
-                         .then(result =>
+                            return axios.post('/api/transaccional')
+                        })
+                        .then(result =>
                             Swal.fire({
                                 title: 'Pago exitoso',
                                 text: "Tu pago se hizo exitosamente",
                                 icon: 'success',
                                 confirmButtonColor: '#24cb24',
                             })
-                        )/*.then(result =>
-                            window.location.assign("./index.html")
-                        ) */
+                        ).then(result =>
+                            window.location.assign("./productos.html")
+                        ) 
                         .catch(error => Swal.fire({
                             icon: 'error',
                             title: 'Error ' + error.response.status,
@@ -113,6 +117,9 @@ const app = Vue.createApp({
             })
         },
 
+        pdf() {
+
+        },
         eliminarProducto(e) {
             const productoId = e.target.getAttribute("data-id")
             this.articulosCarrito = this.articulosCarrito.filter(producto => producto.id !== productoId)

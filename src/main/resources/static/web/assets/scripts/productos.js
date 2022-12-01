@@ -33,7 +33,7 @@ const app = Vue.createApp({
             return axios.get("/api/clientes/actual/carrito")
             .then(response=>{
                 this.articulosCarrito = response.data.ordenCompra
-                console.log(this.articulosCarrito);
+                this.articulosCarrito.sort((a,b) => a.id - b.id)
             })
             .catch(error=>console.log(error))
         },
@@ -43,6 +43,8 @@ const app = Vue.createApp({
             .then(response=>{
                 console.log(response.data)
                 this.productos = response.data
+                this.loadData("/api/productos")
+                this.carrito()
             })
             .catch(error=>console.log(error))
         },
@@ -102,7 +104,7 @@ const figuras = () =>{
         setInterval(() =>{
             figura.style.top = innerHeight*Math.random() + 'px'
             figura.style.left = innerWidth*Math.random() + 'px'
-        },5000)
+        },2000)
     }
 }
 
