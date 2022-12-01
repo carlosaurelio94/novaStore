@@ -47,6 +47,7 @@ main{
 .caja_contenido_hijo h3{
     margin-bottom: 2rem;
     margin-top: 1.5rem;
+    font-size: 2.5rem;
 }
 .nombreyApellido{
     display: flex;
