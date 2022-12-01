@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Set;
@@ -118,11 +120,19 @@ public class ClienteController {
     }
 
     @GetMapping("/verificacion")
-    public String verificarCliente(@Param("token") String token){
+    public void verificarCliente(@Param("token") String token, HttpServletRequest request, HttpServletResponse response){
         if (clienteService.verificacion(token)) {
-            return "Verificación exitosa";
+            try {
+                response.sendRedirect("http://localhost:8080/web/confirmar-login.html");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         } else {
-            return "La verificación fallo";
+            try {
+                response.sendRedirect("http://localhost:8080/web/confirmar-login.html");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
