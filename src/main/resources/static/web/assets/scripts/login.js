@@ -50,7 +50,7 @@ createApp({
         .then(response => Swal.fire({
           text: 'Verifica tu buzón de correo electrónico',
           title: 'Antes de continuar',
-          icon: 'success',
+          icon: 'info',
           confirmButtonColor: '#24cb24',
         }))
         .then(response => window.location.assign("./index.html"))
