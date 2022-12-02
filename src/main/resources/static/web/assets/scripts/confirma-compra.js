@@ -50,7 +50,7 @@ const app = Vue.createApp({
             let number = this.cardNumber
             let cvv = this.cardCvv
             let amount = this.paymentAmount
-            let description = "compra"
+            let description = "Pago de Productos"
             let alert = Swal.fire({
                 title: '¿Estás seguro?',
                 text: "Una vez hecha la transacción no podemos deshacerla",

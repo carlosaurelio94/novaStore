@@ -20,7 +20,8 @@ footer {
   min-height: 10vh;
 }
 
-.boton {
+.boton, 
+.boton1 {
   letter-spacing: 2px;
   border-radius: 5px 15px 0px 15px;
   display: inline;
@@ -34,10 +35,12 @@ footer {
   transition: ease-out 1s;
   outline: none;
   box-shadow: rgba(11, 103, 123, 0.6);
-  ;
+  
+  
 }
 
-.boton:hover {
+.boton:hover, 
+.boton1:hover {
   box-shadow: inset 200px 0 0 0 white;
   cursor: pointer;
   color: rgb(0, 0, 0);
@@ -147,9 +150,16 @@ footer {
   margin-left: -35px;
 }
 
-.boton {
+.boton{
   text-align: center;
-  margin-left: -35px;
+  margin-bottom: 35px;
+  margin-left: -50px;  
+}
+
+.boton1{
+  text-align: center;
+  margin-bottom: 35px;
+  
 }
 
 .price {
@@ -306,12 +316,14 @@ footer {
   background-color: black;
   transition: all 500ms linear;
   left: -315px;
+  top: 0;
   z-index: 1000;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 #carrito_lateral.activo {
   left: 0px;
+  top: 0px;
 }
 
 

@@ -217,11 +217,11 @@
                     </thead>
                     <tbody class="text-center">
                         <tr>
-                            <td class="col-6">{{modificarSaldo(total)}}</td>
-                            <td class="col-6" v-if="ciudad == 'Bogotá'">{{modificarSaldo(10)}}</td>
-                            <td class="col-6" v-else>{{modificarSaldo(15)}}</td>
-                            <td class="col-6" v-if="ciudad == 'Bogotá'">{{modificarSaldo(total + 10)}}</td>
-                            <td class="col-6" v-else>{{modificarSaldo(total + 15)}}</td>
+                            <td class="col-4 text-center">{{modificarSaldo(total)}}</td>
+                            <td class="col-4 text-center" v-if="ciudad == 'Bogotá'">{{modificarSaldo(10)}}</td>
+                            <td class="col-4 text-center" v-else>{{modificarSaldo(15)}}</td>
+                            <td class="col-4 text-center" v-if="ciudad == 'Bogotá'">{{modificarSaldo(total + 10)}}</td>
+                            <td class="col-4 text-center" v-else>{{modificarSaldo(total + 15)}}</td>
 
                         </tr>
                     </tbody>
@@ -262,7 +262,8 @@
                 </div>
                 <div class="offcanvas-body">
                     <p>Por acá te pediremos unos datos para terminar tu compra.</p>
-                    <p class="fw-bolder">Vas a pagar la cantidad de: {{modificarSaldo(total + 150)}}</p>
+                    <p v-if="ciudad == 'Bogotá'" class="fw-bolder">Vas a pagar la cantidad de: {{modificarSaldo(total + 10)}}</p>
+                    <p v-else class="fw-bolder">Vas a pagar la cantidad de: {{modificarSaldo(total + 15)}}</p>
                     <form action="">
                         <fieldset class="">
                             <label for="number" class="form-text fw-bolder text-dark">Número de tarjeta</label>
