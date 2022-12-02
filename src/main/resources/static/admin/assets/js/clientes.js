@@ -34,6 +34,7 @@ const app = Vue.createApp({
       crearCliente(){
         axios.post("/api/clientes",`nombre=${this.Nombre}&apellido=${this.Apellido}&correo=${this.Correo}&clave=${this.Clave}&clave2=${this.Clave2}`)
       },
+
       eliminarCliente(id){
           Swal.fire({
           title: 'Está seguro?',
@@ -59,6 +60,7 @@ const app = Vue.createApp({
         
       },
       alerta(){
+        console.log("hola")
         Swal.fire({
           title: 'Está seguro?',
           text: "Se creará un usuario con los datos ingresados",

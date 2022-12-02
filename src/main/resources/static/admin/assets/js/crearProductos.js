@@ -38,20 +38,20 @@ const app = Vue.createApp({
       eliminarProducto(id){
         Swal.fire({
         title: 'Está seguro?',
-        text: "Se eliminara el cliente seleccionado",
+        text: "Se eliminara el producto seleccionado",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33', 
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Si, eliminar el usuario!'
+        confirmButtonText: 'Si, eliminar el producto!'
       }).then( (result) => {
         if (result.isConfirmed) {
           axios.patch("/api/productos",`id=${id}`).then(()=>this.cargarData(this.urlApi))
           console.log("eliminado")
           Swal.fire(
             'Eliminado!',
-            'Se ha eliminado el cliente',
+            'Se ha eliminado el producto',
             'success', 
 
        )
